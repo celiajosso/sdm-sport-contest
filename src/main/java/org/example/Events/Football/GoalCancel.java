@@ -1,0 +1,6 @@
+package org.example.Events.Football;
+
+import org.example.Events.Event;
+
+public class GoalCancel extends Event {
+}
