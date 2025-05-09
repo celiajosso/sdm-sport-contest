@@ -1,5 +1,7 @@
 package org.example.Events.Tennis;
 
-public class setEnd {
+import org.example.Events.Event;
+
+public class setEnd extends Event {
     
 }

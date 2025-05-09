@@ -1,5 +1,5 @@
 package org.example.Events.Tennis;
 
-public class SetStart {
+public class SetStart extends Event{
     
 }

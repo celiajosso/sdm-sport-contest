@@ -1,5 +1,7 @@
 package org.example.Events.Volleyball;
 
-public class MatchStop {
+import org.example.Events.Event;
+
+public class MatchStop extends Event {
     
 }

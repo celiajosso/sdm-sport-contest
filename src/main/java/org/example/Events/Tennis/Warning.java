@@ -1,4 +1,4 @@
-package org.example.Events.Volleyball;
+package org.example.Events.Tennis;
 
 import org.example.Events.Event;
 

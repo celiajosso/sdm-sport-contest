@@ -1,5 +1,7 @@
 package org.example.Events.Volleyball;
 
-public class TieBreak {
+import org.example.Events.Event;
+
+public class TieBreak extends Event {
     
 }
