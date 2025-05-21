@@ -3,8 +3,8 @@ package org.example.contestant;
 public class TeamMember extends Player {
     private String role;
 
-    public TeamMember(String firstname, String surname, String pseudonym, String birthdate, int age, String role, String teamName) {
-        super(firstname, surname, pseudonym, birthdate, age);
+    public TeamMember(String firstname, String surname, String pseudonym, String birthdate, String role, String teamName) {
+        super(firstname, surname, pseudonym, birthdate);
         this.role = role;
     }
 

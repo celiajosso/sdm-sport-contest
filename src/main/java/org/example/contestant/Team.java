@@ -3,9 +3,9 @@ package org.example.contestant;
 public class Team extends Contestant {
     private TeamMember[] teamMembers;
     private String teamName;
-    private String teamLeader;
+    private TeamMember teamLeader;
 
-    public Team(String teamName, String teamLeader, TeamMember[] teamMembers) {
+    public Team(String teamName, TeamMember teamLeader, TeamMember[] teamMembers) {
         this.teamName = teamName;
         this.teamLeader = teamLeader;
         this.teamMembers = teamMembers;
@@ -15,7 +15,7 @@ public class Team extends Contestant {
         return teamName;
     }
 
-    public String getTeamLeader() {
+    public TeamMember getTeamLeader() {
         return teamLeader;
     }
 
@@ -27,7 +27,7 @@ public class Team extends Contestant {
         this.teamName = teamName;
     }
 
-    public void setTeamLeader(String teamLeader) {
+    public void setTeamLeader(TeamMember teamLeader) {
         this.teamLeader = teamLeader;
     }
 

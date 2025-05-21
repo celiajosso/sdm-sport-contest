@@ -6,7 +6,7 @@ public class Player extends Contestant {
     private String pseudonym;
     private String birthdate;
 
-    public Player(String  firstname, String surname, String pseudonym, String birthdate, int age) {
+    public Player(String  firstname, String surname, String pseudonym, String birthdate) {
         this.firstname = firstname;
         this.surname = surname;
         this.pseudonym = pseudonym;
