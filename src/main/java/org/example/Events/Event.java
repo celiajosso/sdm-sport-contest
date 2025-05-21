@@ -1,6 +1,8 @@
 package org.example.Events;
 
-public abstract class Event {
+import org.example.Match;
+
+public abstract class Event implements Command {
 
     private Match match;
 
