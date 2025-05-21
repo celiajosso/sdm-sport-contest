@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.example.Subscriber;
 import org.example.Events.Event;
 
+// do an observer here
 public class MatchEventHistory {
     private ArrayList<Event> eventHistory;
     private ArrayList<Subscriber<Event>> subscribers;
