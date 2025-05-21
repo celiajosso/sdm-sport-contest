@@ -1,4 +1,4 @@
-package org.example.MatchManager;
+package org.example;
 
 public class Match {
     private Integer matchId;
