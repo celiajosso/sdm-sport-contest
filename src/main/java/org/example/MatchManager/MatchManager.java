@@ -19,13 +19,6 @@ public abstract class MatchManager {
         }
     }
 
-    public void undoLastEvent() {
-        if (!eventHistory.getEventHistory().isEmpty()) {
-            Event last = eventHistory.getEventHistory().remove(eventHistory.getEventHistory().size() - 1);
-            last.undo();
-        }
-    }
-
     public MatchEventHistory getEventHistory() {
         return eventHistory;
     }
