@@ -2,6 +2,7 @@ package org.example.Events.Football;
 
 import org.example.Events.Event;
 import org.example.Match;
+import org.example.MatchState;
 
 public class MatchCancellation extends Event {
 
@@ -11,6 +12,9 @@ public class MatchCancellation extends Event {
 
     @Override
     public boolean execute() {
+        match.setState(MatchState.CANCELED);
+        backup();
+        
         match.logEvent("Match cancelled");
         return true;
     }

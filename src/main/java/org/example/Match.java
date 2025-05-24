@@ -1,42 +1,56 @@
 package org.example;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import org.example.MatchManager.FootballMatchManager;
+import org.example.MatchManager.TennisMatchManager;
+import org.example.MatchManager.VolleyballMatchManager;
+import org.example.contestant.Team;
 
 public class Match {
     private Integer matchId;
-    private String team1;
-    private String team2;
+    private Team teamA;
+    private Team teamB;
     private String dateTime;
     private String location;
-    private int scoreA;
-    private int scoreB;
-    
-    private Map<String, Integer> score = new HashMap<>();
+    private MatchState matchState = MatchState.NOT_STARTED;
     private List<String> eventLog = new ArrayList<>();
 
-    public Match(Integer matchId, String team1, String team2, String dateTime, String location) {
+    private TennisMatchManager tennisMatchManager = new TennisMatchManager(this);
+    private FootballMatchManager footballMatchManager = new FootballMatchManager(this);
+    private VolleyballMatchManager volleyballMatchManager = new VolleyballMatchManager(this);
+
+    public Match(Integer matchId, Team teamA, Team teamB, String dateTime, String location) {
         this.matchId = matchId;
-        this.team1 = team1;
-        this.team2 = team2;
+        this.teamA = teamA;
+        this.teamB = teamB;
         this.dateTime = dateTime;
         this.location = location;
-        this.scoreA = 0;
-        this.scoreB = 0;
+    }
+
+    public TennisMatchManager getTennisMatchManager() {
+        return tennisMatchManager;
+    }
+
+    public FootballMatchManager getFootballMatchManager() {
+        return footballMatchManager;
+    }
+
+    public VolleyballMatchManager getVolleyBallMatchManager() {
+        return volleyballMatchManager;
     }
 
     public Integer getMatchId() {
         return matchId;
     }
 
-    public String getTeam1() {
-        return team1;
+    public Team getTeamA() {
+        return teamA;
     }
 
-    public String getTeam2() {
-        return team2;
+    public Team getTeamB() {
+        return teamB;
     }
 
     public String getDateTime() {
@@ -47,37 +61,20 @@ public class Match {
         return location;
     }
 
-   public MatchState getState() {
-        return new MatchState(scoreA, scoreB);
+    public MatchState getState() {
+        return matchState;
     }
 
-    public void setState(MatchState state) {
-        this.scoreA = state.getScoreA();
-        this.scoreB = state.getScoreB();
-    }
-
-    public void addScoreA(int points) {
-        this.scoreA += points;
-    }
-
-    public void addScoreB(int points) {
-        this.scoreB += points;
-    }
-
-    public int getScoreA() {
-        return scoreA;
-    }
-
-    public int getScoreB() {
-        return scoreB;
-    }
-
-    public void incrementScore(String team) {
-        score.put(team, score.getOrDefault(team, 0) + 1);
+    public void setState(MatchState matchState) {
+        this.matchState = matchState;
     }
 
     public void logEvent(String description) {
         eventLog.add(description);
+        System.out.println(description);
     }
 
+    public List<String> getEventLog() {
+        return eventLog;
+    }
 }
