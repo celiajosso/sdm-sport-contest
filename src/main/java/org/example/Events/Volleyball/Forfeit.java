@@ -1,19 +1,20 @@
 package org.example.Events.Volleyball;
 
 import org.example.Events.Event;
+import org.example.contestant.Team;
 import org.example.Match;
 
 public class Forfeit extends Event {
-    private String team;
+    private Team team;
 
-    public Forfeit(Match match, String team) {
+    public Forfeit(Match match, Team team) {
         super(match);
         this.team = team;
     }
 
     @Override
     public boolean execute() {
-        match.logEvent(team + " forfeits the volleyball match");
+        match.logEvent(team.getTeamName() + " forfeits the volleyball match");
         return true;
     }
 }

@@ -1,6 +1,8 @@
 package org.example.MatchManager;
 
 import org.example.Match;
+import org.example.Events.Event;
+import org.example.Events.Football.GoalScore;
 import org.example.contestant.Team;
 
 public class FootballMatchManager extends MatchManager {
@@ -46,6 +48,10 @@ public class FootballMatchManager extends MatchManager {
 
     public int getScoreB() {
         return scoreB;
+    }
+
+    public void applyFootballEvent(Event event) {
+        applyEvent(event);
     }
 
 }

@@ -12,7 +12,7 @@ public class MatchEnd extends Event {
 
     @Override
     public boolean execute() {
-        match.setState(MatchState.INTERRUPTED);
+        match.setState(MatchState.FINISHED);
         backup();
         
         Player playerA = (Player) match.getTeamA().getTeamMembers()[0];

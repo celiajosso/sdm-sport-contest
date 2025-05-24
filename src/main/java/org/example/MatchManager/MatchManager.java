@@ -26,4 +26,8 @@ public abstract class MatchManager {
     public Match getMatch() {
         return this.match;
     }
+
+    public void resetEventHistory() {
+        this.eventHistory = new MatchEventHistory();
+    }
 }

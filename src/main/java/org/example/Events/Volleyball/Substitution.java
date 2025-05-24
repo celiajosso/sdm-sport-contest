@@ -1,14 +1,16 @@
 package org.example.Events.Volleyball;
 
 import org.example.Events.Event;
+import org.example.contestant.Player;
+import org.example.contestant.Team;
 import org.example.Match;
 
 public class Substitution extends Event {
-    private String playerOut;
-    private String playerIn;
-    private String team;
+    private Player playerOut;
+    private Player playerIn;
+    private Team team;
 
-    public Substitution(Match match, String team, String playerOut, String playerIn) {
+    public Substitution(Match match, Team team, Player playerOut, Player playerIn) {
         super(match);
         this.team = team;
         this.playerOut = playerOut;
@@ -17,7 +19,7 @@ public class Substitution extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Substitution in " + team + ": " + playerOut + " out, " + playerIn + " in");
+        match.logEvent("Substitution in " + team.getTeamName() + ": " + playerOut.getPseudonym() + " out, " + playerIn.getPseudonym() + " in");
         return true;
     }
 }

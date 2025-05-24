@@ -15,6 +15,10 @@ public class MatchStart extends Event {
         backup();
         
         match.logEvent("Tennis match started");
+
+        match.getTeamA().displayTeam();
+        match.getTeamB().displayTeam();
+        
         return true;
     }
 }

@@ -1,7 +1,7 @@
 package org.example.MatchManager;
 
 import org.example.Match;
-
+import org.example.Events.Event;
 import org.example.contestant.Player;
 import org.example.contestant.Team;
 
@@ -14,6 +14,8 @@ public class TennisMatchManager extends MatchManager {
     private final Map<Player, Integer> gameScores = new HashMap<>();
     private final Map<Player, Integer> setScores = new HashMap<>();
     private final Map<Player, Integer> setsWon = new HashMap<>();
+    private boolean isTieBreak = false;
+    private final Map<Player, Integer> tieBreakPoints = new HashMap<>();
 
     public TennisMatchManager(Match match) {
         super(match);
@@ -23,6 +25,17 @@ public class TennisMatchManager extends MatchManager {
         int currentPoints = pointScores.getOrDefault(player, 0);
         Player opponent = getOpponent(player);
         int opponentPoints = pointScores.getOrDefault(opponent, 0);
+
+        if (isTieBreak) {
+            int newPoints = tieBreakPoints.getOrDefault(player, 0) + 1;
+            tieBreakPoints.put(player, newPoints);
+            if (newPoints >= 7 && (newPoints - opponentPoints) >= 2) {
+                winSet(player);
+                isTieBreak = false;
+                tieBreakPoints.clear();
+            }
+            return;
+        }
 
         switch (currentPoints) {
             case 0 -> currentPoints = 15;
@@ -45,9 +58,7 @@ public class TennisMatchManager extends MatchManager {
                 return;
             }
         }
-
-        pointScores.put(player, currentPoints);
-    }
+    }    
 
     public void cancelLastPoint(Player player) {
         int currentPoints = pointScores.getOrDefault(player, 0);
@@ -59,10 +70,7 @@ public class TennisMatchManager extends MatchManager {
             pointScores.put(player, 15);
         } else if (currentPoints == 15) {
             pointScores.put(player, 0);
-        } else {
-            match.logEvent("Cannot cancel point: " + player.getPseudonym() + " already at 0");
         }
-        match.logEvent("Cancelled point for " + player.getPseudonym() + ". Now at: " + pointScores.get(player));
     }
 
     public void winGame(Player player) {
@@ -71,11 +79,14 @@ public class TennisMatchManager extends MatchManager {
 
         int games = gameScores.getOrDefault(player, 0) + 1;
         gameScores.put(player, games);
-        match.logEvent(player.getPseudonym() + " now has " + games + " games.");
 
         Player opponent = getOpponent(player);
         if (games >= 6 && games - gameScores.getOrDefault(opponent, 0) >= 2) {
             winSet(player);
+        }
+
+        if (games == 6 && gameScores.getOrDefault(getOpponent(player), 0) == 6) {
+            isTieBreak = true;
         }
     }
 
@@ -109,9 +120,6 @@ public class TennisMatchManager extends MatchManager {
         int games = gameScores.getOrDefault(player, 0);
         if (games > 0) {
             gameScores.put(player, games - 1);
-            match.logEvent("Cancelled last game for " + player.getPseudonym() + ". Now at: " + (games - 1));
-        } else {
-            match.logEvent("Cannot cancel game: " + player.getPseudonym() + " has no games.");
         }
     }
 
@@ -119,9 +127,6 @@ public class TennisMatchManager extends MatchManager {
         int sets = setScores.getOrDefault(player, 0);
         if (sets > 0) {
             setScores.put(player, sets - 1);
-            match.logEvent("Cancelled last set for " + player.getPseudonym() + ". Now at: " + (sets - 1));
-        } else {
-            match.logEvent("Cannot cancel set: " + player.getPseudonym() + " has no sets.");
         }
     }
 
@@ -131,5 +136,9 @@ public class TennisMatchManager extends MatchManager {
 
     public int getSetsWon(Player player) {
         return setsWon.getOrDefault(player, 0);
+    }
+
+    public void applyTennisEvent(Event event) {
+        applyEvent(event);
     }
 }

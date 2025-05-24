@@ -1,13 +1,14 @@
 package org.example.Events.Volleyball;
 
 import org.example.Events.Event;
+import org.example.contestant.Player;
 import org.example.Match;
 
 public class Warning extends Event {
-    private String player;
+    private Player player;
     private String reason;
 
-    public Warning(Match match, String player, String reason) {
+    public Warning(Match match, Player player, String reason) {
         super(match);
         this.player = player;
         this.reason = reason;
@@ -15,7 +16,7 @@ public class Warning extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Warning to " + player + ": " + reason);
+        match.logEvent("Warning to " + player.getPseudonym() + ": " + reason);
         return true;
     }
 }
