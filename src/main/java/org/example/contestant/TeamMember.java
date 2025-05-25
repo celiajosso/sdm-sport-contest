@@ -5,7 +5,7 @@ public class TeamMember extends Player {
     private int yellowCards = 0;
     private boolean redCard = false;
 
-    public TeamMember(String firstname, String surname, String pseudonym, String birthdate, String role, String teamName) {
+    public TeamMember(String firstname, String surname, String pseudonym, String birthdate, String role) {
         super(firstname, surname, pseudonym, birthdate);
         this.role = role;
     }

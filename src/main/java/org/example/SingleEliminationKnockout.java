@@ -1,7 +1,7 @@
 package org.example;
 
 
-public class SingleEliminationKnockout {
+public class SingleEliminationKnockout extends Phase {
     
     
 }
