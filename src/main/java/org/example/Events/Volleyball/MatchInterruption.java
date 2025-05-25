@@ -1,4 +1,4 @@
-package org.example.Events.Tennis;
+package org.example.Events.Volleyball;
 
 import org.example.Events.Event;
 import org.example.Match;
@@ -13,8 +13,8 @@ public class MatchInterruption extends Event {
     public boolean execute() {
         match.setState(MatchState.INTERRUPTED);
         backup();
-        
-        match.logEvent("Tennis match interrupted");
+
+        match.logEvent("Volleyball match temporarily stopped");
         return true;
     }
 }

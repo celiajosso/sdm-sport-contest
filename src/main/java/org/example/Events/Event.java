@@ -1,23 +1,20 @@
 package org.example.Events;
 
-public abstract class Event {
+import org.example.Match;
+import org.example.MatchState;
 
-    private Match match;
+public abstract class Event implements Command {
 
-    private Matchstate backup;
+    protected Match match;
+    private MatchState backup;
 
-    Event(Match match) {
+    public Event(Match match) {
         this.match = match;
     }
 
-    void backup() {
-        backup = match.getState();
-    }
-
-    public void undo() {
-        match.setState(backup);
+    protected void backup() {
+        this.backup = match.getState();
     }
 
     public abstract boolean execute();
-
 }
