@@ -1,8 +1,8 @@
 package org.example;
 
-import java.util.List;
-
 import org.example.contestant.Contestant;
+
+import java.util.List;
 
 // faire design pattern composite
 // compter nb de niveaux (puissance de 2)

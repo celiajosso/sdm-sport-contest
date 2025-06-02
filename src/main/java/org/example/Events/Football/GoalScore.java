@@ -1,13 +1,13 @@
 package org.example.Events.Football;
 
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.MatchManager.FootballMatchManager;
 import org.example.contestant.Team;
-import org.example.Match;
 
 public class GoalScore extends Event {
-    private Team scoringTeam;
-    private FootballMatchManager manager;
+    private final Team scoringTeam;
+    private final FootballMatchManager manager;
 
     public GoalScore(Match match, FootballMatchManager manager, Team scoringTeam) {
         super(match);

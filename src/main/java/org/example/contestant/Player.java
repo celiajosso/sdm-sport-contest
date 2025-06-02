@@ -1,9 +1,9 @@
 package org.example.contestant;
 
 public class Player extends Contestant {
-    private String firstname;
-    private String surname;
-    private String birthdate;
+    private final String firstname;
+    private final String surname;
+    private final String birthdate;
 
     public Player(String firstname, String surname, String birthdate) {
         this.firstname = firstname;

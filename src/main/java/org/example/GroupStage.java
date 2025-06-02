@@ -1,18 +1,16 @@
 package org.example;
 
+import org.example.contestant.Contestant;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.example.contestant.Contestant;
-
 public class GroupStage<T> extends Phase {
-    private Map<Contestant, Integer> points;
-
+    private final Map<Contestant, Integer> points;
+    private final List<Subscriber> listeners = new ArrayList<>();
     private List<Match> matches;
-
-    private List<Subscriber> listeners = new ArrayList<>();
 
     public GroupStage(List<Contestant> contestants, Sport sport, boolean returnMatch) {
         super();

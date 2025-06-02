@@ -53,10 +53,9 @@ public class FootballTeamDataLoader {
     private static TeamMember parsePlayer(JSONObject json) {
         String firstName = (String) json.get("firstName");
         String lastName = (String) json.get("lastName");
-        String nationality = (String) json.get("nationality");
         String birthDate = (String) json.get("birthDate");
         String position = (String) json.get("role");
 
-        return new TeamMember(firstName, lastName, nationality, birthDate, position);
+        return new TeamMember(firstName, lastName, birthDate, position);
     }
 }

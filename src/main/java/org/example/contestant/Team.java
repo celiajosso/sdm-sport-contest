@@ -1,9 +1,9 @@
 package org.example.contestant;
 
 public class Team extends Contestant {
-    private TeamMember[] teamMembers;
-    private String teamName;
-    private TeamMember teamLeader;
+    private final TeamMember[] teamMembers;
+    private final String teamName;
+    private final TeamMember teamLeader;
 
     public Team(String teamName, TeamMember teamLeader, TeamMember[] teamMembers) {
         this.teamName = teamName;

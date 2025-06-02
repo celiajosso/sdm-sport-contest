@@ -1,14 +1,14 @@
 package org.example.Events.Football;
 
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.contestant.Team;
 import org.example.contestant.TeamMember;
-import org.example.Match;
 
 public class Substitution extends Event {
-    private Team team;
-    private TeamMember outPlayer;
-    private TeamMember inPlayer;
+    private final Team team;
+    private final TeamMember outPlayer;
+    private final TeamMember inPlayer;
 
     public Substitution(Match match, Team team, TeamMember outPlayer, TeamMember inPlayer) {
         super(match);

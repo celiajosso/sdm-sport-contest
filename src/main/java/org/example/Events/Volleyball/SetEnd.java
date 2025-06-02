@@ -1,14 +1,14 @@
 package org.example.Events.Volleyball;
 
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.MatchManager.VolleyballMatchManager;
 import org.example.contestant.Team;
-import org.example.Match;
 
 public class SetEnd extends Event {
-    private int setNumber;
-    private Team scoringTeam;
-    private VolleyballMatchManager manager;
+    private final int setNumber;
+    private final Team scoringTeam;
+    private final VolleyballMatchManager manager;
 
     public SetEnd(Match match, int setNumber, Team scoringTeam, VolleyballMatchManager manager) {
         super(match);

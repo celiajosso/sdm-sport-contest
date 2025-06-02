@@ -1,10 +1,9 @@
 package org.example.Events.Volleyball;
 
 import org.example.Events.Event;
-import org.example.contestant.Player;
-import org.example.contestant.Team;
 import org.example.Match;
 import org.example.MatchState;
+import org.example.contestant.Team;
 
 public class MatchEnd extends Event {
     public MatchEnd(Match match) {
@@ -15,10 +14,10 @@ public class MatchEnd extends Event {
     public boolean execute() {
         match.setState(MatchState.FINISHED);
         backup();
-        
+
         Team teamA = match.getTeamA();
         Team teamB = match.getTeamB();
-        
+
         int setsWonByA = match.getVolleyBallMatchManager().getSetsWon(teamA);
         int setsWonByB = match.getVolleyBallMatchManager().getSetsWon(teamB);
 

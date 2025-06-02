@@ -1,11 +1,11 @@
 package org.example.Events.Football;
 
 import org.example.Events.Event;
-import org.example.contestant.Team;
 import org.example.Match;
+import org.example.contestant.Team;
 
 public class Corner extends Event {
-    private Team team;
+    private final Team team;
 
     public Corner(Match match, Team team) {
         super(match);

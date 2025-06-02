@@ -1,14 +1,14 @@
 package org.example.Events.Tennis;
 
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.contestant.Player;
-import org.example.Match;
 
 public class SetCancel extends Event {
-    private int setNumber;
-    private Player player;
-    private TennisMatchManager manager;
+    private final int setNumber;
+    private final Player player;
+    private final TennisMatchManager manager;
 
     public SetCancel(Match match, int setNumber, Player player, TennisMatchManager manager) {
         super(match);

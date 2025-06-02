@@ -4,7 +4,7 @@ import org.example.Events.Event;
 import org.example.Match;
 
 public class TieBreak extends Event {
-    private int setNumber;
+    private final int setNumber;
 
     public TieBreak(Match match, int setNumber) {
         super(match);

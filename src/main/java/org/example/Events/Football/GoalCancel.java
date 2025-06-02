@@ -1,13 +1,13 @@
 package org.example.Events.Football;
 
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.MatchManager.FootballMatchManager;
 import org.example.contestant.Team;
-import org.example.Match;
 
 public class GoalCancel extends Event {
-    private Team team;
-    private FootballMatchManager manager;
+    private final Team team;
+    private final FootballMatchManager manager;
 
     public GoalCancel(Match match, FootballMatchManager manager, Team team) {
         super(match);

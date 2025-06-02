@@ -1,12 +1,12 @@
 package org.example.Events.Volleyball;
 
 import org.example.Events.Event;
-import org.example.contestant.Player;
 import org.example.Match;
+import org.example.contestant.Player;
 
 public class Warning extends Event {
-    private Player player;
-    private String reason;
+    private final Player player;
+    private final String reason;
 
     public Warning(Match match, Player player, String reason) {
         super(match);

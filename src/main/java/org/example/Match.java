@@ -1,24 +1,24 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.example.MatchManager.FootballMatchManager;
 import org.example.MatchManager.MatchManager;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.MatchManager.VolleyballMatchManager;
 import org.example.contestant.Contestant;
 
-public class Match {
-    private Integer matchId;
-    private Contestant teamA;
-    private Contestant teamB;
-    private String dateTime;
-    private String location;
-    private MatchState matchState = MatchState.NOT_STARTED;
-    private List<String> eventLog = new ArrayList<>();
+import java.util.ArrayList;
+import java.util.List;
 
-    private MatchManager matchManager;
+public class Match {
+    private final Integer matchId;
+    private final Contestant teamA;
+    private final Contestant teamB;
+    private final String dateTime;
+    private final String location;
+    private MatchState matchState = MatchState.NOT_STARTED;
+    private final List<String> eventLog = new ArrayList<>();
+
+    private final MatchManager matchManager;
 
     public Match(Integer matchId, Sport sport, Contestant teamA, Contestant teamB, String dateTime, String location) {
         this.matchId = matchId;

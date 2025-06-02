@@ -1,7 +1,7 @@
 package org.example.MatchManager;
 
-import org.example.Match;
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.contestant.Player;
 import org.example.contestant.Team;
 
@@ -14,8 +14,8 @@ public class TennisMatchManager extends MatchManager {
     private final Map<Player, Integer> gameScores = new HashMap<>();
     private final Map<Player, Integer> setScores = new HashMap<>();
     private final Map<Player, Integer> setsWon = new HashMap<>();
-    private boolean isTieBreak = false;
     private final Map<Player, Integer> tieBreakPoints = new HashMap<>();
+    private boolean isTieBreak = false;
 
     public TennisMatchManager(Match match) {
         super(match);
@@ -44,21 +44,17 @@ public class TennisMatchManager extends MatchManager {
             case 40 -> {
                 if (opponentPoints < 40) {
                     winGame(player);
-                    return;
                 } else if (opponentPoints == 40) {
                     pointScores.put(player, 41);
-                    return;
                 } else if (opponentPoints == 41) {
                     pointScores.put(opponent, 40);
-                    return;
                 }
             }
             case 41 -> {
                 winGame(player);
-                return;
             }
         }
-    }    
+    }
 
     public void cancelLastPoint(Player player) {
         int currentPoints = pointScores.getOrDefault(player, 0);
@@ -74,7 +70,7 @@ public class TennisMatchManager extends MatchManager {
     }
 
     public void winGame(Player player) {
-        match.logEvent(player.getPseudonym() + " wins the game.");
+        match.logEvent(player.getFullname() + " wins the game.");
         pointScores.clear();
 
         int games = gameScores.getOrDefault(player, 0) + 1;
@@ -91,24 +87,24 @@ public class TennisMatchManager extends MatchManager {
     }
 
     public void winSet(Player player) {
-        match.logEvent(player.getPseudonym() + " wins the set.");
+        match.logEvent(player.getFullname() + " wins the set.");
         gameScores.clear();
 
         int sets = setScores.getOrDefault(player, 0) + 1;
         setScores.put(player, sets);
-        match.logEvent(player.getPseudonym() + " now has " + sets + " sets.");
+        match.logEvent(player.getFullname() + " now has " + sets + " sets.");
 
         if (sets == 2) {
             match.setState(org.example.MatchState.FINISHED);
-            match.logEvent(player.getPseudonym() + " wins the match!");
+            match.logEvent(player.getFullname() + " wins the match!");
         }
     }
 
     private Player getOpponent(Player player) {
-        Team teamA = match.getTeamA();
-        Team teamB = match.getTeamB();
+        Team teamA = (Team) match.getTeamA();
+        Team teamB = (Team) match.getTeamB();
 
-        boolean playerInTeamA = Arrays.stream(teamA.getTeamMembers()).anyMatch(member -> member.equals(player));
+        boolean playerInTeamA = Arrays.asList(teamA.getTeamMembers()).contains(player);
         if (playerInTeamA) {
             return teamB.getTeamMembers()[0];
         } else {

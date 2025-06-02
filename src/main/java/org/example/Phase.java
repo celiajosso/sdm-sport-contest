@@ -8,7 +8,7 @@ abstract class Phase {
     // - get scoreboard / leaderboard
     // - liste de matchs
 
-    private List<Subscriber> listeners = new ArrayList<>();
+    private final List<Subscriber> listeners = new ArrayList<>();
 
     public void addListener(Subscriber subscriber) {
         this.listeners.add(subscriber);

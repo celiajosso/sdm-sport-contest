@@ -1,15 +1,19 @@
 package org.example.MatchManager;
 
-import org.example.Match;
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.Subscriber;
 
 import java.util.ArrayList;
 
 public abstract class MatchManager {
+    private final ArrayList<Event> eventHistory = new ArrayList<>();
+    private final ArrayList<Subscriber<Event>> subscribers = new ArrayList<>();
     protected Match match;
-    private ArrayList<Event> eventHistory  = new ArrayList<>();
-    private ArrayList<Subscriber<Event>> subscribers  = new ArrayList<>();
+
+    public MatchManager(Match match) {
+        this.match = match;
+    }
 
     public void reset() {
         eventHistory.clear();
@@ -51,10 +55,6 @@ public abstract class MatchManager {
         for (Subscriber<Event> subscriber : subscribers) {
             subscriber.notify(event);
         }
-    }
-
-    public MatchManager(Match match) {
-        this.match = match;
     }
 
     public void applyEvent(Event event) {
