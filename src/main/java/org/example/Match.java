@@ -10,7 +10,7 @@ import org.example.MatchManager.VolleyballMatchManager;
 import org.example.contestant.Contestant;
 import org.example.contestant.Team;
 
-public class Match<T> {
+public class Match {
     private Integer matchId;
     private Contestant teamA;
     private Contestant teamB;

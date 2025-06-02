@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,8 @@ public class GroupStage<T> extends Phase {
     private Map<Contestant, Integer> points;
 
     private List<Match> matches;
+
+    private List<Subscriber> listeners = new ArrayList<>();
 
     public GroupStage(List<Contestant> contestants,Sport sport, boolean returnMatch) {
         super();
@@ -31,6 +34,10 @@ public class GroupStage<T> extends Phase {
         }
     }
 
+    public void addListener(Subscriber subscriber){
+        this.listeners.add(subscriber);
+    }
+
     public void addPoints(Contestant contestant, int pts) {
         points.put(contestant, points.getOrDefault(contestant, 0) + pts);
     }
@@ -40,6 +47,8 @@ public class GroupStage<T> extends Phase {
     }
 
     public void onMatchFinished(Match match) {
-
+        for (Subscriber listener : listeners) {
+            listener.notify(match);
+        }
     }
 }

@@ -2,32 +2,69 @@ package org.example.MatchManager;
 
 import org.example.Match;
 import org.example.Events.Event;
+import org.example.Subscriber;
+
+import java.util.ArrayList;
 
 public abstract class MatchManager {
     protected Match match;
-    protected MatchEventHistory eventHistory;
+    private ArrayList<Event> eventHistory  = new ArrayList<>();
+    private ArrayList<Subscriber<Event>> subscribers  = new ArrayList<>();
+
+    public void reset() {
+        eventHistory.clear();
+        subscribers.clear();
+    }
+
+    public ArrayList<Event> getEventHistory() {
+        return eventHistory;
+    }
+
+    public ArrayList<Subscriber<Event>> getSubscribers() {
+        return subscribers;
+    }
+
+    public Event getEvent(Integer index) {
+        if (index < 0 || index >= eventHistory.size()) {
+            throw new IndexOutOfBoundsException("Invalid index: " + index);
+        }
+        return this.eventHistory.get(index);
+    }
+
+    public void addEvent(Event event) {
+        eventHistory.add(event);
+    }
+
+    public void removeEvent(Event event) {
+        eventHistory.remove(event);
+    }
+
+    public void addSubscriber(Subscriber<Event> subscriber) {
+        subscribers.add(subscriber);
+    }
+
+    public void removeSubscriber(Subscriber<Event> subscriber) {
+        subscribers.remove(subscriber);
+    }
+
+    public void notifySubscribers(Event event) {
+        for (Subscriber<Event> subscriber : subscribers) {
+            subscriber.notify(event);
+        }
+    }
 
     public MatchManager(Match match) {
         this.match = match;
-        this.eventHistory = new MatchEventHistory();
     }
 
     public void applyEvent(Event event) {
         if (event.execute()) {
-            eventHistory.addEvent(event);
-            eventHistory.notifySubscribers(event);
+            addEvent(event);
+            notifySubscribers(event);
         }
-    }
-
-    public MatchEventHistory getEventHistory() {
-        return eventHistory;
     }
 
     public Match getMatch() {
         return this.match;
-    }
-
-    public void resetEventHistory() {
-        this.eventHistory = new MatchEventHistory();
     }
 }
