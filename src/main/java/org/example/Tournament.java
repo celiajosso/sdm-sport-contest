@@ -4,7 +4,9 @@ import org.example.PhaseManager.PhaseManager;
 import org.example.contestant.Contestant;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Tournament {
@@ -23,7 +25,11 @@ public class Tournament {
     public GroupStage[] createGroupStage(int contestantPerGroup, boolean returnMatch) {
         GroupStage[] stages = new GroupStage[this.contestants.size() / contestantPerGroup];
 
-        List<Integer> shuffled = IntStream.rangeClosed(0, contestants.size()).boxed().toList();
+        List<Integer> shuffled = IntStream.range(0, contestants.size())
+                .boxed()
+                .collect(Collectors.toList()); // mutable list
+        Collections.shuffle(shuffled);
+
         java.util.Collections.shuffle(shuffled);
 
         int k = 0;

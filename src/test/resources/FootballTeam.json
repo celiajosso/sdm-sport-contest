@@ -5,7 +5,6 @@
       {
         "firstName": "Hugo",
         "lastName": "Lloris",
-        "country": "France",
         "birthDate": "26/12/1986",
         "role": "Goal Keeper",
         "isLeader": true
@@ -13,7 +12,7 @@
       {
         "firstName": "Benjamin",
         "lastName": "Pavard",
-        "country": "France",
+
         "birthDate": "28/03/1996",
         "role": "Defender",
         "isLeader": false
@@ -21,7 +20,7 @@
       {
         "firstName": "Raphael",
         "lastName": "Varane",
-        "country": "France",
+
         "birthDate": "25/04/1993",
         "role": "Defender",
         "isLeader": false
@@ -29,7 +28,7 @@
       {
         "firstName": "Lucas",
         "lastName": "Hernandez",
-        "country": "France",
+
         "birthDate": "14/02/1996",
         "role": "Defender",
         "isLeader": false
@@ -37,7 +36,7 @@
       {
         "firstName": "Theo",
         "lastName": "Hernandez",
-        "country": "France",
+
         "birthDate": "06/10/1997",
         "role": "Defender",
         "isLeader": false
@@ -45,7 +44,7 @@
       {
         "firstName": "N'Golo",
         "lastName": "Kante",
-        "country": "France",
+
         "birthDate": "29/03/1991",
         "role": "Mid Fielder",
         "isLeader": false
@@ -53,7 +52,7 @@
       {
         "firstName": "Paul",
         "lastName": "Pogba",
-        "country": "France",
+
         "birthDate": "15/03/1993",
         "role": "Mid Fielder",
         "isLeader": false
@@ -61,7 +60,7 @@
       {
         "firstName": "Adrien",
         "lastName": "Rabiot",
-        "country": "France",
+
         "birthDate": "03/04/1995",
         "role": "Mid Fielder",
         "isLeader": false
@@ -69,7 +68,7 @@
       {
         "firstName": "Aurelien",
         "lastName": "Tchouameni",
-        "country": "France",
+
         "birthDate": "27/01/2000",
         "role": "Mid Fielder",
         "isLeader": false
@@ -77,7 +76,7 @@
       {
         "firstName": "Kylian",
         "lastName": "Mbappe",
-        "country": "France",
+
         "birthDate": "20/12/1998",
         "role": "Striker",
         "isLeader": false
@@ -85,7 +84,7 @@
       {
         "firstName": "Olivier",
         "lastName": "Giroud",
-        "country": "France",
+
         "birthDate": "30/09/1986",
         "role": "Striker",
         "isLeader": false
@@ -98,7 +97,7 @@
       {
         "firstName": "Manuel",
         "lastName": "Neuer",
-        "country": "Germany",
+
         "birthDate": "27/03/1986",
         "role": "Goal Keeper",
         "isLeader": false
@@ -106,7 +105,7 @@
       {
         "firstName": "Joshua",
         "lastName": "Kimmich",
-        "country": "Germany",
+
         "birthDate": "08/02/1995",
         "role": "Defender",
         "isLeader": true
@@ -114,7 +113,7 @@
       {
         "firstName": "Antonio",
         "lastName": "Rudiger",
-        "country": "Germany",
+
         "birthDate": "03/03/1993",
         "role": "Defender",
         "isLeader": false
@@ -122,7 +121,7 @@
       {
         "firstName": "Niklas",
         "lastName": "Sule",
-        "country": "Germany",
+
         "birthDate": "03/09/1995",
         "role": "Defender",
         "isLeader": false
@@ -130,7 +129,7 @@
       {
         "firstName": "David",
         "lastName": "Raum",
-        "country": "Germany",
+
         "birthDate": "22/04/1998",
         "role": "Defender",
         "isLeader": false
@@ -138,7 +137,7 @@
       {
         "firstName": "Ilkay",
         "lastName": "Gundogan",
-        "country": "Germany",
+
         "birthDate": "24/10/1990",
         "role": "Mid Fielder",
         "isLeader": false
@@ -146,7 +145,7 @@
       {
         "firstName": "Leon",
         "lastName": "Goretzka",
-        "country": "Germany",
+
         "birthDate": "06/02/1995",
         "role": "Mid Fielder",
         "isLeader": false
@@ -154,7 +153,7 @@
       {
         "firstName": "Jamal",
         "lastName": "Musiala",
-        "country": "Germany",
+
         "birthDate": "26/02/2003",
         "role": "Mid Fielder",
         "isLeader": false
@@ -162,7 +161,7 @@
       {
         "firstName": "Florian",
         "lastName": "Wirtz",
-        "country": "Germany",
+
         "birthDate": "03/05/2003",
         "role": "Mid Fielder",
         "isLeader": false
@@ -170,7 +169,7 @@
       {
         "firstName": "Thomas",
         "lastName": "Muller",
-        "country": "Germany",
+
         "birthDate": "13/09/1989",
         "role": "Striker",
         "isLeader": false
@@ -178,7 +177,7 @@
       {
         "firstName": "Kai",
         "lastName": "Havertz",
-        "country": "Germany",
+
         "birthDate": "11/06/1999",
         "role": "Striker",
         "isLeader": false
@@ -191,7 +190,7 @@
       {
         "firstName": "Alisson",
         "lastName": "Becker",
-        "country": "Brazil",
+
         "birthDate": "02/10/1992",
         "role": "Goal Keeper",
         "isLeader": false
@@ -199,7 +198,7 @@
       {
         "firstName": "Dani",
         "lastName": "Alves",
-        "country": "Brazil",
+
         "birthDate": "06/05/1983",
         "role": "Defender",
         "isLeader": false
@@ -207,7 +206,7 @@
       {
         "firstName": "Thiago",
         "lastName": "Silva",
-        "country": "Brazil",
+
         "birthDate": "22/09/1984",
         "role": "Defender",
         "isLeader": true
@@ -215,7 +214,7 @@
       {
         "firstName": "Marquinhos",
         "lastName": "Correa",
-        "country": "Brazil",
+
         "birthDate": "14/05/1994",
         "role": "Defender",
         "isLeader": false
@@ -223,7 +222,7 @@
       {
         "firstName": "Alex",
         "lastName": "Sandro",
-        "country": "Brazil",
+
         "birthDate": "26/01/1991",
         "role": "Defender",
         "isLeader": false
@@ -231,7 +230,7 @@
       {
         "firstName": "Casemiro",
         "lastName": "Henrique",
-        "country": "Brazil",
+
         "birthDate": "23/02/1992",
         "role": "Mid Fielder",
         "isLeader": false
@@ -239,7 +238,7 @@
       {
         "firstName": "Lucas",
         "lastName": "Paqueta",
-        "country": "Brazil",
+
         "birthDate": "27/08/1997",
         "role": "Mid Fielder",
         "isLeader": false
@@ -247,7 +246,7 @@
       {
         "firstName": "Fred",
         "lastName": "Rodrigues",
-        "country": "Brazil",
+
         "birthDate": "05/03/1993",
         "role": "Mid Fielder",
         "isLeader": false
@@ -255,7 +254,6 @@
       {
         "firstName": "Bruno",
         "lastName": "Guimaraes",
-        "country": "Brazil",
         "birthDate": "16/11/1997",
         "role": "Mid Fielder",
         "isLeader": false
@@ -263,7 +261,6 @@
       {
         "firstName": "Neymar",
         "lastName": "Jr",
-        "country": "Brazil",
         "birthDate": "05/02/1992",
         "role": "Striker",
         "isLeader": false
@@ -271,7 +268,6 @@
       {
         "firstName": "Richarlison",
         "lastName": "de Andrade",
-        "country": "Brazil",
         "birthDate": "10/05/1997",
         "role": "Striker",
         "isLeader": false
@@ -284,7 +280,6 @@
       {
         "firstName": "Jordan",
         "lastName": "Pickford",
-        "country": "England",
         "birthDate": "07/03/1994",
         "role": "Goal Keeper",
         "isLeader": false
@@ -292,7 +287,6 @@
       {
         "firstName": "Kyle",
         "lastName": "Walker",
-        "country": "England",
         "birthDate": "28/05/1990",
         "role": "Defender",
         "isLeader": false
@@ -300,7 +294,7 @@
       {
         "firstName": "John",
         "lastName": "Stones",
-        "country": "England",
+
         "birthDate": "28/05/1994",
         "role": "Defender",
         "isLeader": false
@@ -308,7 +302,7 @@
       {
         "firstName": "Harry",
         "lastName": "Maguire",
-        "country": "England",
+
         "birthDate": "05/03/1993",
         "role": "Defender",
         "isLeader": false
@@ -316,7 +310,7 @@
       {
         "firstName": "Luke",
         "lastName": "Shaw",
-        "country": "England",
+
         "birthDate": "12/07/1995",
         "role": "Defender",
         "isLeader": false
@@ -324,7 +318,7 @@
       {
         "firstName": "Declan",
         "lastName": "Rice",
-        "country": "England",
+
         "birthDate": "14/01/1999",
         "role": "Mid Fielder",
         "isLeader": false
@@ -332,7 +326,7 @@
       {
         "firstName": "Jude",
         "lastName": "Bellingham",
-        "country": "England",
+
         "birthDate": "29/06/2003",
         "role": "Mid Fielder",
         "isLeader": false
@@ -340,7 +334,7 @@
       {
         "firstName": "Jordan",
         "lastName": "Henderson",
-        "country": "England",
+
         "birthDate": "17/06/1990",
         "role": "Mid Fielder",
         "isLeader": false
@@ -348,7 +342,7 @@
       {
         "firstName": "Phil",
         "lastName": "Foden",
-        "country": "England",
+
         "birthDate": "28/05/2000",
         "role": "Mid Fielder",
         "isLeader": false
@@ -356,7 +350,7 @@
       {
         "firstName": "Harry",
         "lastName": "Kane",
-        "country": "England",
+
         "birthDate": "28/07/1993",
         "role": "Striker",
         "isLeader": true
@@ -364,7 +358,7 @@
       {
         "firstName": "Bukayo",
         "lastName": "Saka",
-        "country": "England",
+
         "birthDate": "05/09/2001",
         "role": "Striker",
         "isLeader": false
