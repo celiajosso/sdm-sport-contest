@@ -14,7 +14,7 @@ public class Forfeit extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent(team.getTeamName() + " forfeits the volleyball match");
+        match.logEvent(team.getFullname() + " forfeits the volleyball match");
         return true;
     }
 }

@@ -14,7 +14,7 @@ public class Corner extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Corner for " + team.getTeamName());
+        match.logEvent("Corner for " + team.getFullname());
         return true;
     }
 }

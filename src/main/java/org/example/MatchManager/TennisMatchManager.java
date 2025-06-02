@@ -2,6 +2,7 @@ package org.example.MatchManager;
 
 import org.example.Events.Event;
 import org.example.Match;
+import org.example.contestant.Contestant;
 import org.example.contestant.Player;
 import org.example.contestant.Team;
 
@@ -10,20 +11,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TennisMatchManager extends MatchManager {
-    private final Map<Player, Integer> pointScores = new HashMap<>();
-    private final Map<Player, Integer> gameScores = new HashMap<>();
-    private final Map<Player, Integer> setScores = new HashMap<>();
-    private final Map<Player, Integer> setsWon = new HashMap<>();
-    private final Map<Player, Integer> tieBreakPoints = new HashMap<>();
+    private final Map<Contestant, Integer> pointScores = new HashMap<>();
+    private final Map<Contestant, Integer> gameScores = new HashMap<>();
+    private final Map<Contestant, Integer> setScores = new HashMap<>();
+    private final Map<Contestant, Integer> setsWon = new HashMap<>();
+    private final Map<Contestant, Integer> tieBreakPoints = new HashMap<>();
     private boolean isTieBreak = false;
 
     public TennisMatchManager(Match match) {
         super(match);
     }
 
-    public void pointScored(Player player) {
+    public void pointScored(Contestant player) {
         int currentPoints = pointScores.getOrDefault(player, 0);
-        Player opponent = getOpponent(player);
+        Contestant opponent = getOpponent(player);
         int opponentPoints = pointScores.getOrDefault(opponent, 0);
 
         if (isTieBreak) {
@@ -56,7 +57,7 @@ public class TennisMatchManager extends MatchManager {
         }
     }
 
-    public void cancelLastPoint(Player player) {
+    public void cancelLastPoint(Contestant player) {
         int currentPoints = pointScores.getOrDefault(player, 0);
         if (currentPoints == 41) {
             pointScores.put(player, 40);
@@ -69,14 +70,14 @@ public class TennisMatchManager extends MatchManager {
         }
     }
 
-    public void winGame(Player player) {
+    public void winGame(Contestant player) {
         match.logEvent(player.getFullname() + " wins the game.");
         pointScores.clear();
 
         int games = gameScores.getOrDefault(player, 0) + 1;
         gameScores.put(player, games);
 
-        Player opponent = getOpponent(player);
+        Contestant opponent = getOpponent(player);
         if (games >= 6 && games - gameScores.getOrDefault(opponent, 0) >= 2) {
             winSet(player);
         }
@@ -86,7 +87,7 @@ public class TennisMatchManager extends MatchManager {
         }
     }
 
-    public void winSet(Player player) {
+    public void winSet(Contestant player) {
         match.logEvent(player.getFullname() + " wins the set.");
         gameScores.clear();
 
@@ -100,7 +101,7 @@ public class TennisMatchManager extends MatchManager {
         }
     }
 
-    private Player getOpponent(Player player) {
+    private Contestant getOpponent(Contestant player) {
         Team teamA = (Team) match.getTeamA();
         Team teamB = (Team) match.getTeamB();
 
@@ -112,25 +113,25 @@ public class TennisMatchManager extends MatchManager {
         }
     }
 
-    public void cancelLastGame(Player player) {
+    public void cancelLastGame(Contestant player) {
         int games = gameScores.getOrDefault(player, 0);
         if (games > 0) {
             gameScores.put(player, games - 1);
         }
     }
 
-    public void cancelLastSet(Player player) {
+    public void cancelLastSet(Contestant player) {
         int sets = setScores.getOrDefault(player, 0);
         if (sets > 0) {
             setScores.put(player, sets - 1);
         }
     }
 
-    public void setSetsWon(Player player, int sets) {
+    public void setSetsWon(Contestant player, int sets) {
         setsWon.put(player, sets);
     }
 
-    public int getSetsWon(Player player) {
+    public int getSetsWon(Contestant player) {
         return setsWon.getOrDefault(player, 0);
     }
 

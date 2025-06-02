@@ -27,9 +27,9 @@ public class MatchEnd extends Event {
         match.logEvent("Match ended");
 
         if (scoreA > scoreB) {
-            match.logEvent("Team " + teamA.getTeamName() + " won the match!");
+            match.logEvent("Team " + teamA.getFullname() + " won the match!");
         } else if (scoreB > scoreA) {
-            match.logEvent("Team " + teamB.getTeamName() + " won the match!");
+            match.logEvent("Team " + teamB.getFullname() + " won the match!");
         } else {
             match.logEvent("The match ended in a draw.");
         }

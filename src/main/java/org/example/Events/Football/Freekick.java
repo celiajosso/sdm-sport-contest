@@ -14,7 +14,7 @@ public class Freekick extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Freekick for " + team.getTeamName());
+        match.logEvent("Freekick for " + team.getFullname());
         return true;
     }
 }

@@ -19,7 +19,7 @@ public class Substitution extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Substitution for " + team.getTeamName() + ": " + outPlayer.getFullname() + " out, " + inPlayer.getFullname() + " in");
+        match.logEvent("Substitution for " + team.getFullname() + ": " + outPlayer.getFullname() + " out, " + inPlayer.getFullname() + " in");
         return true;
     }
 }

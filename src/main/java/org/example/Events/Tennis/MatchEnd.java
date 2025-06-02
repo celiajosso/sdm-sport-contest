@@ -2,7 +2,10 @@ package org.example.Events.Tennis;
 
 import org.example.Events.Event;
 import org.example.Match;
+import org.example.MatchManager.TennisMatchManager;
+import org.example.MatchManager.VolleyballMatchManager;
 import org.example.MatchState;
+import org.example.contestant.Contestant;
 import org.example.contestant.Player;
 
 public class MatchEnd extends Event {
@@ -15,11 +18,11 @@ public class MatchEnd extends Event {
         match.setState(MatchState.FINISHED);
         backup();
 
-        Player playerA = (Player) match.getTeamA().getTeamMembers()[0];
-        Player playerB = (Player) match.getTeamB().getTeamMembers()[0];
+        Contestant playerA = match.getTeamA();
+        Contestant playerB = match.getTeamB();
 
-        int setsWonByA = match.getTennisMatchManager().getSetsWon(playerA);
-        int setsWonByB = match.getTennisMatchManager().getSetsWon(playerB);
+        int setsWonByA = ((TennisMatchManager)match.getMatchManager()).getSetsWon(playerA);
+        int setsWonByB = ((TennisMatchManager)match.getMatchManager()).getSetsWon(playerB);
 
         match.logEvent("Tennis match ended");
 

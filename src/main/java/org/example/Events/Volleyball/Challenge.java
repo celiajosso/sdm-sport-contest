@@ -14,7 +14,7 @@ public class Challenge extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Challenge requested by " + team.getTeamName());
+        match.logEvent("Challenge requested by " + team.getFullname());
         return true;
     }
 }

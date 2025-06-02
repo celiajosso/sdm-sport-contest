@@ -14,7 +14,7 @@ public class Penalty extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Penalty for " + team.getTeamName());
+        match.logEvent("Penalty for " + team.getFullname());
         return true;
     }
 }

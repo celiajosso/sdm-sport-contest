@@ -14,7 +14,7 @@ public class Offside extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Offside by " + team.getTeamName());
+        match.logEvent("Offside by " + team.getFullname());
         return true;
     }
 }

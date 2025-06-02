@@ -1,7 +1,6 @@
 // simulate a big groupPhase (league)
 
 import org.example.GroupStage;
-import org.example.Match;
 import org.example.Sport;
 import org.example.Tournament;
 import org.example.contestant.Contestant;

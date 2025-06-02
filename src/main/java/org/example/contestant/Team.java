@@ -11,7 +11,8 @@ public class Team extends Contestant {
         this.teamMembers = teamMembers;
     }
 
-    public String getTeamName() {
+    @Override
+    public String getFullname() {
         return this.teamName;
     }
 

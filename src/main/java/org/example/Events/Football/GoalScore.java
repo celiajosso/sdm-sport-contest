@@ -19,7 +19,7 @@ public class GoalScore extends Event {
     public boolean execute() {
         backup();
         manager.incrementScore(scoringTeam);
-        match.logEvent("Goal scored by " + scoringTeam.getTeamName());
+        match.logEvent("Goal scored by " + scoringTeam.getFullname());
         return true;
     }
 }
