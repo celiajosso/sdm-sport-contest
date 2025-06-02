@@ -23,23 +23,11 @@ public class Team extends Contestant {
         return this.teamMembers;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public void setTeamLeader(TeamMember teamLeader) {
-        this.teamLeader = teamLeader;
-    }
-
-    public void setTeamMembers(TeamMember[] teamMembers) {
-        this.teamMembers = teamMembers;
-    }
-
     public void displayTeam() {
-        System.out.println("Team Leader: " + teamLeader.getPseudonym());
+        System.out.println("Team Leader: " + teamLeader.getFullname());
         System.out.println("Team Members:");
         for (TeamMember member : this.getTeamMembers()) {
-            System.out.println("- " + member.getPseudonym() + " (" + member.getRole() + ")");
+            System.out.println("- " + member.getFullname() + " (" + member.getRole() + ")");
         }
     }
 }

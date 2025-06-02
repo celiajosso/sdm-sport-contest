@@ -2,7 +2,6 @@ package org.example.MatchManager;
 
 import org.example.Match;
 import org.example.Events.Event;
-import org.example.Events.Football.GoalScore;
 import org.example.contestant.Team;
 
 public class FootballMatchManager extends MatchManager {
@@ -23,7 +22,7 @@ public class FootballMatchManager extends MatchManager {
 
     public String getScoreDisplay() {
         return getMatch().getTeamA().getTeamName() + " " + scoreA + " - " +
-               scoreB + " " + getMatch().getTeamB().getTeamName();
+                scoreB + " " + getMatch().getTeamB().getTeamName();
     }
 
     public void incrementScore(Team team) {
