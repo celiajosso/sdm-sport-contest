@@ -15,10 +15,9 @@ public class Match {
     private final Contestant teamB;
     private final String dateTime;
     private final String location;
-    private MatchState matchState = MatchState.NOT_STARTED;
     private final List<String> eventLog = new ArrayList<>();
-
     private final MatchManager matchManager;
+    private MatchState matchState = MatchState.NOT_STARTED;
 
     public Match(Integer matchId, Sport sport, Contestant teamA, Contestant teamB, String dateTime, String location) {
         this.matchId = matchId;

@@ -4,14 +4,15 @@ import org.example.Events.Event;
 import org.example.Events.Volleyball.TieBreak;
 import org.example.Match;
 import org.example.MatchState;
+import org.example.contestant.Contestant;
 import org.example.contestant.Team;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class VolleyballMatchManager extends MatchManager {
-    private final Map<Team, Integer> currentSetScore = new HashMap<>();
-    private final Map<Team, Integer> setsWon = new HashMap<>();
+    private final Map<Contestant, Integer> currentSetScore = new HashMap<>();
+    private final Map<Contestant, Integer> setsWon = new HashMap<>();
     private int currentSetNumber = 1;
 
     public VolleyballMatchManager(Match match) {
@@ -23,7 +24,7 @@ public class VolleyballMatchManager extends MatchManager {
     }
 
     public void pointScored(Team team) {
-        Team opponent = (team == match.getTeamA()) ? match.getTeamB() : match.getTeamA();
+        Contestant opponent = (team == match.getTeamA()) ? match.getTeamB() : match.getTeamA();
         int newScore = currentSetScore.getOrDefault(team, 0) + 1;
         currentSetScore.put(team, newScore);
 

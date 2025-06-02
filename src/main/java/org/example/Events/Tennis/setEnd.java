@@ -22,7 +22,7 @@ public class SetEnd extends Event {
         backup();
         manager.winSet(scoringPlayer);
 
-        match.logEvent("Set " + setNumber + " ended" + scoringPlayer.getPseudonym() + " won the set.");
+        match.logEvent("Set " + setNumber + " ended" + scoringPlayer.getFullname() + " won the set.");
         return true;
     }
 }

@@ -17,7 +17,7 @@ public class PointScore extends Event {
     public boolean execute() {
         TennisMatchManager manager = new TennisMatchManager(match);
         manager.pointScored(player);
-        match.logEvent("Point scored by " + player.getPseudonym());
+        match.logEvent("Point scored by " + player.getFullname());
         return true;
     }
 }

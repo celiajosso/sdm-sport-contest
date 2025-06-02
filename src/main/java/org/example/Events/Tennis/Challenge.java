@@ -14,7 +14,7 @@ public class Challenge extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Challenge by " + player.getPseudonym());
+        match.logEvent("Challenge by " + player.getFullname());
         return true;
     }
 }

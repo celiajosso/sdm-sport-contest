@@ -15,7 +15,7 @@ public class PointCancel extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Point cancelled for " + player.getPseudonym());
+        match.logEvent("Point cancelled for " + player.getFullname());
         TennisMatchManager manager = new TennisMatchManager(match);
         manager.cancelLastPoint(player);
         return true;

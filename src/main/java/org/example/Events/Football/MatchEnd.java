@@ -19,8 +19,8 @@ public class MatchEnd extends Event {
         match.setState(MatchState.FINISHED);
         backup();
 
-        Team teamA = match.getTeamA();
-        Team teamB = match.getTeamB();
+        Team teamA = (Team) match.getTeamA();
+        Team teamB = (Team) match.getTeamB();
         int scoreA = manager.getScoreA();
         int scoreB = manager.getScoreB();
 

@@ -16,7 +16,7 @@ public class RedCard extends Event {
     public boolean execute() {
         backup();
         player.giveRedCard();
-        match.logEvent("Red card for " + player.getPseudonym());
+        match.logEvent("Red card for " + player.getFullname());
         return true;
     }
 }

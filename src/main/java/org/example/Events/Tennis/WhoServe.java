@@ -14,7 +14,7 @@ public class WhoServe extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent(player.getPseudonym() + " to serve");
+        match.logEvent(player.getFullname() + " to serve");
         return true;
     }
 }

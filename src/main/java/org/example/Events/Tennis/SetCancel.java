@@ -22,7 +22,7 @@ public class SetCancel extends Event {
         backup();
         manager.cancelLastSet(player);
 
-        match.logEvent("Set " + setNumber + " cancelled for player " + player.getPseudonym());
+        match.logEvent("Set " + setNumber + " cancelled for player " + player.getFullname());
         return true;
     }
 }

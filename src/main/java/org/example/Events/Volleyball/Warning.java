@@ -16,7 +16,7 @@ public class Warning extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Warning to " + player.getPseudonym() + ": " + reason);
+        match.logEvent("Warning to " + player.getFullname() + ": " + reason);
         return true;
     }
 }

@@ -24,9 +24,9 @@ public class MatchEnd extends Event {
         match.logEvent("Tennis match ended");
 
         if (setsWonByA > setsWonByB) {
-            match.logEvent("Player " + playerA.getPseudonym() + " won the match!");
+            match.logEvent("Player " + playerA.getFullname() + " won the match!");
         } else if (setsWonByB > setsWonByA) {
-            match.logEvent("Player " + playerB.getPseudonym() + " won the match!");
+            match.logEvent("Player " + playerB.getFullname() + " won the match!");
         } else {
             match.logEvent("The match ended in a draw (impossible in tennis).");
         }

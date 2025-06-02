@@ -19,7 +19,7 @@ public class GameEnd extends Event {
     public boolean execute() {
         backup();
         manager.winGame(scoringPlayer);
-        match.logEvent("Tennis game ended, player " + scoringPlayer.getPseudonym() + " won the game.");
+        match.logEvent("Tennis game ended, player " + scoringPlayer.getFullname() + " won the game.");
         return true;
     }
 }

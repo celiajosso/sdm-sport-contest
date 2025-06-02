@@ -14,7 +14,7 @@ public class Forfeit extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent(player.getPseudonym() + " forfeits the match");
+        match.logEvent(player.getFullname() + " forfeits the match");
         return true;
     }
 }

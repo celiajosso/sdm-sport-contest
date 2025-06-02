@@ -16,10 +16,10 @@ public class YellowCard extends Event {
     public boolean execute() {
         backup();
         player.giveYellowCard();
-        match.logEvent("Yellow card for " + player.getPseudonym());
+        match.logEvent("Yellow card for " + player.getFullname());
         if (player.getYellowCards() >= 2) {
             player.giveRedCard();
-            match.logEvent("Red card for " + player.getPseudonym() + " due to second yellow.");
+            match.logEvent("Red card for " + player.getFullname() + " due to second yellow.");
         }
         return true;
     }
