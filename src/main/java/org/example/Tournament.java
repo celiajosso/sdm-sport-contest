@@ -23,7 +23,7 @@ public class Tournament {
     public GroupStage[] createGroupStage(int contestantPerGroup, boolean returnMatch) {
         GroupStage[] stages = new GroupStage[this.contestants.size() / contestantPerGroup];
 
-        List<Integer> shuffled = IntStream.rangeClosed(0,contestants.size()).boxed().toList();
+        List<Integer> shuffled = IntStream.rangeClosed(0, contestants.size()).boxed().toList();
         java.util.Collections.shuffle(shuffled);
 
         int k = 0;
@@ -38,6 +38,12 @@ public class Tournament {
         }
 
         return stages;
+    }
+
+    public SingleEliminationKnockout createKnickout(int contestantPerGroup, boolean returnMatch) {
+        SingleEliminationKnockout knockout = new SingleEliminationKnockout(...);
+        knockout.addListener(phaseManager);
+        return knockout;
     }
 
     public void addPhase(Phase phase) {

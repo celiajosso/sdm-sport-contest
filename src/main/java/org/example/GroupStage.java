@@ -14,28 +14,24 @@ public class GroupStage<T> extends Phase {
 
     private List<Subscriber> listeners = new ArrayList<>();
 
-    public GroupStage(List<Contestant> contestants,Sport sport, boolean returnMatch) {
+    public GroupStage(List<Contestant> contestants, Sport sport, boolean returnMatch) {
         super();
         this.points = new HashMap<>();
-        
+
         for (Contestant c : contestants) {
             points.put(c, 0);
         }
-        
+
         for (int i = 0; i < contestants.size(); i++) {
-            for (int j = i + 1; j < contestants.size() + (contestants.size()>2 ? 1 : 0); j++) {
+            for (int j = i + 1; j < contestants.size() + (contestants.size() > 2 ? 1 : 0); j++) {
                 Contestant home = contestants.get(i);
-                Contestant away = contestants.get(j%contestants.size());
-                matches.add(new Match(1,sport,home, away,null,null));
+                Contestant away = contestants.get(j % contestants.size());
+                matches.add(new Match(1, sport, home, away, null, null));
                 if (returnMatch) {
-                    matches.add(new Match(1,sport,away, home,null,null));
+                    matches.add(new Match(1, sport, away, home, null, null));
                 }
             }
         }
-    }
-
-    public void addListener(Subscriber subscriber){
-        this.listeners.add(subscriber);
     }
 
     public void addPoints(Contestant contestant, int pts) {
