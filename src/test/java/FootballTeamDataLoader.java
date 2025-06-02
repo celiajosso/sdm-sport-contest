@@ -23,8 +23,7 @@ public class FootballTeamDataLoader {
 
                 String name = (String) teamJson.get("name");
 
-                JSONObject leaderJson = (JSONObject) teamJson.get("leader");
-                TeamMember leader = parsePlayer(leaderJson);
+                TeamMember leader = null;
 
                 JSONArray playersJson = (JSONArray) teamJson.get("players");
                 List<TeamMember> players = new ArrayList<>();
@@ -33,6 +32,11 @@ public class FootballTeamDataLoader {
                     JSONObject playerJson = (JSONObject) p;
                     TeamMember player = parsePlayer(playerJson);
                     players.add(player);
+
+                    Object isLeaderObj = playerJson.get("isLeader");
+                    if (isLeaderObj != null && isLeaderObj.toString().equalsIgnoreCase("true")) {
+                        leader = player;
+                    }
                 }
 
                 Team team = new Team(name, leader, players.toArray(new TeamMember[0]));
