@@ -14,17 +14,13 @@ public class Tournament {
 
     PhaseManager phaseManager = new PhaseManager();
 
-    public Tournament(Sport sport, List<Contestant> contestants, Match[] matches) {
+    public Tournament(Sport sport, List<Contestant> contestants) {
         this.sport = sport;
         this.contestants = contestants;
         this.phases = new ArrayList<>();
-
-        for (Match match : matches) {
-            match.getMatchManager().getEventHistory().addSubscriber(phaseManager);
-        }
     }
 
-    GroupStage[] createGroupeStage(int contestantPerGroup, boolean returnMatch) {
+    public GroupStage[] createGroupStage(int contestantPerGroup, boolean returnMatch) {
         GroupStage[] stages = new GroupStage[this.contestants.size() / contestantPerGroup];
 
         List<Integer> shuffled = IntStream.rangeClosed(1, 9).boxed().toList();
@@ -36,12 +32,12 @@ public class Tournament {
             for (int j = 0; j < contestantPerGroup; j++) {
                 contestants.add(this.contestants.get(shuffled.get(k++)));
             }
-            stages[i] = new GroupStage(contestants,sport,returnMatch);
+            stages[i] = new GroupStage(contestants, sport, returnMatch);
+            this.addPhase(stages[i]);
         }
 
         return stages;
     }
-
 
     public void addPhase(Phase phase) {
         phases.add(phase);
