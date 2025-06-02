@@ -1,5 +1,7 @@
 package org.example.contestant;
 
+import java.util.Objects;
+
 public class Team extends Contestant {
     private final TeamMember[] teamMembers;
     private final String teamName;
@@ -30,5 +32,19 @@ public class Team extends Contestant {
         for (TeamMember member : this.getTeamMembers()) {
             System.out.println("- " + member.getFullname() + " (" + member.getRole() + ")");
         }
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Team other = (Team) obj;
+        return Objects.equals(teamName, other.teamName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(teamName);
     }
 }

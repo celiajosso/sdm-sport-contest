@@ -2,28 +2,39 @@ package org.example.composite;
 
 import org.example.Match;
 import org.example.MatchState;
+import org.example.MatchManager.FootballMatchManager;
 import org.example.contestant.Contestant;
 
-public class MatchLeaf {
+public class MatchLeaf implements MatchComponent {
     private Match match;
 
+    public MatchLeaf(Match match) {
+        this.match = match;
+    }
+
+    @Override
     public Contestant execute() {
+        if (match.getMatchManager() instanceof FootballMatchManager) {
+            FootballMatchManager manager = (FootballMatchManager) match.getMatchManager();
+            int scoreA = manager.getScoreA();
+            int scoreB = manager.getScoreB();
+            System.out.println("Score : " + scoreA + " - " + scoreB);
+        }
         if (match != null) {
             if (match.getState() == MatchState.FINISHED) {
-                // return match.getWinner();
-                return null;
+                System.out.println("Gagnant du match leaf: " + match.getMatchManager().getWinner());
+                return match.getMatchManager().getWinner();
             } else {
-                return null;
+                throw new IllegalStateException("Match n'a pas commence");
+
+                // return null;
             }
         } else {
             throw new IllegalStateException("Match is not set");
         }
     }
 
-    public MatchLeaf(Match match) {
-        this.match = match;
-    }
-
+    @Override
     public Match getMatch() {
         return match;
     }

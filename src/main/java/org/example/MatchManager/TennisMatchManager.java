@@ -138,4 +138,24 @@ public class TennisMatchManager extends MatchManager {
     public void applyTennisEvent(Event event) {
         applyEvent(event);
     }
+
+
+    @Override
+public Contestant getWinner() {
+    Team teamA = (Team) match.getTeamA();
+    Team teamB = (Team) match.getTeamB();
+
+    int setsA = getSetsWon(teamA.getTeamMembers()[0]);
+    int setsB = getSetsWon(teamB.getTeamMembers()[0]);
+
+    if (setsA > setsB) {
+        return teamA;
+    } else if (setsB > setsA) {
+        return teamB;
+    } else {
+        return null; // match nul ou non terminé
+    }
+}
+
+
 }

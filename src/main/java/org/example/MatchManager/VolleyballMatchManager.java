@@ -73,4 +73,16 @@ public class VolleyballMatchManager extends MatchManager {
     public void applyVolleyBallEvent(Event event) {
         applyEvent(event);
     }
+
+    @Override
+    public Contestant getWinner() {
+        int setsTeamA = getSetsWon((Team) match.getTeamA());
+        int setsTeamB = getSetsWon((Team) match.getTeamB());
+
+        if (match.getState() != MatchState.FINISHED) {
+            return null;
+        }
+
+        return (setsTeamA > setsTeamB) ? match.getTeamA() : match.getTeamB();
+    }
 }

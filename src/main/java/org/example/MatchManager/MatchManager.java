@@ -1,6 +1,7 @@
 package org.example.MatchManager;
 
 import org.example.Events.Event;
+import org.example.contestant.Contestant;
 import org.example.Match;
 import org.example.Subscriber;
 
@@ -67,4 +68,6 @@ public abstract class MatchManager {
     public Match getMatch() {
         return this.match;
     }
+
+    public abstract Contestant getWinner();
 }

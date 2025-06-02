@@ -9,14 +9,27 @@ public class MatchComposite implements MatchComponent {
     private Match matchRoot;
 
     public Contestant execute() {
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$00"+left);
+
         Contestant leftContestant = left.execute();
         Contestant rightContestant = right.execute();
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$11");
+
+        if (leftContestant == null || rightContestant == null) {
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$22");
+            return null;
+
+        }
 
         if (matchRoot == null) {
             matchRoot = new Match(1, left.getMatch().sport, leftContestant, rightContestant, null, null);
             return null;
         } else {
             // matchRoot.getWinner()
+            System.out.println("$$$$$$$$$$$$$$$$$$$$$$33");
+
+            matchRoot.getMatchManager().getWinner();
+
             return null;
         }
     }
