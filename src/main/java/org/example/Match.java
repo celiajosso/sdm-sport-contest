@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.example.MatchManager.FootballMatchManager;
+import org.example.MatchManager.MatchManager;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.MatchManager.VolleyballMatchManager;
 import org.example.contestant.Team;
@@ -17,28 +18,26 @@ public class Match {
     private MatchState matchState = MatchState.NOT_STARTED;
     private List<String> eventLog = new ArrayList<>();
 
-    private TennisMatchManager tennisMatchManager = new TennisMatchManager(this);
-    private FootballMatchManager footballMatchManager = new FootballMatchManager(this);
-    private VolleyballMatchManager volleyballMatchManager = new VolleyballMatchManager(this);
+    private MatchManager matchManager;
 
-    public Match(Integer matchId, Team teamA, Team teamB, String dateTime, String location) {
+    public Match(Integer matchId, Sport sport, Team teamA, Team teamB, String dateTime, String location) {
         this.matchId = matchId;
         this.teamA = teamA;
         this.teamB = teamB;
         this.dateTime = dateTime;
         this.location = location;
+
+        switch (sport) {
+            case FOOTBALL -> this.matchManager = new FootballMatchManager(this);
+            case TENNIS -> this.matchManager = new TennisMatchManager(this);
+            case VOLLEYBALL -> this.matchManager = new VolleyballMatchManager(this);
+            default -> throw new IllegalStateException("Unexpected value: " + sport);
+        }
+
     }
 
-    public TennisMatchManager getTennisMatchManager() {
-        return tennisMatchManager;
-    }
-
-    public FootballMatchManager getFootballMatchManager() {
-        return footballMatchManager;
-    }
-
-    public VolleyballMatchManager getVolleyBallMatchManager() {
-        return volleyballMatchManager;
+    public MatchManager getMatchManager() {
+        return matchManager;
     }
 
     public Integer getMatchId() {
