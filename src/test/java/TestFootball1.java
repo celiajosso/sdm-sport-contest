@@ -1,6 +1,7 @@
 // simulate a big groupPhase (league)
 
 import org.example.GroupStage;
+import org.example.Match;
 import org.example.Sport;
 import org.example.Tournament;
 import org.example.contestant.Contestant;
@@ -17,6 +18,7 @@ public class TestFootball1 {
         Tournament footballTournament = new Tournament(Sport.FOOTBALL, contestants);
         GroupStage[] groupStage = footballTournament.createGroupStage(contestants.size(), true);
 
+        System.out.println(groupStage.length + " group stages created.");
     }
 
 }

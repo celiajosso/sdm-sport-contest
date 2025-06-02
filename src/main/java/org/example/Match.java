@@ -15,6 +15,7 @@ public class Match {
     private final Contestant teamB;
     private final String dateTime;
     private final String location;
+    public final Sport sport;
     private final List<String> eventLog = new ArrayList<>();
     private final MatchManager matchManager;
     private MatchState matchState = MatchState.NOT_STARTED;
@@ -25,6 +26,7 @@ public class Match {
         this.teamB = teamB;
         this.dateTime = dateTime;
         this.location = location;
+        this.sport = sport;
 
         switch (sport) {
             case FOOTBALL -> this.matchManager = new FootballMatchManager(this);

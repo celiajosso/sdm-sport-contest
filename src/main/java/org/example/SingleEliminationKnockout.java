@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.composite.MatchComponent;
 import org.example.contestant.Contestant;
 
 import java.util.List;
@@ -7,11 +8,13 @@ import java.util.List;
 // faire design pattern composite
 // compter nb de niveaux (puissance de 2)
 public class SingleEliminationKnockout extends Phase {
+    private MatchComponent root;
 
     public SingleEliminationKnockout(List<Contestant> contestants, Sport sport, int[][] positionInTree) {
         super();
     }
 
     public void onMatchFinished(Match match) {
+        root.execute();
     }
 }

@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class GroupStage<T> extends Phase {
     private final Map<Contestant, Integer> points;
-    private final List<Subscriber> listeners = new ArrayList<>();
     private List<Match> matches;
 
     public GroupStage(List<Contestant> contestants, Sport sport, boolean returnMatch) {
@@ -44,5 +43,9 @@ public class GroupStage<T> extends Phase {
         for (Subscriber listener : listeners) {
             listener.notify(match);
         }
+    }
+
+    public Match[] getMatches() {
+        return matches.toArray(new Match[0]);
     }
 }

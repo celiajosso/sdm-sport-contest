@@ -16,11 +16,11 @@ public class Main {
         TeamMember player3 = new TeamMember("C", "C", "01/01/2001", "G");
         TeamMember player4 = new TeamMember("D", "D", "01/01/2001", "A");
 
-        Team team1 = new Team("A", player1, new TeamMember[]{player1, player2});
-        Team team2 = new Team("B", player3, new TeamMember[]{player3, player4});
+        Team team1 = new Team("A", player1, new TeamMember[] { player1, player2 });
+        Team team2 = new Team("B", player3, new TeamMember[] { player3, player4 });
 
         Match match1 = new Match(1, FOOTBALL, team1, team2, "25/05/2025", "Poznan");
 
-        Tournament footaballTournament = new Tournament(FOOTBALL, List.of(new Team[]{team1, team2}));
+        Tournament footballTournament = new Tournament(FOOTBALL, List.of(new Team[] { team1, team2 }));
     }
 }
