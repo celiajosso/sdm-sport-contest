@@ -1,10 +1,16 @@
 package org.example;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.example.contestant.Contestant;
+
 public class GroupStage extends Phase {
     private Map<Contestant, Integer> points;
 
     public GroupStage(List<Contestant> contestants) {
-        super(true);
+        super();
         this.points = new HashMap<>();
         for (Contestant c : contestants) {
             points.put(c, 0);
@@ -19,7 +25,6 @@ public class GroupStage extends Phase {
         return points;
     }
 
-    @Override
     public void onMatchFinished(Match match) {
 
     }
