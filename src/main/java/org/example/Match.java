@@ -8,7 +8,6 @@ import org.example.MatchManager.MatchManager;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.MatchManager.VolleyballMatchManager;
 import org.example.contestant.Contestant;
-import org.example.contestant.Team;
 
 public class Match {
     private Integer matchId;

@@ -40,7 +40,7 @@ public class Tournament {
         return stages;
     }
 
-    public SingleEliminationKnockout createKnickout(int contestantPerGroup, boolean returnMatch) {
+    public SingleEliminationKnockout createKnockout(int[][] positionInTree) {
         SingleEliminationKnockout knockout = new SingleEliminationKnockout(...);
         knockout.addListener(phaseManager);
         return knockout;
