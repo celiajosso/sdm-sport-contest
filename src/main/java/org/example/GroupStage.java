@@ -6,14 +6,28 @@ import java.util.Map;
 
 import org.example.contestant.Contestant;
 
-public class GroupStage extends Phase {
+public class GroupStage<T> extends Phase {
     private Map<Contestant, Integer> points;
 
-    public GroupStage(List<Contestant> contestants) {
+    private List<Match> matches;
+
+    public GroupStage(List<Contestant> contestants,Sport sport, boolean returnMatch) {
         super();
         this.points = new HashMap<>();
+        
         for (Contestant c : contestants) {
             points.put(c, 0);
+        }
+        
+        for (int i = 0; i < contestants.size(); i++) {
+            for (int j = i + 1; j < contestants.size() + (contestants.size()>2 ? 1 : 0); j++) {
+                Contestant home = contestants.get(i);
+                Contestant away = contestants.get(j%contestants.size());
+                matches.add(new Match(1,sport,home, away,null,null));
+                if (returnMatch) {
+                    matches.add(new Match(1,sport,away, home,null,null));
+                }
+            }
         }
     }
 

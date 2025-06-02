@@ -7,12 +7,13 @@ import org.example.MatchManager.FootballMatchManager;
 import org.example.MatchManager.MatchManager;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.MatchManager.VolleyballMatchManager;
+import org.example.contestant.Contestant;
 import org.example.contestant.Team;
 
-public class Match {
+public class Match<T> {
     private Integer matchId;
-    private Team teamA;
-    private Team teamB;
+    private Contestant teamA;
+    private Contestant teamB;
     private String dateTime;
     private String location;
     private MatchState matchState = MatchState.NOT_STARTED;
@@ -20,7 +21,7 @@ public class Match {
 
     private MatchManager matchManager;
 
-    public Match(Integer matchId, Sport sport, Team teamA, Team teamB, String dateTime, String location) {
+    public Match(Integer matchId, Sport sport, Contestant teamA, Contestant teamB, String dateTime, String location) {
         this.matchId = matchId;
         this.teamA = teamA;
         this.teamB = teamB;
@@ -33,7 +34,6 @@ public class Match {
             case VOLLEYBALL -> this.matchManager = new VolleyballMatchManager(this);
             default -> throw new IllegalStateException("Unexpected value: " + sport);
         }
-
     }
 
     public MatchManager getMatchManager() {
@@ -44,11 +44,11 @@ public class Match {
         return matchId;
     }
 
-    public Team getTeamA() {
+    public Contestant getTeamA() {
         return teamA;
     }
 
-    public Team getTeamB() {
+    public Contestant getTeamB() {
         return teamB;
     }
 

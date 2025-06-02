@@ -14,12 +14,10 @@ import static org.example.Sport.FOOTBALL;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-
         TeamMember player1 = new TeamMember("A","A","A","01/01/2001", "A");
         TeamMember player2 = new TeamMember("B","B","B","01/01/2001", "G");
         TeamMember player3 = new TeamMember("C","C","C","01/01/2001", "G");
         TeamMember player4 = new TeamMember("D","D","D","01/01/2001", "A");
-
 
         Team team1 = new Team("A", player1, new TeamMember[]{player1, player2});
         Team team2 = new Team("B", player3, new TeamMember[]{player3, player4});
