@@ -47,7 +47,13 @@ public class Tournament {
     }
 
     public SingleEliminationKnockout createKnockout(int[][] positionInTree) {
-        SingleEliminationKnockout knockout = new SingleEliminationKnockout(contestants, sport, positionInTree);
+        SingleEliminationKnockout knockout = new SingleEliminationKnockout(sport, positionInTree);
+        knockout.addListener(phaseManager);
+        return knockout;
+    }
+
+    public SingleEliminationKnockout createKnockout() {
+        SingleEliminationKnockout knockout = new SingleEliminationKnockout(contestants, sport);
         knockout.addListener(phaseManager);
         return knockout;
     }

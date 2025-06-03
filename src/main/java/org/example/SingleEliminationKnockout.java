@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.composite.MatchComponent;
+import org.example.composite.MatchComposite;
 import org.example.contestant.Contestant;
 
 import java.util.List;
@@ -10,11 +11,75 @@ import java.util.List;
 public class SingleEliminationKnockout extends Phase {
     private MatchComponent root;
 
-    public SingleEliminationKnockout(List<Contestant> contestants, Sport sport, int[][] positionInTree) {
+    public SingleEliminationKnockout(Sport sport, int[][] positionInTree) {
         super();
+        int n = positionInTree.length;
+        this.root = buildEmptyTree(n, sport);
+    }
+
+    public SingleEliminationKnockout(List<Contestant> contestants, Sport sport) {
+        super();
+        java.util.Collections.shuffle(contestants);
+        int n = contestants.size();
+
+        int leafCount = 1;
+        while (leafCount < n) leafCount *= 2;
+
+        List<Contestant> padded = new java.util.ArrayList<>(contestants);
+        while (padded.size() < leafCount) padded.add(null);
+        this.root = buildContestantTree(padded, sport);
     }
 
     public void onMatchFinished(Match match) {
         root.execute();
+    }
+
+    private MatchComponent buildEmptyTree(int leafCount, Sport sport) {
+        if (leafCount == 1) {
+            return new org.example.composite.MatchLeaf(null);
+        }
+        MatchComposite node = new org.example.composite.MatchComposite();
+        node.add(buildEmptyTree(leafCount / 2, sport));
+        node.add(buildEmptyTree(leafCount / 2, sport));
+        return node;
+    }
+
+    private MatchComponent buildContestantTree(List<Contestant> contestants, Sport sport) {
+        int n = contestants.size();
+        if (n == 1) {
+            Contestant c = contestants.get(0);
+            if (c == null) return new org.example.composite.MatchLeaf(null);
+            Match match = new Match(1, sport, c, null, null, null);
+            return new org.example.composite.MatchLeaf(match);
+        }
+        int mid = n / 2;
+        MatchComposite node = new org.example.composite.MatchComposite();
+        node.add(buildContestantTree(contestants.subList(0, mid), sport));
+        node.add(buildContestantTree(contestants.subList(mid, n), sport));
+        return node;
+    }
+
+    public void printRoot() {
+        printComponent(root, 0);
+    }
+
+    private void printComponent(MatchComponent component, int depth) {
+        String indent = "  ".repeat(depth);
+        if (component instanceof org.example.composite.MatchLeaf leaf) {
+            Match match = leaf.getMatch();
+            if (match == null) {
+                System.out.println(indent + "Leaf: [empty]");
+            } else {
+                String a = match.getTeamA() != null ? match.getTeamA().getFullname() : "null";
+                String b = match.getTeamB() != null ? match.getTeamB().getFullname() : "null";
+                System.out.println(indent + "Leaf: " + a + " vs " + b);
+            }
+        } else if (component instanceof MatchComposite composite) {
+            System.out.println(indent + "Node");
+            printComponent(composite.getLeft(), depth + 1);
+            printComponent(composite.getRight(), depth + 1);
+        } else {
+            System.out.println(indent + "Unknown component");
+        }
     }
 }
