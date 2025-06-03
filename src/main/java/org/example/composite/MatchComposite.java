@@ -22,10 +22,7 @@ public class MatchComposite implements MatchComponent {
             matchRoot = new Match(1, left.getMatch().sport, leftContestant, rightContestant, null, null);
             return null;
         } else {
-            // matchRoot.getWinner()
-            matchRoot.getMatchManager().getWinner();
-
-            return null;
+            return matchRoot.getMatchManager().getWinner();
         }
     }
 
