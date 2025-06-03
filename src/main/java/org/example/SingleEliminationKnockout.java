@@ -4,6 +4,7 @@ import org.example.composite.MatchComponent;
 import org.example.composite.MatchComposite;
 import org.example.contestant.Contestant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // faire design pattern composite
@@ -16,6 +17,8 @@ public class SingleEliminationKnockout extends Phase {
         int n = java.util.Arrays.stream(positionInTree).mapToInt(arr -> arr.length).sum() / 2;
         this.root = buildEmptyTree(n, sport);
     }
+
+    
 
     public SingleEliminationKnockout(List<Contestant> contestants, Sport sport) {
         super();
@@ -76,8 +79,8 @@ public class SingleEliminationKnockout extends Phase {
             if (match == null) {
                 System.out.println(indent + "Leaf: [empty]");
             } else {
-                String a = match.getTeamA() != null ? match.getTeamA().getFullname() : "null";
-                String b = match.getTeamB() != null ? match.getTeamB().getFullname() : "null";
+                String a = match.getContestantA() != null ? match.getContestantA().getFullname() : "null";
+                String b = match.getContestantB() != null ? match.getContestantB().getFullname() : "null";
                 System.out.println(indent + "Leaf: " + a + " vs " + b);
             }
         } else if (component instanceof MatchComposite composite) {
@@ -86,6 +89,22 @@ public class SingleEliminationKnockout extends Phase {
             printComponent(composite.getRight(), depth + 1);
         } else {
             System.out.println(indent + "Unknown component");
+        }
+    }
+
+    public List<Match> getMatchesAtDepth(int depth) {
+        List<Match> result = new ArrayList<>();
+        collectMatchesAtDepth(root, depth, 0, result);
+        return result;
+    }
+
+    private void collectMatchesAtDepth(MatchComponent node, int targetDepth, int currentDepth, List<Match> result) {
+        if (node == null) return;
+        if (currentDepth == targetDepth) {
+            result.add(node.getMatch());
+        } else if (node instanceof org.example.composite.MatchComposite composite) {
+            collectMatchesAtDepth(composite.getLeft(), targetDepth, currentDepth + 1, result);
+            collectMatchesAtDepth(composite.getRight(), targetDepth, currentDepth + 1, result);
         }
     }
 

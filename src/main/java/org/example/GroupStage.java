@@ -51,8 +51,8 @@ public class GroupStage<T> extends Phase {
 
     public void displayPhase() {
         for (Match m : this.getMatches()) {
-            System.out.println("- " + m.getTeamA().getFullname() + " vs. "
-                    + m.getTeamB().getFullname());
+            System.out.println("- " + m.getContestantA().getFullname() + " vs. "
+                    + m.getContestantB().getFullname());
         }
     }
 }

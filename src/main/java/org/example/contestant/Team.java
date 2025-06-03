@@ -26,7 +26,7 @@ public class Team extends Contestant {
         return this.teamMembers;
     }
 
-    public void displayTeam() {
+    public void display() {
         System.out.println("\nTeam name: " + teamName);
         System.out.println("Team Leader: " + teamLeader.getFullname());
         System.out.println("Team Members:");

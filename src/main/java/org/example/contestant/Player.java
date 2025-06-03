@@ -26,4 +26,8 @@ public class Player extends Contestant {
     public String getFullname() {
         return this.getFirstname() + " " + this.getSurname();
     }
+
+    public void display() {
+        System.out.println("\nPlayer name: " + getFullname());
+    }
 }

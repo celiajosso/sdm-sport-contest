@@ -16,8 +16,8 @@ public class MatchEnd extends Event {
         match.setState(MatchState.FINISHED);
         backup();
 
-        Contestant playerA = match.getTeamA();
-        Contestant playerB = match.getTeamB();
+        Contestant playerA = match.getContestantA();
+        Contestant playerB = match.getContestantB();
 
         int setsWonByA = ((TennisMatchManager) match.getMatchManager()).getSetsWon(playerA);
         int setsWonByB = ((TennisMatchManager) match.getMatchManager()).getSetsWon(playerB);

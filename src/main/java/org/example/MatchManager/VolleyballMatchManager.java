@@ -17,14 +17,14 @@ public class VolleyballMatchManager extends MatchManager {
 
     public VolleyballMatchManager(Match match) {
         super(match);
-        currentSetScore.put(match.getTeamA(), 0);
-        currentSetScore.put(match.getTeamB(), 0);
-        setsWon.put(match.getTeamA(), 0);
-        setsWon.put(match.getTeamB(), 0);
+        currentSetScore.put(match.getContestantA(), 0);
+        currentSetScore.put(match.getContestantB(), 0);
+        setsWon.put(match.getContestantA(), 0);
+        setsWon.put(match.getContestantB(), 0);
     }
 
     public void pointScored(Team team) {
-        Contestant opponent = (team == match.getTeamA()) ? match.getTeamB() : match.getTeamA();
+        Contestant opponent = (team == match.getContestantA()) ? match.getContestantB() : match.getContestantA();
         int newScore = currentSetScore.getOrDefault(team, 0) + 1;
         currentSetScore.put(team, newScore);
 
@@ -45,8 +45,8 @@ public class VolleyballMatchManager extends MatchManager {
         setsWon.put(team, sets);
         currentSetNumber++;
 
-        currentSetScore.put(match.getTeamA(), 0);
-        currentSetScore.put(match.getTeamB(), 0);
+        currentSetScore.put(match.getContestantA(), 0);
+        currentSetScore.put(match.getContestantB(), 0);
 
         if (sets == 3) {
             match.setState(MatchState.FINISHED);
@@ -76,13 +76,13 @@ public class VolleyballMatchManager extends MatchManager {
 
     @Override
     public Contestant getWinner() {
-        int setsTeamA = getSetsWon((Team) match.getTeamA());
-        int setsTeamB = getSetsWon((Team) match.getTeamB());
+        int setsTeamA = getSetsWon((Team) match.getContestantA());
+        int setsTeamB = getSetsWon((Team) match.getContestantB());
 
         if (match.getState() != MatchState.FINISHED) {
             return null;
         }
 
-        return (setsTeamA > setsTeamB) ? match.getTeamA() : match.getTeamB();
+        return (setsTeamA > setsTeamB) ? match.getContestantA() : match.getContestantB();
     }
 }

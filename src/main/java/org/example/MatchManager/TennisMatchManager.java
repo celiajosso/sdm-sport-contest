@@ -5,7 +5,6 @@ import org.example.Match;
 import org.example.contestant.Contestant;
 import org.example.contestant.Team;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -100,16 +99,11 @@ public class TennisMatchManager extends MatchManager {
         }
     }
 
-    private Contestant getOpponent(Contestant player) {
-        Team teamA = (Team) match.getTeamA();
-        Team teamB = (Team) match.getTeamB();
+    private Contestant getOpponent(Contestant contestant) {
+        Contestant teamA = match.getContestantA();
+        Contestant teamB = match.getContestantB();
 
-        boolean playerInTeamA = Arrays.asList(teamA.getTeamMembers()).contains(player);
-        if (playerInTeamA) {
-            return teamB.getTeamMembers()[0];
-        } else {
-            return teamA.getTeamMembers()[0];
-        }
+            return contestant == teamA ? teamB : teamA;
     }
 
     public void cancelLastGame(Contestant player) {
@@ -141,8 +135,8 @@ public class TennisMatchManager extends MatchManager {
 
     @Override
     public Contestant getWinner() {
-        Team teamA = (Team) match.getTeamA();
-        Team teamB = (Team) match.getTeamB();
+        Team teamA = (Team) match.getContestantA();
+        Team teamB = (Team) match.getContestantB();
 
         int setsA = getSetsWon(teamA.getTeamMembers()[0]);
         int setsB = getSetsWon(teamB.getTeamMembers()[0]);

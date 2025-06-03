@@ -3,7 +3,6 @@ package org.example.Events.Football;
 import org.example.Events.Event;
 import org.example.Match;
 import org.example.MatchState;
-import org.example.contestant.Team;
 
 public class MatchStart extends Event {
     public MatchStart(Match match) {
@@ -15,10 +14,10 @@ public class MatchStart extends Event {
         match.setState(MatchState.IN_PROGRESS);
         backup();
         match.logEvent(
-                "Football Match Started: " + match.getTeamA().getFullname() + " vs " + match.getTeamB().getFullname());
+                "Football Match Started: " + match.getContestantA().getFullname() + " vs " + match.getContestantB().getFullname());
 
-        ((Team) match.getTeamA()).displayTeam();
-        ((Team) match.getTeamB()).displayTeam();
+        match.getContestantA().display();
+        match.getContestantB().display();
 
         return true;
     }

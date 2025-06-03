@@ -22,27 +22,27 @@ public class FootballMatchManager extends MatchManager {
     }
 
     public String getScoreDisplay() {
-        return getMatch().getTeamA().getFullname() + " " + scoreA + " - " +
-                scoreB + " " + getMatch().getTeamB().getFullname();
+        return getMatch().getContestantA().getFullname() + " " + scoreA + " - " +
+                scoreB + " " + getMatch().getContestantB().getFullname();
     }
 
     public void incrementScore(Team team) {
         // if (team == null) {
         // throw new IllegalArgumentException("Team cannot be null");
         // }
-        if (getMatch().getTeamA().equals(team)) {
+        if (getMatch().getContestantA().equals(team)) {
             scoreA++;
 
-        } else if (getMatch().getTeamB().equals(team)) {
+        } else if (getMatch().getContestantB().equals(team)) {
             scoreB++;
         }
 
     }
 
     public void decrementScore(Team team) {
-        if (team.equals(getMatch().getTeamA()) && scoreA > 0) {
+        if (team.equals(getMatch().getContestantA()) && scoreA > 0) {
             scoreA--;
-        } else if (team.equals(getMatch().getTeamB()) && scoreB > 0) {
+        } else if (team.equals(getMatch().getContestantB()) && scoreB > 0) {
             scoreB--;
         }
     }
@@ -63,9 +63,9 @@ public class FootballMatchManager extends MatchManager {
     public Contestant getWinner() {
         System.out.println("---------------------" + scoreA + " " + scoreB + "---------------------");
         if (scoreA > scoreB) {
-            return match.getTeamA();
+            return match.getContestantA();
         } else if (scoreB > scoreA) {
-            return match.getTeamB();
+            return match.getContestantB();
         } else {
             return null; // match nul
         }

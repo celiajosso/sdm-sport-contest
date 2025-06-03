@@ -12,18 +12,18 @@ import java.util.List;
 public class Match {
     public final Sport sport;
     private final Integer matchId;
-    private final Contestant teamA;
-    private final Contestant teamB;
+    private final Contestant contestantA;
+    private final Contestant contestantB;
     private final String dateTime;
     private final String location;
     private final List<String> eventLog = new ArrayList<>();
     private final MatchManager matchManager;
     private MatchState matchState = MatchState.NOT_STARTED;
 
-    public Match(Integer matchId, Sport sport, Contestant teamA, Contestant teamB, String dateTime, String location) {
+    public Match(Integer matchId, Sport sport, Contestant contestantA, Contestant contestantB, String dateTime, String location) {
         this.matchId = matchId;
-        this.teamA = teamA;
-        this.teamB = teamB;
+        this.contestantA = contestantA;
+        this.contestantB = contestantB;
         this.dateTime = dateTime;
         this.location = location;
         this.sport = sport;
@@ -44,12 +44,12 @@ public class Match {
         return matchId;
     }
 
-    public Contestant getTeamA() {
-        return teamA;
+    public Contestant getContestantA() {
+        return contestantA;
     }
 
-    public Contestant getTeamB() {
-        return teamB;
+    public Contestant getContestantB() {
+        return contestantB;
     }
 
     public String getDateTime() {
