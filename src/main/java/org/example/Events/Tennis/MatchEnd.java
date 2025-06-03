@@ -23,7 +23,6 @@ public class MatchEnd extends Event {
         int setsWonByB = ((TennisMatchManager) match.getMatchManager()).getSetsWon(playerB);
 
         match.logEvent("Tennis match ended");
-
         if (setsWonByA > setsWonByB) {
             match.logEvent("Player " + playerA.getFullname() + " won the match!");
         } else if (setsWonByB > setsWonByA) {

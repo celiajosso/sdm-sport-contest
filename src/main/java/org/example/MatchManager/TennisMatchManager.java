@@ -11,7 +11,6 @@ import java.util.Map;
 public class TennisMatchManager extends MatchManager {
     private final Map<Contestant, Integer> pointScores = new HashMap<>();
     private final Map<Contestant, Integer> gameScores = new HashMap<>();
-    private final Map<Contestant, Integer> setScores = new HashMap<>();
     private final Map<Contestant, Integer> setsWon = new HashMap<>();
     private final Map<Contestant, Integer> tieBreakPoints = new HashMap<>();
     private boolean isTieBreak = false;
@@ -89,8 +88,8 @@ public class TennisMatchManager extends MatchManager {
         match.logEvent(player.getFullname() + " wins the set.");
         gameScores.clear();
 
-        int sets = setScores.getOrDefault(player, 0) + 1;
-        setScores.put(player, sets);
+        int sets = getSetsWon(player) + 1;
+        setSetsWon(player, sets);
         match.logEvent(player.getFullname() + " now has " + sets + " sets.");
 
         if (sets == 2) {
@@ -103,7 +102,7 @@ public class TennisMatchManager extends MatchManager {
         Contestant teamA = match.getContestantA();
         Contestant teamB = match.getContestantB();
 
-            return contestant == teamA ? teamB : teamA;
+        return contestant == teamA ? teamB : teamA;
     }
 
     public void cancelLastGame(Contestant player) {
@@ -114,9 +113,9 @@ public class TennisMatchManager extends MatchManager {
     }
 
     public void cancelLastSet(Contestant player) {
-        int sets = setScores.getOrDefault(player, 0);
+        int sets = setsWon.getOrDefault(player, 0);
         if (sets > 0) {
-            setScores.put(player, sets - 1);
+            setsWon.put(player, sets - 1);
         }
     }
 
@@ -132,14 +131,13 @@ public class TennisMatchManager extends MatchManager {
         applyEvent(event);
     }
 
-
     @Override
     public Contestant getWinner() {
-        Team teamA = (Team) match.getContestantA();
-        Team teamB = (Team) match.getContestantB();
+        Contestant teamA = match.getContestantA();
+        Contestant teamB = match.getContestantB();
 
-        int setsA = getSetsWon(teamA.getTeamMembers()[0]);
-        int setsB = getSetsWon(teamB.getTeamMembers()[0]);
+        int setsA = getSetsWon(teamA);
+        int setsB = getSetsWon(teamB);
 
         if (setsA > setsB) {
             return teamA;
@@ -149,6 +147,5 @@ public class TennisMatchManager extends MatchManager {
             return null; // match nul ou non terminé
         }
     }
-
 
 }
