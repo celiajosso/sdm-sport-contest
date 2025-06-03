@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class GroupStage<T> extends Phase {
     private final Map<Contestant, Integer> points;
-    private List<Match> matches;
+    private List<Match> matches = new ArrayList<>();
 
     public GroupStage(List<Contestant> contestants, Sport sport, boolean returnMatch) {
         super();
