@@ -1,14 +1,9 @@
-import org.example.GroupStage;
 import org.example.SingleEliminationKnockout;
 import org.example.Sport;
 import org.example.Tournament;
-import org.example.config.FootballTeamDataLoader;
 import org.example.contestant.Contestant;
 import org.example.contestant.Player;
-import org.example.contestant.Team;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 

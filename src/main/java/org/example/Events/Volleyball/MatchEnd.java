@@ -19,8 +19,8 @@ public class MatchEnd extends Event {
         Team teamA = (Team) match.getTeamA();
         Team teamB = (Team) match.getTeamB();
 
-        int setsWonByA = ((VolleyballMatchManager)match.getMatchManager()).getSetsWon(teamA);
-        int setsWonByB = ((VolleyballMatchManager)match.getMatchManager()).getSetsWon(teamB);
+        int setsWonByA = ((VolleyballMatchManager) match.getMatchManager()).getSetsWon(teamA);
+        int setsWonByB = ((VolleyballMatchManager) match.getMatchManager()).getSetsWon(teamB);
 
         match.logEvent("Volleyball match ended");
 

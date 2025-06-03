@@ -4,7 +4,7 @@ import org.example.Match;
 import org.example.contestant.Contestant;
 
 public interface MatchComponent {
-    public Contestant execute();
+    Contestant execute();
 
-    public Match getMatch();
+    Match getMatch();
 }

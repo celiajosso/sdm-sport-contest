@@ -9,7 +9,7 @@ import java.util.List;
 // faire design pattern composite
 // compter nb de niveaux (puissance de 2)
 public class SingleEliminationKnockout extends Phase {
-    private MatchComponent root;
+    private final MatchComponent root;
 
     public SingleEliminationKnockout(Sport sport, int[][] positionInTree) {
         super();

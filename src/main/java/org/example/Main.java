@@ -8,27 +8,25 @@ import org.example.composite.MatchLeaf;
 import org.example.contestant.Team;
 import org.example.contestant.TeamMember;
 
-import java.util.List;
-
 import static org.example.Sport.FOOTBALL;
 
 public class Main {
     public static void main(String[] args) {
         TeamMember t1a = new TeamMember("Alice", "Alpha", "01/01/2000", "FW");
         TeamMember t1b = new TeamMember("Bob", "Alpha", "01/01/2000", "GK");
-        Team team1 = new Team("Team Alpha", t1a, new TeamMember[] { t1a, t1b });
+        Team team1 = new Team("Team Alpha", t1a, new TeamMember[]{t1a, t1b});
 
         TeamMember t2a = new TeamMember("Carl", "Bravo", "01/01/2000", "FW");
         TeamMember t2b = new TeamMember("Dana", "Bravo", "01/01/2000", "GK");
-        Team team2 = new Team("Team Bravo", t2a, new TeamMember[] { t2a, t2b });
+        Team team2 = new Team("Team Bravo", t2a, new TeamMember[]{t2a, t2b});
 
         TeamMember t3a = new TeamMember("Eve", "Charlie", "01/01/2000", "FW");
         TeamMember t3b = new TeamMember("Frank", "Charlie", "01/01/2000", "GK");
-        Team team3 = new Team("Team Charlie", t3a, new TeamMember[] { t3a, t3b });
+        Team team3 = new Team("Team Charlie", t3a, new TeamMember[]{t3a, t3b});
 
         TeamMember t4a = new TeamMember("Grace", "Delta", "01/01/2000", "FW");
         TeamMember t4b = new TeamMember("Hank", "Delta", "01/01/2000", "GK");
-        Team team4 = new Team("Team Delta", t4a, new TeamMember[] { t4a, t4b });
+        Team team4 = new Team("Team Delta", t4a, new TeamMember[]{t4a, t4b});
 
         Match semiFinal1 = new Match(1, FOOTBALL, team1, team2, "01/06/2025", "Stadium A");
         Match semiFinal2 = new Match(2, FOOTBALL, team3, team4, "01/06/2025", "Stadium B");

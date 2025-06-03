@@ -3,7 +3,6 @@ package org.example.MatchManager;
 import org.example.Events.Event;
 import org.example.Match;
 import org.example.contestant.Contestant;
-import org.example.contestant.Player;
 import org.example.contestant.Team;
 
 import java.util.Arrays;
@@ -141,21 +140,21 @@ public class TennisMatchManager extends MatchManager {
 
 
     @Override
-public Contestant getWinner() {
-    Team teamA = (Team) match.getTeamA();
-    Team teamB = (Team) match.getTeamB();
+    public Contestant getWinner() {
+        Team teamA = (Team) match.getTeamA();
+        Team teamB = (Team) match.getTeamB();
 
-    int setsA = getSetsWon(teamA.getTeamMembers()[0]);
-    int setsB = getSetsWon(teamB.getTeamMembers()[0]);
+        int setsA = getSetsWon(teamA.getTeamMembers()[0]);
+        int setsB = getSetsWon(teamB.getTeamMembers()[0]);
 
-    if (setsA > setsB) {
-        return teamA;
-    } else if (setsB > setsA) {
-        return teamB;
-    } else {
-        return null; // match nul ou non terminé
+        if (setsA > setsB) {
+            return teamA;
+        } else if (setsB > setsA) {
+            return teamB;
+        } else {
+            return null; // match nul ou non terminé
+        }
     }
-}
 
 
 }

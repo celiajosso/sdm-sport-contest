@@ -22,8 +22,8 @@ public class FootballMatchManager extends MatchManager {
     }
 
     public String getScoreDisplay() {
-        return ((Team) getMatch().getTeamA()).getFullname() + " " + scoreA + " - " +
-                scoreB + " " + ((Team) getMatch().getTeamB()).getFullname();
+        return getMatch().getTeamA().getFullname() + " " + scoreA + " - " +
+                scoreB + " " + getMatch().getTeamB().getFullname();
     }
 
     public void incrementScore(Team team) {

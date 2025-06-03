@@ -1,9 +1,9 @@
 package org.example.MatchManager;
 
 import org.example.Events.Event;
-import org.example.contestant.Contestant;
 import org.example.Match;
 import org.example.Subscriber;
+import org.example.contestant.Contestant;
 
 import java.util.ArrayList;
 
