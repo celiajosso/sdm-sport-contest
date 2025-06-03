@@ -9,7 +9,8 @@ import org.example.contestant.Team;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestFootball1 {
 

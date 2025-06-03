@@ -1,8 +1,8 @@
 package org.example.composite;
 
 import org.example.Match;
-import org.example.MatchState;
 import org.example.MatchManager.FootballMatchManager;
+import org.example.MatchState;
 import org.example.contestant.Contestant;
 
 public class MatchLeaf implements MatchComponent {
@@ -14,8 +14,7 @@ public class MatchLeaf implements MatchComponent {
 
     @Override
     public Contestant execute() {
-        if (match.getMatchManager() instanceof FootballMatchManager) {
-            FootballMatchManager manager = (FootballMatchManager) match.getMatchManager();
+        if (match.getMatchManager() instanceof FootballMatchManager manager) {
             int scoreA = manager.getScoreA();
             int scoreB = manager.getScoreB();
             System.out.println("Score : " + scoreA + " - " + scoreB);

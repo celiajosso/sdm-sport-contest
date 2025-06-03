@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Match {
+    public final Sport sport;
     private final Integer matchId;
     private final Contestant teamA;
     private final Contestant teamB;
     private final String dateTime;
     private final String location;
-    public final Sport sport;
     private final List<String> eventLog = new ArrayList<>();
     private final MatchManager matchManager;
     private MatchState matchState = MatchState.NOT_STARTED;
