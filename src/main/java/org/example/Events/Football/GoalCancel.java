@@ -19,7 +19,8 @@ public class GoalCancel extends Event {
     public boolean execute() {
         backup();
         manager.decrementScore(team);
-        match.logEvent("Goal cancelled for " + team.getFullname());
+        match.logEvent("Goal cancelled for " + team.getFullname() + "-> Actual score: " + manager.getScoreA() + "-"
+                + manager.getScoreB());
         return true;
     }
 }
