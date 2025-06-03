@@ -9,6 +9,9 @@ import org.example.contestant.Contestant;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Match {
     public final Sport sport;
     private final Integer matchId;
@@ -69,8 +72,11 @@ public class Match {
     }
 
     public void logEvent(String description) {
-        eventLog.add(description);
-        System.out.println(description);
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd, HH:mm:ss - ");
+        String message = now.format(formatter) + description;
+        eventLog.add(message);
+        System.out.println(message);
     }
 
     public List<String> getEventLog() {
