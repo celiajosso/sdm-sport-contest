@@ -27,6 +27,7 @@ public class Team extends Contestant {
     }
 
     public void displayTeam() {
+        System.out.println("\nTeam name: " + teamName);
         System.out.println("Team Leader: " + teamLeader.getFullname());
         System.out.println("Team Members:");
         for (TeamMember member : this.getTeamMembers()) {
@@ -34,11 +35,12 @@ public class Team extends Contestant {
         }
     }
 
-
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
         Team other = (Team) obj;
         return Objects.equals(teamName, other.teamName);
     }

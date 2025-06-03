@@ -22,11 +22,13 @@ public class TestFootball2 {
                 Tournament footballTournament = new Tournament(Sport.FOOTBALL, contestants);
                 GroupStage[] groupStage = footballTournament.createGroupStage(2, true);
 
-                System.out.println("List of matches for Group Stage");
+                System.out.println("\n=== List of matches for Group Stage");
                 for (int i = 0; i < groupStage.length; i++) {
                         System.out.println("Group number " + (i + 1));
                         groupStage[i].displayPhase();
                 }
+
+                // do phase manager
 
                 // event for matches in group stage
 
@@ -34,12 +36,12 @@ public class TestFootball2 {
                                 { 0, 3 },
                                 { 2, 1 }
                 };
-                SingleEliminationKnockout knockout = footballTournament.createKnockout(positionInTree); // ici param
-                                                                                                        // mais pas
-                // pour
-                // tennis et volley
-                System.out.println("List of matches for Single Elimination Knockout");
+
+                SingleEliminationKnockout knockout = footballTournament.createKnockout(positionInTree);
+                System.out.println("=== List of matches for Single Elimination Knockout");
                 knockout.displayPhase();
+
+                // events for matches in single elimination knockout
 
         }
 }
