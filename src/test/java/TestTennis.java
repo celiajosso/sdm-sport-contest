@@ -24,6 +24,6 @@ public class TestTennis {
 
         Tournament tennisTournament = new Tournament(Sport.TENNIS, contestants);
         SingleEliminationKnockout groupStage = tennisTournament.createKnockout();
-        groupStage.printRoot();
+        groupStage.displayPhase();
     }
 }

@@ -13,7 +13,7 @@ public class SingleEliminationKnockout extends Phase {
 
     public SingleEliminationKnockout(Sport sport, int[][] positionInTree) {
         super();
-        int n = positionInTree.length;
+        int n = java.util.Arrays.stream(positionInTree).mapToInt(arr -> arr.length).sum() / 2;
         this.root = buildEmptyTree(n, sport);
     }
 
@@ -23,10 +23,12 @@ public class SingleEliminationKnockout extends Phase {
         int n = contestants.size();
 
         int leafCount = 1;
-        while (leafCount < n) leafCount *= 2;
+        while (leafCount < n)
+            leafCount *= 2;
 
         List<Contestant> padded = new java.util.ArrayList<>(contestants);
-        while (padded.size() < leafCount) padded.add(null);
+        while (padded.size() < leafCount)
+            padded.add(null);
         this.root = buildContestantTree(padded, sport);
     }
 
@@ -49,8 +51,10 @@ public class SingleEliminationKnockout extends Phase {
         if (n == 2) {
             Contestant c1 = contestants.get(0);
             Contestant c2 = contestants.get(1);
-            if (c1 == null) return new org.example.composite.MatchLeaf(null);
-            if (c2 == null) return new org.example.composite.MatchLeaf(null);
+            if (c1 == null)
+                return new org.example.composite.MatchLeaf(null);
+            if (c2 == null)
+                return new org.example.composite.MatchLeaf(null);
             Match match = new Match(1, sport, c1, c2, null, null);
             return new org.example.composite.MatchLeaf(match);
         }
@@ -61,7 +65,7 @@ public class SingleEliminationKnockout extends Phase {
         return node;
     }
 
-    public void printRoot() {
+    public void displayPhase() {
         printComponent(root, 0);
     }
 
@@ -84,4 +88,5 @@ public class SingleEliminationKnockout extends Phase {
             System.out.println(indent + "Unknown component");
         }
     }
+
 }

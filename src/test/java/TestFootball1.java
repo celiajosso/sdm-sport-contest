@@ -6,6 +6,7 @@ import org.example.Tournament;
 import org.example.config.FootballTeamDataLoader;
 import org.example.contestant.Contestant;
 import org.example.contestant.Team;
+import org.example.Match;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,7 +23,10 @@ public class TestFootball1 {
         Tournament footballTournament = new Tournament(Sport.FOOTBALL, contestants);
         GroupStage[] groupStage = footballTournament.createGroupStage(contestants.size(), true);
 
-        System.out.println(groupStage.length + " group stages created.");
+        System.out.println("List of matches for Group Stage");
+        for (int i = 0; i < groupStage.length; i++) {
+            System.out.println("Group number " + (i + 1));
+            groupStage[i].displayPhase();
+        }
     }
-
 }

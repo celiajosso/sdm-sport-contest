@@ -20,7 +20,7 @@ public class GroupStage<T> extends Phase {
         }
 
         for (int i = 0; i < contestants.size(); i++) {
-            for (int j = i + 1; j < contestants.size() + (contestants.size() > 2 ? 1 : 0); j++) {
+            for (int j = i + 1; j < contestants.size(); j++) {
                 Contestant home = contestants.get(i);
                 Contestant away = contestants.get(j % contestants.size());
                 matches.add(new Match(1, sport, home, away, null, null));
@@ -47,5 +47,12 @@ public class GroupStage<T> extends Phase {
 
     public Match[] getMatches() {
         return matches.toArray(new Match[0]);
+    }
+
+    public void displayPhase() {
+        for (Match m : this.getMatches()) {
+            System.out.println("=== " + m.getTeamA().getFullname() + " vs. "
+                    + m.getTeamB().getFullname());
+        }
     }
 }

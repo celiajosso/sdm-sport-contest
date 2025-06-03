@@ -8,20 +8,38 @@ import org.example.config.FootballTeamDataLoader;
 import org.example.contestant.Contestant;
 import org.example.contestant.Team;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestFootball2 {
-    List<Team> teams = FootballTeamDataLoader.loadTeams("FootballTeam.json");
-    List<Contestant> contestants = new ArrayList<>(teams);
+        public static void main(String[] args) throws Exception {
+                Path jsonPath = Paths.get(TestFootball2.class.getResource("/FootballTeam.json").toURI());
+                List<Team> teams = FootballTeamDataLoader.loadTeams(jsonPath.toString());
+                List<Contestant> contestants = new ArrayList<>(teams);
 
-    Tournament footballTournament = new Tournament(Sport.FOOTBALL, contestants);
-    GroupStage[] groupStage = footballTournament.createGroupStage(2, true);
-    SingleEliminationKnockout knockout = footballTournament.createKnockout(positionInTree); // ici param mais pas
-    int[][] positionInTree = {
-            {0, 2, 7, 5},
-            {4, 6, 3, 1}
-    };
-    // pour
-    // tennis et volley
+                Tournament footballTournament = new Tournament(Sport.FOOTBALL, contestants);
+                GroupStage[] groupStage = footballTournament.createGroupStage(2, true);
+
+                System.out.println("List of matches for Group Stage");
+                for (int i = 0; i < groupStage.length; i++) {
+                        System.out.println("Group number " + (i + 1));
+                        groupStage[i].displayPhase();
+                }
+
+                // event for matches in group stage
+
+                int[][] positionInTree = {
+                                { 0, 3 },
+                                { 2, 1 }
+                };
+                SingleEliminationKnockout knockout = footballTournament.createKnockout(positionInTree); // ici param
+                                                                                                        // mais pas
+                // pour
+                // tennis et volley
+                System.out.println("List of matches for Single Elimination Knockout");
+                knockout.displayPhase();
+
+        }
 }

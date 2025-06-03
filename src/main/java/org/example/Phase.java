@@ -13,4 +13,6 @@ abstract class Phase {
     public void addListener(Subscriber subscriber) {
         this.listeners.add(subscriber);
     }
+
+    public abstract void displayPhase();
 }
