@@ -65,7 +65,7 @@ public class FootballMatchManager extends MatchManager {
 
     @Override
     public Contestant getWinner() {
-        System.out.println("---------------------"+scoreA+" "+scoreB+"---------------------");
+        // System.out.println("---------------------"+scoreA+" "+scoreB+"---------------------");
         if (scoreA > scoreB) {
             return match.getTeamA();
         } else if (scoreB > scoreA) {
