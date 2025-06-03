@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Events.Event;
 import org.example.composite.MatchComponent;
 import org.example.composite.MatchComposite;
 import org.example.contestant.Contestant;
@@ -11,14 +12,24 @@ import java.util.List;
 // compter nb de niveaux (puissance de 2)
 public class SingleEliminationKnockout extends Phase {
     private final MatchComponent root;
+    private KnockoutManager knockoutManager = new KnockoutManager();
+
+    private class KnockoutManager implements Subscriber<Event> {
+        @Override
+        public void notify(Event event) {
+            if (event instanceof org.example.Events.Football.MatchEnd
+                    || event instanceof org.example.Events.Volleyball.MatchEnd
+                    || event instanceof org.example.Events.Tennis.MatchEnd) {
+                root.execute();
+            }
+        }
+    }
 
     public SingleEliminationKnockout(Sport sport, int[][] positionInTree) {
         super();
         int n = java.util.Arrays.stream(positionInTree).mapToInt(arr -> arr.length).sum() / 2;
         this.root = buildEmptyTree(n, sport);
     }
-
-    
 
     public SingleEliminationKnockout(List<Contestant> contestants, Sport sport) {
         super();
@@ -59,6 +70,7 @@ public class SingleEliminationKnockout extends Phase {
             if (c2 == null)
                 return new org.example.composite.MatchLeaf(null);
             Match match = new Match(1, sport, c1, c2, null, null);
+            match.getMatchManager().addSubscriber(knockoutManager);
             return new org.example.composite.MatchLeaf(match);
         }
         int mid = n / 2;
@@ -99,7 +111,8 @@ public class SingleEliminationKnockout extends Phase {
     }
 
     private void collectMatchesAtDepth(MatchComponent node, int targetDepth, int currentDepth, List<Match> result) {
-        if (node == null) return;
+        if (node == null)
+            return;
         if (currentDepth == targetDepth) {
             result.add(node.getMatch());
         } else if (node instanceof org.example.composite.MatchComposite composite) {

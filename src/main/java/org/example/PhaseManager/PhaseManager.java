@@ -5,6 +5,6 @@ import org.example.Subscriber;
 public class PhaseManager implements Subscriber {
     @Override
     public void notify(Object event) {
-
+        System.out.println(event);
     }
 }
