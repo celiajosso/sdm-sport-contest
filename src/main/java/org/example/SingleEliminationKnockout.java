@@ -46,10 +46,12 @@ public class SingleEliminationKnockout extends Phase {
 
     private MatchComponent buildContestantTree(List<Contestant> contestants, Sport sport) {
         int n = contestants.size();
-        if (n == 1) {
-            Contestant c = contestants.get(0);
-            if (c == null) return new org.example.composite.MatchLeaf(null);
-            Match match = new Match(1, sport, c, null, null, null);
+        if (n == 2) {
+            Contestant c1 = contestants.get(0);
+            Contestant c2 = contestants.get(1);
+            if (c1 == null) return new org.example.composite.MatchLeaf(null);
+            if (c2 == null) return new org.example.composite.MatchLeaf(null);
+            Match match = new Match(1, sport, c1, c2, null, null);
             return new org.example.composite.MatchLeaf(match);
         }
         int mid = n / 2;
