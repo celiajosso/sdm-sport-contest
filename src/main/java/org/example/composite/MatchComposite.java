@@ -9,16 +9,13 @@ public class MatchComposite implements MatchComponent {
     private Match matchRoot;
 
     public Contestant execute() {
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$00"+left);
+        System.out.println(left);
 
         Contestant leftContestant = left.execute();
         Contestant rightContestant = right.execute();
-        System.out.println("$$$$$$$$$$$$$$$$$$$$$$11");
 
         if (leftContestant == null || rightContestant == null) {
-            System.out.println("$$$$$$$$$$$$$$$$$$$$$$22");
             return null;
-
         }
 
         if (matchRoot == null) {
@@ -26,8 +23,6 @@ public class MatchComposite implements MatchComponent {
             return null;
         } else {
             // matchRoot.getWinner()
-            System.out.println("$$$$$$$$$$$$$$$$$$$$$$33");
-
             matchRoot.getMatchManager().getWinner();
 
             return null;

@@ -28,18 +28,15 @@ public class FootballMatchManager extends MatchManager {
 
     public void incrementScore(Team team) {
         // if (team == null) {
-        //     throw new IllegalArgumentException("Team cannot be null");
+        // throw new IllegalArgumentException("Team cannot be null");
         // }
         if (getMatch().getTeamA().equals(team)) {
             scoreA++;
-            System.out.println("****************** : " + scoreA + " VS " + scoreB);
 
         } else if (getMatch().getTeamB().equals(team)) {
             scoreB++;
-            System.out.println("****************** : " + scoreA + " VS " + scoreB);
-
         }
-        
+
     }
 
     public void decrementScore(Team team) {
@@ -62,10 +59,9 @@ public class FootballMatchManager extends MatchManager {
         applyEvent(event);
     }
 
-
     @Override
     public Contestant getWinner() {
-        System.out.println("---------------------"+scoreA+" "+scoreB+"---------------------");
+        System.out.println("---------------------" + scoreA + " " + scoreB + "---------------------");
         if (scoreA > scoreB) {
             return match.getTeamA();
         } else if (scoreB > scoreA) {
@@ -74,7 +70,5 @@ public class FootballMatchManager extends MatchManager {
             return null; // match nul
         }
     }
-
-
 
 }
