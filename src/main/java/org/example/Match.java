@@ -15,8 +15,8 @@ import java.time.format.DateTimeFormatter;
 public class Match {
     public final Sport sport;
     private final Integer matchId;
-    private final Contestant contestantA;
-    private final Contestant contestantB;
+    private Contestant contestantA;
+    private Contestant contestantB;
     private final String dateTime;
     private final String location;
     private final List<String> eventLog = new ArrayList<>();
@@ -53,6 +53,14 @@ public class Match {
 
     public Contestant getContestantB() {
         return contestantB;
+    }
+
+    public void setContestantA(Contestant a) {
+        this.contestantA = a;
+    }
+
+    public void setContestantB(Contestant b) {
+        this.contestantB = b;
     }
 
     public String getDateTime() {

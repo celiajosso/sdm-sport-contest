@@ -60,6 +60,41 @@ public class SingleEliminationKnockout extends Phase {
         return node;
     }
 
+    public void setMatch(int index, Contestant contestant) {
+        List<org.example.composite.MatchLeaf> leaves = new ArrayList<>();
+        collectLeaves(root, leaves);
+
+        int leafIndex = index / 2;
+        boolean isA = index % 2 == 0;
+
+        if (leafIndex < 0 || leafIndex >= leaves.size()) {
+            throw new IllegalArgumentException("Index de feuille invalide");
+        }
+
+        org.example.composite.MatchLeaf leaf = leaves.get(leafIndex);
+        Match match = leaf.getMatch();
+
+        if (match == null) {
+            match = new Match(1, null, null, null, null, null);
+            leaf.setMatch(match);
+        }
+
+        if (isA) {
+            match.setContestantA(contestant);
+        } else {
+            match.setContestantB(contestant);
+        }
+    }
+
+    private void collectLeaves(MatchComponent node, List<org.example.composite.MatchLeaf> leaves) {
+        if (node instanceof org.example.composite.MatchLeaf leaf) {
+            leaves.add(leaf);
+        } else if (node instanceof MatchComposite composite) {
+            collectLeaves(composite.getLeft(), leaves);
+            collectLeaves(composite.getRight(), leaves);
+        }
+    }
+
     private MatchComponent buildContestantTree(List<Contestant> contestants, Sport sport) {
         int n = contestants.size();
         if (n == 2) {
