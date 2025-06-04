@@ -13,12 +13,12 @@ public class MatchStart extends Event {
     public boolean execute() {
         match.setState(MatchState.IN_PROGRESS);
         backup();
-        
+
         match.logEvent("Tennis match started");
 
-        match.getTeamA().displayTeam();
-        match.getTeamB().displayTeam();
-        
+        match.getContestantA().display();
+        match.getContestantB().display();
+
         return true;
     }
 }

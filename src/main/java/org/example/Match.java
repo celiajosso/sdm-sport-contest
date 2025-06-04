@@ -1,31 +1,35 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.example.MatchManager.FootballMatchManager;
 import org.example.MatchManager.MatchManager;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.MatchManager.VolleyballMatchManager;
-import org.example.contestant.Team;
+import org.example.contestant.Contestant;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Match {
-    private Integer matchId;
-    private Team teamA;
-    private Team teamB;
-    private String dateTime;
-    private String location;
+    public final Sport sport;
+    private final Integer matchId;
+    private final Contestant contestantA;
+    private final Contestant contestantB;
+    private final String dateTime;
+    private final String location;
+    private final List<String> eventLog = new ArrayList<>();
+    private final MatchManager matchManager;
     private MatchState matchState = MatchState.NOT_STARTED;
-    private List<String> eventLog = new ArrayList<>();
 
-    private MatchManager matchManager;
-
-    public Match(Integer matchId, Sport sport, Team teamA, Team teamB, String dateTime, String location) {
+    public Match(Integer matchId, Sport sport, Contestant contestantA, Contestant contestantB, String dateTime, String location) {
         this.matchId = matchId;
-        this.teamA = teamA;
-        this.teamB = teamB;
+        this.contestantA = contestantA;
+        this.contestantB = contestantB;
         this.dateTime = dateTime;
         this.location = location;
+        this.sport = sport;
 
         switch (sport) {
             case FOOTBALL -> this.matchManager = new FootballMatchManager(this);
@@ -33,7 +37,6 @@ public class Match {
             case VOLLEYBALL -> this.matchManager = new VolleyballMatchManager(this);
             default -> throw new IllegalStateException("Unexpected value: " + sport);
         }
-
     }
 
     public MatchManager getMatchManager() {
@@ -44,12 +47,12 @@ public class Match {
         return matchId;
     }
 
-    public Team getTeamA() {
-        return teamA;
+    public Contestant getContestantA() {
+        return contestantA;
     }
 
-    public Team getTeamB() {
-        return teamB;
+    public Contestant getContestantB() {
+        return contestantB;
     }
 
     public String getDateTime() {
@@ -69,8 +72,11 @@ public class Match {
     }
 
     public void logEvent(String description) {
-        eventLog.add(description);
-        System.out.println(description);
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd, HH:mm:ss - ");
+        String message = now.format(formatter) + description;
+        eventLog.add(message);
+        System.out.println(message);
     }
 
     public List<String> getEventLog() {

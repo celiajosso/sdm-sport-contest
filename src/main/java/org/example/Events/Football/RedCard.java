@@ -1,11 +1,11 @@
 package org.example.Events.Football;
 
 import org.example.Events.Event;
-import org.example.contestant.TeamMember;
 import org.example.Match;
+import org.example.contestant.TeamMember;
 
 public class RedCard extends Event {
-    private TeamMember player;
+    private final TeamMember player;
 
     public RedCard(Match match, TeamMember player) {
         super(match);
@@ -16,7 +16,7 @@ public class RedCard extends Event {
     public boolean execute() {
         backup();
         player.giveRedCard();
-        match.logEvent("Red card for " + player.getPseudonym());
+        match.logEvent("Red card for " + player.getFullname());
         return true;
     }
 }

@@ -1,25 +1,26 @@
 package org.example.Events.Football;
 
 import org.example.Events.Event;
-import org.example.contestant.Team;
+import org.example.MatchManager.FootballMatchManager;
 import org.example.contestant.TeamMember;
-import org.example.Match;
 
 public class Substitution extends Event {
-    private Team team;
-    private TeamMember outPlayer;
-    private TeamMember inPlayer;
+    private final FootballMatchManager manager;
+    private final TeamMember outPlayer;
+    private final TeamMember inPlayer;
 
-    public Substitution(Match match, Team team, TeamMember outPlayer, TeamMember inPlayer) {
-        super(match);
-        this.team = team;
+    public Substitution(FootballMatchManager manager, TeamMember outPlayer, TeamMember inPlayer) {
+        super(manager.getMatch());
+        this.manager = manager;
         this.outPlayer = outPlayer;
         this.inPlayer = inPlayer;
     }
 
     @Override
     public boolean execute() {
-        match.logEvent("Substitution for " + team.getTeamName() + ": " + outPlayer.getPseudonym() + " out, " + inPlayer.getPseudonym() + " in");
+        match.logEvent("Substitution for " + manager.getTeam(outPlayer).getFullname() + ": " + outPlayer.getFullname()
+                + " out, "
+                + inPlayer.getFullname() + " in");
         return true;
     }
 }

@@ -2,24 +2,24 @@ package org.example.Events.Football;
 
 import org.example.Events.Event;
 import org.example.MatchManager.FootballMatchManager;
-import org.example.contestant.Team;
-import org.example.Match;
+import org.example.contestant.TeamMember;
 
 public class GoalScore extends Event {
-    private Team scoringTeam;
-    private FootballMatchManager manager;
+    private final FootballMatchManager manager;
+    private final TeamMember member;
 
-    public GoalScore(Match match, FootballMatchManager manager, Team scoringTeam) {
-        super(match);
+    public GoalScore(FootballMatchManager manager, TeamMember member) {
+        super(manager.getMatch());
         this.manager = manager;
-        this.scoringTeam = scoringTeam;
+        this.member = member;
     }
 
     @Override
     public boolean execute() {
         backup();
-        manager.incrementScore(scoringTeam);
-        match.logEvent("Goal scored by " + scoringTeam.getTeamName());
+        manager.incrementScore(manager.getTeam(member));
+        match.logEvent("Goal scored by " + member.getFullname() + " (team " + manager.getTeam(member).getFullname()
+                + ") -> Actual score: " + manager.getScoreA() + "-" + manager.getScoreB());
         return true;
     }
 }

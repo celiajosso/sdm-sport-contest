@@ -13,7 +13,7 @@ public class MatchInterruption extends Event {
     public boolean execute() {
         match.setState(MatchState.INTERRUPTED);
         backup();
-        
+
         match.logEvent("Tennis match interrupted");
         return true;
     }

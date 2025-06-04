@@ -1,15 +1,13 @@
 package org.example.contestant;
 
 public class Player extends Contestant {
-    private String firstname;
-    private String surname;
-    private String pseudonym;
-    private String birthdate;
+    private final String firstname;
+    private final String surname;
+    private final String birthdate;
 
-    public Player(String  firstname, String surname, String pseudonym, String birthdate) {
+    public Player(String firstname, String surname, String birthdate) {
         this.firstname = firstname;
         this.surname = surname;
-        this.pseudonym = pseudonym;
         this.birthdate = birthdate;
     }
 
@@ -21,27 +19,15 @@ public class Player extends Contestant {
         return this.surname;
     }
 
-    public String getPseudonym() {
-        return this.pseudonym;
-    }
-
     public String getBirthDate() {
         return this.birthdate;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public String getFullname() {
+        return this.getFirstname() + " " + this.getSurname();
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setPseudonym(String pseudonym) {
-        this.pseudonym = pseudonym;
-    }
-
-    public void setBirthDate(String birthdate) {
-        this.birthdate = birthdate;
+    public void display() {
+        System.out.println("\nPlayer name: " + getFullname());
     }
 }

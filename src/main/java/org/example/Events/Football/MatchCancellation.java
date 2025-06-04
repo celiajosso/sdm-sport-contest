@@ -14,7 +14,7 @@ public class MatchCancellation extends Event {
     public boolean execute() {
         match.setState(MatchState.CANCELED);
         backup();
-        
+
         match.logEvent("Match cancelled");
         return true;
     }

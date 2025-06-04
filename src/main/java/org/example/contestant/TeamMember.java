@@ -5,8 +5,8 @@ public class TeamMember extends Player {
     private int yellowCards = 0;
     private boolean redCard = false;
 
-    public TeamMember(String firstname, String surname, String pseudonym, String birthdate, String role) {
-        super(firstname, surname, pseudonym, birthdate);
+    public TeamMember(String firstname, String surname, String birthdate, String role) {
+        super(firstname, surname, birthdate);
         this.role = role;
     }
 
@@ -32,5 +32,5 @@ public class TeamMember extends Player {
     public int getYellowCards() {
         return this.yellowCards;
     }
-    
+
 }

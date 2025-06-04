@@ -1,12 +1,12 @@
 package org.example.Events.Tennis;
 
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.contestant.Player;
-import org.example.Match;
 
 public class PointCancel extends Event {
-    private Player player;
+    private final Player player;
 
     public PointCancel(Match match, Player player) {
         super(match);
@@ -15,7 +15,7 @@ public class PointCancel extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Point cancelled for " + player.getPseudonym());
+        match.logEvent("Point cancelled for " + player.getFullname());
         TennisMatchManager manager = new TennisMatchManager(match);
         manager.cancelLastPoint(player);
         return true;

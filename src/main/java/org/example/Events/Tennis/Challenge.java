@@ -1,11 +1,11 @@
 package org.example.Events.Tennis;
 
 import org.example.Events.Event;
-import org.example.contestant.Player;
 import org.example.Match;
+import org.example.contestant.Player;
 
 public class Challenge extends Event {
-    private Player player;
+    private final Player player;
 
     public Challenge(Match match, Player player) {
         super(match);
@@ -14,7 +14,7 @@ public class Challenge extends Event {
 
     @Override
     public boolean execute() {
-        match.logEvent("Challenge by " + player.getPseudonym());
+        match.logEvent("Challenge by " + player.getFullname());
         return true;
     }
 }

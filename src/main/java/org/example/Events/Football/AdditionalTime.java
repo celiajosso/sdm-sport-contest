@@ -4,7 +4,7 @@ import org.example.Events.Event;
 import org.example.Match;
 
 public class AdditionalTime extends Event {
-    private int minutes;
+    private final int minutes;
 
     public AdditionalTime(Match match, int minutes) {
         super(match);

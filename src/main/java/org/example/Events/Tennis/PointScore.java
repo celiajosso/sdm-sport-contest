@@ -1,12 +1,12 @@
 package org.example.Events.Tennis;
 
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.contestant.Player;
-import org.example.Match;
 
 public class PointScore extends Event {
-    private Player player;
+    private final Player player;
 
     public PointScore(Match match, Player player) {
         super(match);
@@ -17,7 +17,7 @@ public class PointScore extends Event {
     public boolean execute() {
         TennisMatchManager manager = new TennisMatchManager(match);
         manager.pointScored(player);
-        match.logEvent("Point scored by " + player.getPseudonym());
+        match.logEvent("Point scored by " + player.getFullname());
         return true;
     }
 }

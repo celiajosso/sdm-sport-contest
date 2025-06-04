@@ -1,9 +1,11 @@
 package org.example.contestant;
 
+import java.util.Objects;
+
 public class Team extends Contestant {
-    private TeamMember[] teamMembers;
-    private String teamName;
-    private TeamMember teamLeader;
+    private final TeamMember[] teamMembers;
+    private final String teamName;
+    private final TeamMember teamLeader;
 
     public Team(String teamName, TeamMember teamLeader, TeamMember[] teamMembers) {
         this.teamName = teamName;
@@ -11,7 +13,8 @@ public class Team extends Contestant {
         this.teamMembers = teamMembers;
     }
 
-    public String getTeamName() {
+    @Override
+    public String getFullname() {
         return this.teamName;
     }
 
@@ -23,23 +26,27 @@ public class Team extends Contestant {
         return this.teamMembers;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
-    }
-
-    public void setTeamLeader(TeamMember teamLeader) {
-        this.teamLeader = teamLeader;
-    }
-
-    public void setTeamMembers(TeamMember[] teamMembers) {
-        this.teamMembers = teamMembers;
-    }
-
-    public void displayTeam() {
-        System.out.println("Team Leader: " + teamLeader.getPseudonym());
+    public void display() {
+        System.out.println("\nTeam name: " + teamName);
+        System.out.println("Team Leader: " + teamLeader.getFullname());
         System.out.println("Team Members:");
         for (TeamMember member : this.getTeamMembers()) {
-            System.out.println("- " + member.getPseudonym() + " (" + member.getRole() + ")");
+            System.out.println("- " + member.getFullname() + " (" + member.getRole() + ")");
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass())
+            return false;
+        Team other = (Team) obj;
+        return Objects.equals(teamName, other.teamName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(teamName);
     }
 }

@@ -13,7 +13,7 @@ public class MatchPostponed extends Event {
     public boolean execute() {
         match.setState(MatchState.POSTPONED);
         backup();
-        
+
         match.logEvent("Tennis match postponed");
         return true;
     }

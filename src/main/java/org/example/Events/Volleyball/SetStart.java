@@ -4,7 +4,7 @@ import org.example.Events.Event;
 import org.example.Match;
 
 public class SetStart extends Event {
-    private int setNumber;
+    private final int setNumber;
 
     public SetStart(Match match, int setNumber) {
         super(match);

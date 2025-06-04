@@ -13,7 +13,7 @@ public class MatchCancellation extends Event {
     public boolean execute() {
         match.setState(MatchState.CANCELED);
         backup();
-        
+
         match.logEvent("Tennis match cancelled");
         return true;
     }

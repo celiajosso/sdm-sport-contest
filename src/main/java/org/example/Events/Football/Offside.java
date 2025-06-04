@@ -1,20 +1,20 @@
 package org.example.Events.Football;
 
 import org.example.Events.Event;
-import org.example.contestant.Team;
 import org.example.Match;
+import org.example.contestant.TeamMember;
 
 public class Offside extends Event {
-    private Team team;
+    private final TeamMember member;
 
-    public Offside(Match match, Team team) {
+    public Offside(Match match, TeamMember member) {
         super(match);
-        this.team = team;
+        this.member = member;
     }
 
     @Override
     public boolean execute() {
-        match.logEvent("Offside by " + team.getTeamName());
+        match.logEvent("Offside by " + member.getFullname());
         return true;
     }
 }

@@ -1,13 +1,13 @@
 package org.example.Events.Tennis;
 
 import org.example.Events.Event;
+import org.example.Match;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.contestant.Player;
-import org.example.Match;
 
 public class GameEnd extends Event {
-    private Player scoringPlayer;
-    private TennisMatchManager manager;
+    private final Player scoringPlayer;
+    private final TennisMatchManager manager;
 
     public GameEnd(Match match, TennisMatchManager manager, Player scoringPlayer) {
         super(match);
@@ -19,7 +19,7 @@ public class GameEnd extends Event {
     public boolean execute() {
         backup();
         manager.winGame(scoringPlayer);
-        match.logEvent("Tennis game ended, player " + scoringPlayer.getPseudonym() + " won the game.");
+        match.logEvent("Tennis game ended, player " + scoringPlayer.getFullname() + " won the game.");
         return true;
     }
 }

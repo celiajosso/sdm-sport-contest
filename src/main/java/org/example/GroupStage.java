@@ -1,21 +1,44 @@
 package org.example;
 
+import org.example.Events.Event;
+import org.example.contestant.Contestant;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.example.contestant.Contestant;
+public class GroupStage<T> extends Phase {
+    private final Map<Contestant, Integer> points;
+    private final List<Match> matches = new ArrayList<>();
+    private final int id;
+    private GroupManager manager = new GroupManager();
 
-public class GroupStage extends Phase {
-    private Map<Contestant, Integer> points;
-
-    public GroupStage(List<Contestant> contestants) {
+    public GroupStage(int id, List<Contestant> contestants, Sport sport, boolean returnMatch) {
         super();
         this.points = new HashMap<>();
+        this.id = id;
         for (Contestant c : contestants) {
             points.put(c, 0);
         }
+
+        for (int i = 0; i < contestants.size(); i++) {
+            for (int j = i + 1; j < contestants.size(); j++) {
+                Contestant home = contestants.get(i);
+                Contestant away = contestants.get(j % contestants.size());
+                Match m1 = new Match(1, sport, home, away, null, null);
+                m1.getMatchManager().addSubscriber(manager);
+                matches.add(m1);
+                if (returnMatch) {
+                    Match m2 = new Match(1, sport, away, home, null, null);
+                    m2.getMatchManager().addSubscriber(manager);
+                    matches.add(m2);
+                }
+            }
+        }
     }
+
+    public int getId(){return id;}
 
     public void addPoints(Contestant contestant, int pts) {
         points.put(contestant, points.getOrDefault(contestant, 0) + pts);
@@ -25,7 +48,39 @@ public class GroupStage extends Phase {
         return points;
     }
 
-    public void onMatchFinished(Match match) {
+    public List<Contestant> getSortedContestants() {
+        return points.entrySet()
+                .stream()
+                .sorted(Map.Entry.<Contestant, Integer>comparingByValue().reversed())
+                .map(Map.Entry::getKey)
+                .toList();
+    }
 
+    public void onPhaseFinish() {
+        for (Subscriber listener : listeners) {
+            listener.notify(this);
+        }
+    }
+
+    public Match[] getMatches() {
+        return matches.toArray(new Match[0]);
+    }
+
+    public void displayPhase() {
+        for (Match m : this.getMatches()) {
+            System.out.println("- " + m.getContestantA().getFullname() + " vs. "
+                    + m.getContestantB().getFullname());
+        }
+    }
+
+    private class GroupManager implements Subscriber<Event> {
+        @Override
+        public void notify(Event event) {
+            if (event instanceof org.example.Events.Football.MatchEnd
+                    || event instanceof org.example.Events.Volleyball.MatchEnd
+                    || event instanceof org.example.Events.Tennis.MatchEnd) {
+                onPhaseFinish();
+            }
+        }
     }
 }
