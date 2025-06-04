@@ -24,9 +24,7 @@ public class MatchLeaf implements MatchComponent {
                 System.out.println("Gagnant du match leaf: " + match.getMatchManager().getWinner());
                 return match.getMatchManager().getWinner();
             } else {
-                throw new IllegalStateException("Match n'a pas commence");
-
-                // return null;
+                return null;
             }
         } else {
             throw new IllegalStateException("Match is not set");

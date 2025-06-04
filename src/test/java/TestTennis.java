@@ -24,7 +24,6 @@ public class TestTennis {
 
         Tournament tennisTournament = new Tournament(Sport.TENNIS, contestants);
         SingleEliminationKnockout groupStage = tennisTournament.createKnockout();
-        groupStage.displayPhase();
 
         groupStage.getMatchesAtDepth(1).forEach(match -> {
 
@@ -62,8 +61,46 @@ public class TestTennis {
                         (org.example.MatchManager.TennisMatchManager) manager));
             }
             manager.applyEvent(new org.example.Events.Tennis.MatchEnd(match));
-
-            System.out.println(manager.getWinner().getFullname());
         });
+
+        groupStage.getMatchesAtDepth(0).forEach(match -> {
+            Contestant playerA = match.getContestantA();
+            Contestant playerB = match.getContestantB();
+            System.out.println("Match: " + playerA.getFullname() + " vs " + playerB.getFullname());
+
+            var manager = match.getMatchManager();
+
+            manager.applyEvent(new org.example.Events.Tennis.MatchStart(match));
+            int[][][] allJeux = new int[][][]{
+                    {{1, 0}, {0, 1}, {1, 0}, {1, 0}, {1, 0}},
+                    {{0, 1}, {1, 0}, {1, 0}, {1, 0}, {1, 0}},
+                    {{1, 0}, {1, 0}, {0, 1}, {1, 0}, {1, 0}}
+            };
+
+            int set = 0;
+
+            for (int[][] jeux : allJeux) {
+                set++;
+                manager.applyEvent(new org.example.Events.Tennis.SetStart(match, set));
+
+                for (int jeu = 0; jeu < jeux.length; jeu++) {
+                    Player serveur = (jeu % 2 == 0) ? (Player) playerA : (Player) playerB;
+                    manager.applyEvent(new org.example.Events.Tennis.GameStart(match));
+                    manager.applyEvent(new org.example.Events.Tennis.WhoServe(match, serveur));
+
+                    Player winner = (jeux[jeu][0] == 1) ? (Player) playerA : (Player) playerB;
+                    for (int p = 0; p < 3; p++) {
+                        manager.applyEvent(new org.example.Events.Tennis.PointScore(match, winner));
+                    }
+                    manager.applyEvent(new org.example.Events.Tennis.GameEnd(match,
+                            (org.example.MatchManager.TennisMatchManager) manager, winner));
+                }
+                manager.applyEvent(new org.example.Events.Tennis.SetEnd(match, set, (Player) playerA,
+                        (org.example.MatchManager.TennisMatchManager) manager));
+            }
+            manager.applyEvent(new org.example.Events.Tennis.MatchEnd(match));
+        });
+        groupStage.displayPhase();
+
     }
 }
