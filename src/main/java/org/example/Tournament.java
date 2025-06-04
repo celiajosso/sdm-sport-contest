@@ -12,19 +12,14 @@ import java.util.stream.IntStream;
 public class Tournament {
     Sport sport;
     List<Contestant> contestants;
-    List<Phase> phases;
-
-    PhaseManager phaseManager = new PhaseManager();
+    List<GroupStage> groupStages = new ArrayList<>();
 
     public Tournament(Sport sport, List<Contestant> contestants) {
         this.sport = sport;
         this.contestants = contestants;
-        this.phases = new ArrayList<>();
     }
 
     public GroupStage[] createGroupStage(int contestantPerGroup, boolean returnMatch) {
-        GroupStage[] stages = new GroupStage[this.contestants.size() / contestantPerGroup];
-
         List<Integer> shuffled = IntStream.range(0, contestants.size())
                 .boxed()
                 .collect(Collectors.toList()); // mutable list
@@ -33,37 +28,37 @@ public class Tournament {
         java.util.Collections.shuffle(shuffled);
 
         int k = 0;
-        for (int i = 0; i < stages.length; i++) {
+        for (int i = 0; i < this.contestants.size() / contestantPerGroup; i++) {
             ArrayList<Contestant> contestants = new ArrayList<>();
             for (int j = 0; j < contestantPerGroup; j++) {
                 contestants.add(this.contestants.get(shuffled.get(k++)));
             }
-            stages[i] = new GroupStage(contestants, sport, returnMatch);
-            stages[i].addListener(phaseManager);
-            this.addPhase(stages[i]);
+            GroupStage g = new GroupStage(i,contestants, sport, returnMatch);
+            groupStages.add(g);
         }
 
-        return stages;
+        return getGroupStages().toArray(new GroupStage[0]);
     }
 
     public SingleEliminationKnockout createKnockout(int[][] positionInTree) {
         SingleEliminationKnockout knockout = new SingleEliminationKnockout(sport, positionInTree);
-        knockout.addListener(phaseManager);
+
+        PhaseManager phaseManager = new PhaseManager(knockout,positionInTree);
+
+        for (GroupStage stage: this.groupStages) {
+            stage.addListener(phaseManager);
+        }
+        
         return knockout;
     }
 
     public SingleEliminationKnockout createKnockout() {
         SingleEliminationKnockout knockout = new SingleEliminationKnockout(contestants, sport);
-        knockout.addListener(phaseManager);
         return knockout;
     }
 
-    public void addPhase(Phase phase) {
-        phases.add(phase);
-    }
-
-    public List<Phase> getPhases() {
-        return phases;
+    public List<GroupStage> getGroupStages() {
+        return groupStages;
     }
 
     public List<Contestant> getContestants() {
