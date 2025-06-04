@@ -115,4 +115,9 @@ public class GroupStage extends Phase {
             onPhaseFinish();
         }
     }
+
+    public List<Contestant> getQualified(int n) {
+        return getSortedContestants().subList(0, Math.min(n, getSortedContestants().size()));
+    }
+    
 }
