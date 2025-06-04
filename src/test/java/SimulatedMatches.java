@@ -1,7 +1,6 @@
 import org.example.Match;
 import org.example.MatchManager.FootballMatchManager;
 import org.example.contestant.Team;
-import org.example.GroupStage;
 
 import org.example.Events.Football.*;
 
@@ -23,10 +22,7 @@ public class SimulatedMatches {
         FootballMatchManager manager1 = (FootballMatchManager) m1.getMatchManager();
         System.out.println("\n");
         manager1.applyEvent(new MatchStart(m1));
-
-        System.out.println("Events");
         manager1.applyEvent(new GoalScore(manager1, t1a.getTeamMembers()[1]));
-
         checkScore(manager1, 1, 0);
         manager1.applyEvent(new HalfTime(m1));
         manager1.applyEvent(new GoalScore(manager1, t1b.getTeamMembers()[3]));
@@ -62,8 +58,6 @@ public class SimulatedMatches {
         FootballMatchManager manager2 = (FootballMatchManager) m2.getMatchManager();
         System.out.println("\n");
         manager2.applyEvent(new MatchStart(m2));
-
-        System.out.println("Events");
         manager2.applyEvent(new GoalScore(manager2, t2a.getTeamMembers()[2]));
         checkScore(manager2, 1, 0);
         manager2.applyEvent(new Corner(m2, t2b));
@@ -93,8 +87,6 @@ public class SimulatedMatches {
         FootballMatchManager manager3 = (FootballMatchManager) m3.getMatchManager();
         System.out.println("\n");
         manager3.applyEvent(new MatchStart(m3));
-
-        System.out.println("Events");
         manager3.applyEvent(new Freekick(m3, t3a));
         manager3.applyEvent(new Corner(m3, t3a));
         manager3.applyEvent(new GoalScore(manager3, t3b.getTeamMembers()[5]));
@@ -126,8 +118,6 @@ public class SimulatedMatches {
         FootballMatchManager manager4 = (FootballMatchManager) m4.getMatchManager();
         System.out.println("\n");
         manager4.applyEvent(new MatchStart(m4));
-
-        System.out.println("Events");
         manager4.applyEvent(new Corner(m4, t4b));
         manager4.applyEvent(new GoalScore(manager4, t4a.getTeamMembers()[8]));
         checkScore(manager4, 1, 0);
@@ -159,8 +149,6 @@ public class SimulatedMatches {
         FootballMatchManager manager5 = (FootballMatchManager) m5.getMatchManager();
         System.out.println("\n");
         manager5.applyEvent(new MatchStart(m5));
-
-        System.out.println("Events");
         manager5.applyEvent(new GoalScore(manager5, t5b.getTeamMembers()[8]));
         checkScore(manager5, 0, 1);
         manager5.applyEvent(new GoalScore(manager5, t5a.getTeamMembers()[5]));
@@ -187,8 +175,6 @@ public class SimulatedMatches {
         FootballMatchManager manager6 = (FootballMatchManager) m6.getMatchManager();
         System.out.println("\n");
         manager6.applyEvent(new MatchStart(m6));
-
-        System.out.println("Events");
         manager6.applyEvent(new Freekick(m6, t6b));
         manager6.applyEvent(new GoalScore(manager6, t6a.getTeamMembers()[6]));
         checkScore(manager6, 1, 0);

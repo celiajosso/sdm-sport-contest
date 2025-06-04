@@ -22,7 +22,11 @@ public class TestFootball1 {
         Tournament footballTournament = new Tournament(Sport.FOOTBALL, contestants);
         GroupStage[] groupStage = footballTournament.createGroupStage(contestants.size(), false);
 
-        System.out.println("\n=== List of matches for Group Stage");
+        for (Contestant c : contestants) {
+            c.display();
+        }
+
+        System.out.println("\nGROUP STAGE\n");
         for (int i = 0; i < groupStage.length; i++) {
             System.out.println("Group number " + (i + 1));
             groupStage[i].displayPhase();

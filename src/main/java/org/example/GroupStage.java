@@ -79,7 +79,7 @@ public class GroupStage extends Phase {
      * Pretty display of the group ranking as a table.
      */
     public void displayRanking() {
-        System.out.println("\n=== Group " + (id + 1) + " Ranking ===");
+        System.out.println("\nGroup " + (id + 1) + " Ranking");
         List<Map.Entry<Contestant, Integer>> sorted = points.entrySet()
                 .stream()
                 .sorted(Map.Entry.<Contestant, Integer>comparingByValue().reversed())

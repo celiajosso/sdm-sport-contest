@@ -82,8 +82,8 @@ public class Match {
 
     public void logEvent(String description) {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd, HH:mm:ss   ");
-        String message = "   " + now.format(formatter) + description;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss   ");
+        String message = now.format(formatter) + description;
         eventLog.add(message);
         System.out.println(message);
     }

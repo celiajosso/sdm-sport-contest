@@ -31,9 +31,9 @@ public class TestFootball2 {
                 };
                 SingleEliminationKnockout knockout = footballTournament.createKnockout(positionInTree);
 
-                System.out.println("\n=== List of matches for Group Stage");
+                System.out.println("\nGROUP STAGE\n");
                 for (int i = 0; i < groupStage.length; i++) {
-                        System.out.println("Group number " + (i + 1));
+                        System.out.println("   Group number " + (i + 1));
                         groupStage[i].displayPhase();
                 }
 
@@ -46,7 +46,7 @@ public class TestFootball2 {
                         gp.displayRanking();
                 }
 
-                System.out.println("\n\n=== List of matches for Single Elimination Knockout");
+                System.out.println("\nSINGLE ELIMINATION KNOCKOUT\n");
 
                 knockout.displayPhase();
 
