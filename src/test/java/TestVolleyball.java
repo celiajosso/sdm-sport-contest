@@ -21,26 +21,30 @@ public class TestVolleyball {
 
         Tournament tournament = new Tournament(Sport.VOLLEYBALL, contestants);
 
+        for (Contestant c : contestants) {
+            c.display();
+        }
+
         GroupStage[] groups = tournament.createGroupStage(4, false);
 
         for (int i = 0; i < groups.length; i++) {
-            System.out.println("\n=== 🏐 MATCHS DE POULE - GROUPE " + (i + 1) + " ===");
+            System.out.println("\n=== 🏐 Group Stage - Group " + (i + 1) + " ===");
             groups[i].displayPhase();
 
             for (Match match : groups[i].getMatches()) {
                 simulateVolleyballMatch(match);
             }
 
-            System.out.println("\n=== 🏆 CLASSEMENT - GROUPE " + (i + 1) + " ===");
+            System.out.println("\n=== 🏆 Ranking - Group " + (i + 1) + " ===");
             groups[i].displayRanking();
         }
 
         List<Contestant> allQualified = new ArrayList<>();
         for (GroupStage group : groups) {
-            allQualified.addAll(group.getQualified(2)); 
+            allQualified.addAll(group.getQualified(2));
         }
 
-        System.out.println("\n🏅 Équipes qualifiées pour l'élimination directe :");
+        System.out.println("\n🏅 Qualified teams for single elimination knockout :");
         for (Contestant c : allQualified) {
             System.out.println(" - " + c.getFullname());
         }
@@ -49,18 +53,18 @@ public class TestVolleyball {
 
         int round = 1;
         while (knockout.getMatchesAtDepth(round).size() > 0) {
-            System.out.println("\n=== ⚔️ Phase finale - Round " + round + " ===");
+            System.out.println("\n=== ⚔️ Final Phase - Round " + round + " ===");
             for (Match match : knockout.getMatchesAtDepth(round)) {
                 simulateVolleyballMatch(match);
             }
             round++;
         }
 
-        System.out.println("\n=== 🏆 Finale ===");
+        System.out.println("\n=== 🏆 Final Match ===");
         for (Match finalMatch : knockout.getMatchesAtDepth(0)) {
             simulateVolleyballMatch(finalMatch);
             Team winner = (Team) finalMatch.getMatchManager().getWinner();
-            System.out.println("\n🎉 Vainqueur du tournoi : " + winner.getFullname());
+            System.out.println("\n🎉 Tournament winner : " + winner.getFullname());
         }
 
     }
@@ -79,16 +83,10 @@ public class TestVolleyball {
             manager.applyVolleyBallEvent(new SetStart(match, setNumber));
 
             Team winner = rand.nextBoolean() ? teamA : teamB;
-            Team loser = (winner == teamA) ? teamB : teamA;
-
             int target = (setNumber == 5) ? 15 : 25;
-            int loserScore = target - 2;
 
             for (int i = 0; i < target; i++) {
                 manager.applyVolleyBallEvent(new PointScore(match, winner));
-            }
-            for (int i = 0; i < loserScore; i++) {
-                manager.applyVolleyBallEvent(new PointScore(match, loser));
             }
 
             manager.applyVolleyBallEvent(new SetEnd(manager, setNumber, winner));
@@ -97,13 +95,13 @@ public class TestVolleyball {
 
         manager.applyVolleyBallEvent(new MatchEnd(match));
         Team winner = (Team) manager.getWinner();
-        System.out.println("🏐 Match terminé. Vainqueur : " + winner.getFullname());
+        System.out.println("🏐 Match finished. Winner : " + winner.getFullname());
         return winner;
     }
 
     public static Team createTeam(String name, String player1, String player2) {
         TeamMember t1 = new TeamMember(player1, name, "01/01/2000", "FW");
         TeamMember t2 = new TeamMember(player2, name, "01/01/2000", "GK");
-        return new Team(name, t1, new TeamMember[]{t1, t2});
+        return new Team(name, t1, new TeamMember[] { t1, t2 });
     }
 }

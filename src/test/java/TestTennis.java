@@ -22,6 +22,11 @@ public class TestTennis {
         contestants.add(player3);
         contestants.add(player4);
 
+        System.out.println("Players contesting for Tournament");
+        for (Contestant c : contestants) {
+            System.out.println("   " + c.getFullname());
+        }
+
         Tournament tennisTournament = new Tournament(Sport.TENNIS, contestants);
         SingleEliminationKnockout groupStage = tennisTournament.createKnockout();
 
@@ -29,7 +34,7 @@ public class TestTennis {
 
             Contestant playerA = match.getContestantA();
             Contestant playerB = match.getContestantB();
-            System.out.println("Match: " + playerA.getFullname() + " vs " + playerB.getFullname());
+            System.out.println("\nMatch: " + playerA.getFullname() + " vs " + playerB.getFullname());
             var manager = match.getMatchManager();
 
             manager.applyEvent(new org.example.Events.Tennis.MatchStart(match));
@@ -66,7 +71,7 @@ public class TestTennis {
         groupStage.getMatchesAtDepth(0).forEach(match -> {
             Contestant playerA = match.getContestantA();
             Contestant playerB = match.getContestantB();
-            System.out.println("Match: " + playerA.getFullname() + " vs " + playerB.getFullname());
+            System.out.println("\nMatch: " + playerA.getFullname() + " vs " + playerB.getFullname());
 
             var manager = match.getMatchManager();
 
@@ -100,6 +105,7 @@ public class TestTennis {
             }
             manager.applyEvent(new org.example.Events.Tennis.MatchEnd(match));
         });
+        System.out.println("\nDisplay Phase");
         groupStage.displayPhase();
 
     }

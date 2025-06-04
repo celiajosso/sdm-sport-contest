@@ -21,7 +21,6 @@ public class MatchLeaf implements MatchComponent {
         }
         if (match != null) {
             if (match.getState() == MatchState.FINISHED) {
-                System.out.println("Gagnant du match leaf: " + match.getMatchManager().getWinner());
                 return match.getMatchManager().getWinner();
             } else {
                 return null;
