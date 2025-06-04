@@ -3,21 +3,7 @@
 import org.example.GroupStage;
 import org.example.Sport;
 import org.example.Tournament;
-import org.example.Events.Football.AdditionalTime;
-import org.example.Events.Football.Corner;
-import org.example.Events.Football.Freekick;
-import org.example.Events.Football.GoalCancel;
-import org.example.Events.Football.GoalScore;
-import org.example.Events.Football.HalfTime;
-import org.example.Events.Football.MatchEnd;
-import org.example.Events.Football.MatchStart;
-import org.example.Events.Football.Offside;
-import org.example.Events.Football.Overtime;
-import org.example.Events.Football.Penalty;
-import org.example.Events.Football.RedCard;
-import org.example.Events.Football.YellowCard;
-import org.example.Events.Football.MedicalBreak;
-import org.example.Events.Football.Substitution;
+import org.example.Events.Football.*;
 import org.example.MatchManager.FootballMatchManager;
 import org.example.config.FootballTeamDataLoader;
 import org.example.contestant.Contestant;
@@ -64,33 +50,33 @@ public class TestFootball1 {
         new MatchStart(m1).execute();
 
         System.out.println("\n=== Events");
-        new GoalScore(m1, manager1, t1a, t1a.getTeamMembers()[1]).execute();
+        new GoalScore(manager1, t1a.getTeamMembers()[1]).execute();
         checkScore(manager1, 1, 0);
         new HalfTime(m1).execute();
-        new GoalScore(m1, manager1, t1b, t1b.getTeamMembers()[3]).execute();
+        new GoalScore(manager1, t1b.getTeamMembers()[3]).execute();
         checkScore(manager1, 1, 1);
-        new GoalScore(m1, manager1, t1a, t1a.getTeamMembers()[6]).execute();
+        new GoalScore(manager1, t1a.getTeamMembers()[6]).execute();
         checkScore(manager1, 2, 1);
-        new GoalScore(m1, manager1, t1b, t1b.getTeamMembers()[8]).execute();
+        new GoalScore(manager1, t1b.getTeamMembers()[8]).execute();
         checkScore(manager1, 2, 2);
-        new Offside(m1, t1a, t1a.getTeamMembers()[7]).execute();
-        new Corner(m1, t1b, t1b.getTeamMembers()[6]).execute();
+        new Offside(m1, t1a.getTeamMembers()[7]).execute();
+        new Corner(m1, t1b).execute();
         new Freekick(m1, t1a).execute();
-        new MedicalBreak(m1, t1b, t1b.getTeamMembers()[10]).execute();
-        new RedCard(m1, t1a.getTeamMembers()[2], t1a).execute();
+        new MedicalBreak(m1, t1b.getTeamMembers()[10]).execute();
+        new RedCard(m1, t1a.getTeamMembers()[2]).execute();
         new AdditionalTime(m1, 5).execute();
-        new GoalScore(m1, manager1, t1b, t1b.getTeamMembers()[2]).execute();
+        new GoalScore(manager1, t1b.getTeamMembers()[2]).execute();
         checkScore(manager1, 2, 3);
-        new GoalCancel(m1, manager1, t1b).execute();
+        new GoalCancel(manager1, t1b).execute();
         checkScore(manager1, 2, 2);
         new Overtime(m1, 30).execute();
-        new YellowCard(m1, t1a.getTeamMembers()[5], t1a).execute();
-        new Substitution(m1, t1b, t1a.getTeamMembers()[3], t1a.getTeamMembers()[9]).execute();
-        new GoalScore(m1, manager1, t1a, t1a.getTeamMembers()[5]).execute();
+        new YellowCard(m1, t1a.getTeamMembers()[5]).execute();
+        new Substitution(manager1, t1a.getTeamMembers()[3], t1a.getTeamMembers()[9]).execute();
+        new GoalScore(manager1, t1a.getTeamMembers()[5]).execute();
         checkScore(manager1, 3, 2);
-        new Penalty(m1, t1b, t1b.getTeamMembers()[0]).execute();
-        new YellowCard(m1, t1a.getTeamMembers()[5], t1a).execute();
-        new MatchEnd(m1, manager1).execute();
+        new Penalty(m1, t1b).execute();
+        new YellowCard(m1, t1a.getTeamMembers()[5]).execute();
+        new MatchEnd(manager1).execute();
 
         // Match 2
         Match m2 = groupStage[0].getMatches()[1];
@@ -101,26 +87,26 @@ public class TestFootball1 {
         new MatchStart(m2).execute();
 
         System.out.println("\n=== Events");
-        new GoalScore(m2, manager2, t2a, t2a.getTeamMembers()[2]).execute();
+        new GoalScore(manager2, t2a.getTeamMembers()[2]).execute();
         checkScore(manager2, 1, 0);
-        new Corner(m2, t2b, t2b.getTeamMembers()[6]).execute();
-        new YellowCard(m2, t2b.getTeamMembers()[1], t2b).execute();
+        new Corner(m2, t2b).execute();
+        new YellowCard(m2, t2b.getTeamMembers()[1]).execute();
         new Freekick(m2, t2a).execute();
-        new GoalScore(m2, manager2, t2a, t2a.getTeamMembers()[6]).execute();
+        new GoalScore(manager2, t2a.getTeamMembers()[6]).execute();
         checkScore(manager2, 2, 0);
         new HalfTime(m2).execute();
-        new GoalScore(m2, manager2, t2b, t2b.getTeamMembers()[1]).execute();
+        new GoalScore(manager2, t2b.getTeamMembers()[1]).execute();
         checkScore(manager2, 2, 1);
-        new Offside(m2, t2b, t2b.getTeamMembers()[0]).execute();
-        new YellowCard(m2, t2a.getTeamMembers()[4], t2a).execute();
-        new GoalCancel(m2, manager2, t2a).execute();
+        new Offside(m2, t2b.getTeamMembers()[0]).execute();
+        new YellowCard(m2, t2a.getTeamMembers()[4]).execute();
+        new GoalCancel(manager2, t2a).execute();
         checkScore(manager2, 1, 1);
-        new MedicalBreak(m2, t2b, t2b.getTeamMembers()[5]).execute();
-        new Penalty(m2, t2a, t2a.getTeamMembers()[4]).execute();
-        new GoalScore(m2, manager2, t2a, t2a.getTeamMembers()[8]).execute();
+        new MedicalBreak(m2, t2b.getTeamMembers()[5]).execute();
+        new Penalty(m2, t2a).execute();
+        new GoalScore(manager2, t2a.getTeamMembers()[8]).execute();
         checkScore(manager2, 2, 1);
         new AdditionalTime(m2, 3).execute();
-        new MatchEnd(m2, manager2).execute();
+        new MatchEnd(manager2).execute();
 
         // Match 3
         Match m3 = groupStage[0].getMatches()[2];
@@ -132,26 +118,26 @@ public class TestFootball1 {
 
         System.out.println("\n=== Events");
         new Freekick(m3, t3a).execute();
-        new Corner(m3, t3a, t3a.getTeamMembers()[5]).execute();
-        new GoalScore(m3, manager3, t3b, t3b.getTeamMembers()[5]).execute();
+        new Corner(m3, t3a).execute();
+        new GoalScore(manager3, t3b.getTeamMembers()[5]).execute();
         checkScore(manager3, 0, 1);
-        new YellowCard(m3, t3a.getTeamMembers()[0], t3a).execute();
-        new GoalScore(m3, manager3, t3a, t3a.getTeamMembers()[0]).execute();
+        new YellowCard(m3, t3a.getTeamMembers()[0]).execute();
+        new GoalScore(manager3, t3a.getTeamMembers()[0]).execute();
         checkScore(manager3, 1, 1);
-        new GoalScore(m3, manager3, t3a, t3a.getTeamMembers()[10]).execute();
+        new GoalScore(manager3, t3a.getTeamMembers()[10]).execute();
         checkScore(manager3, 2, 1);
         new HalfTime(m3).execute();
-        new RedCard(m3, t3b.getTeamMembers()[2], t3b).execute();
-        new GoalScore(m3, manager3, t3a, t3a.getTeamMembers()[9]).execute();
+        new RedCard(m3, t3b.getTeamMembers()[2]).execute();
+        new GoalScore(manager3, t3a.getTeamMembers()[9]).execute();
         checkScore(manager3, 3, 1);
-        new Substitution(m3, t3a, t3a.getTeamMembers()[1], t3a.getTeamMembers()[10]).execute();
-        new MedicalBreak(m3, t3a, t3a.getTeamMembers()[3]).execute();
+        new Substitution(manager3, t3a.getTeamMembers()[1], t3a.getTeamMembers()[10]).execute();
+        new MedicalBreak(m3, t3a.getTeamMembers()[3]).execute();
         new Overtime(m3, 15).execute();
-        new GoalCancel(m3, manager3, t3a).execute();
+        new GoalCancel(manager3, t3a).execute();
         checkScore(manager3, 2, 1);
-        new Offside(m3, t3b, t3b.getTeamMembers()[1]).execute();
+        new Offside(m3, t3b.getTeamMembers()[1]).execute();
         new AdditionalTime(m3, 4).execute();
-        new MatchEnd(m3, manager3).execute();
+        new MatchEnd(manager3).execute();
 
         // Match 4
         Match m4 = groupStage[0].getMatches()[3];
@@ -162,27 +148,27 @@ public class TestFootball1 {
         new MatchStart(m4).execute();
 
         System.out.println("\n=== Events Match 4");
-        new Corner(m4, t4b, t4b.getTeamMembers()[7]).execute();
-        new GoalScore(m4, manager4, t4a, t4a.getTeamMembers()[8]).execute();
+        new Corner(m4, t4b).execute();
+        new GoalScore(manager4, t4a.getTeamMembers()[8]).execute();
         checkScore(manager4, 1, 0);
         new Freekick(m4, t4b).execute();
-        new Offside(m4, t4a, t4a.getTeamMembers()[10]).execute();
+        new Offside(m4, t4a.getTeamMembers()[10]).execute();
         new HalfTime(m4).execute();
-        new GoalScore(m4, manager4, t4b, t4b.getTeamMembers()[2]).execute();
+        new GoalScore(manager4, t4b.getTeamMembers()[2]).execute();
         checkScore(manager4, 1, 1);
-        new YellowCard(m4, t4b.getTeamMembers()[3], t4b).execute();
-        new RedCard(m4, t4a.getTeamMembers()[6], t4b).execute();
-        new GoalScore(m4, manager4, t4b, t4b.getTeamMembers()[3]).execute();
+        new YellowCard(m4, t4b.getTeamMembers()[3]).execute();
+        new RedCard(m4, t4a.getTeamMembers()[6]).execute();
+        new GoalScore(manager4, t4b.getTeamMembers()[3]).execute();
         checkScore(manager4, 1, 2);
-        new Substitution(m4, t4b, t4b.getTeamMembers()[2], t4b.getTeamMembers()[7]).execute();
-        new MedicalBreak(m4, t4a, t4a.getTeamMembers()[4]).execute();
-        new GoalCancel(m4, manager4, t4b).execute();
+        new Substitution(manager4, t4b.getTeamMembers()[2], t4b.getTeamMembers()[7]).execute();
+        new MedicalBreak(m4, t4a.getTeamMembers()[4]).execute();
+        new GoalCancel(manager4, t4b).execute();
         checkScore(manager4, 1, 1);
         new AdditionalTime(m4, 2).execute();
-        new Penalty(m4, t4a, t4a.getTeamMembers()[0]).execute();
-        new GoalScore(m4, manager4, t4a, t4a.getTeamMembers()[0]).execute();
+        new Penalty(m4, t4a).execute();
+        new GoalScore(manager4, t4a.getTeamMembers()[0]).execute();
         checkScore(manager4, 2, 1);
-        new MatchEnd(m4, manager4).execute();
+        new MatchEnd(manager4).execute();
 
         // Match 5
         Match m5 = groupStage[0].getMatches()[4];
@@ -194,22 +180,22 @@ public class TestFootball1 {
 
         // Match 6
         System.out.println("\n=== Events");
-        new GoalScore(m5, manager5, t5b, t5b.getTeamMembers()[8]).execute();
+        new GoalScore(manager5, t5b.getTeamMembers()[8]).execute();
         checkScore(manager5, 0, 1);
-        new GoalScore(m5, manager5, t5a, t5a.getTeamMembers()[5]).execute();
+        new GoalScore(manager5, t5a.getTeamMembers()[5]).execute();
         checkScore(manager5, 1, 1);
         new HalfTime(m5).execute();
-        new Offside(m5, t5b, t5b.getTeamMembers()[2]).execute();
-        new RedCard(m5, t5a.getTeamMembers()[2], t5a).execute();
-        new YellowCard(m5, t5b.getTeamMembers()[8], t5a).execute();
+        new Offside(m5, t5b.getTeamMembers()[2]).execute();
+        new RedCard(m5, t5a.getTeamMembers()[2]).execute();
+        new YellowCard(m5, t5b.getTeamMembers()[8]).execute();
         new Freekick(m5, t5a).execute();
-        new Substitution(m5, t5a, t5a.getTeamMembers()[0], t5a.getTeamMembers()[10]).execute();
-        new GoalCancel(m5, manager5, t5a).execute();
+        new Substitution(manager5, t5a.getTeamMembers()[0], t5a.getTeamMembers()[10]).execute();
+        new GoalCancel(manager5, t5a).execute();
         checkScore(manager5, 0, 1);
-        new GoalScore(m5, manager5, t5b, t5b.getTeamMembers()[7]).execute();
+        new GoalScore(manager5, t5b.getTeamMembers()[7]).execute();
         checkScore(manager5, 0, 2);
         new AdditionalTime(m5, 6).execute();
-        new MatchEnd(m5, manager5).execute();
+        new MatchEnd(manager5).execute();
 
         Match m6 = groupStage[0].getMatches()[5];
         Team t6a = (Team) m6.getContestantA();
@@ -220,23 +206,23 @@ public class TestFootball1 {
 
         System.out.println("\n=== Events");
         new Freekick(m6, t6b).execute();
-        new GoalScore(m6, manager6, t6a, t6a.getTeamMembers()[6]).execute();
+        new GoalScore(manager6, t6a.getTeamMembers()[6]).execute();
         checkScore(manager6, 1, 0);
-        new Offside(m6, t6a, t6a.getTeamMembers()[9]).execute();
-        new YellowCard(m6, t6a.getTeamMembers()[1], t6a).execute();
-        new GoalScore(m6, manager6, t6a, t6a.getTeamMembers()[2]).execute();
+        new Offside(m6, t6a.getTeamMembers()[9]).execute();
+        new YellowCard(m6, t6a.getTeamMembers()[1]).execute();
+        new GoalScore(manager6, t6a.getTeamMembers()[2]).execute();
         checkScore(manager6, 2, 0);
         new HalfTime(m6).execute();
-        new GoalScore(m6, manager6, t6b, t6b.getTeamMembers()[1]).execute();
+        new GoalScore(manager6, t6b.getTeamMembers()[1]).execute();
         checkScore(manager6, 2, 1);
-        new Corner(m6, t6b, t6b.getTeamMembers()[7]).execute();
-        new RedCard(m6, t6b.getTeamMembers()[4], t6b).execute();
-        new Substitution(m6, t6b, t6b.getTeamMembers()[6], t6b.getTeamMembers()[5]).execute();
-        new Penalty(m6, t6b, t6b.getTeamMembers()[3]).execute();
-        new GoalScore(m6, manager6, t6b, t6b.getTeamMembers()[10]).execute();
+        new Corner(m6, t6b).execute();
+        new RedCard(m6, t6b.getTeamMembers()[4]).execute();
+        new Substitution(manager6, t6b.getTeamMembers()[6], t6b.getTeamMembers()[5]).execute();
+        new Penalty(m6, t6b).execute();
+        new GoalScore(manager6, t6b.getTeamMembers()[10]).execute();
         checkScore(manager6, 2, 2);
         new Overtime(m6, 10).execute();
         new AdditionalTime(m6, 2).execute();
-        new MatchEnd(m6, manager6).execute();
+        new MatchEnd(manager6).execute();
     }
 }

@@ -3,7 +3,6 @@ package org.example.MatchManager;
 import org.example.Events.Event;
 import org.example.Match;
 import org.example.contestant.Contestant;
-import org.example.contestant.Team;
 
 import java.util.HashMap;
 import java.util.Map;

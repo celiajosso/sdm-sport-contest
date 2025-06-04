@@ -71,4 +71,22 @@ public class FootballMatchManager extends MatchManager {
         }
     }
 
+    public Team getTeam(org.example.contestant.TeamMember member) {
+        if (getMatch().getContestantA() instanceof Team teamA) {
+            for (org.example.contestant.TeamMember m : teamA.getTeamMembers()) {
+                if (m.equals(member)) {
+                    return teamA;
+                }
+            }
+        }
+        if (getMatch().getContestantB() instanceof Team teamB) {
+            for (org.example.contestant.TeamMember m : teamB.getTeamMembers()) {
+                if (m.equals(member)) {
+                    return teamB;
+                }
+            }
+        }
+        return null;
+    }
+
 }
