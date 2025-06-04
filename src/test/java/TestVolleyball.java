@@ -35,26 +35,34 @@ public class TestVolleyball {
             groups[i].displayRanking();
         }
 
-        List<Contestant> qualifGroup1 = groups[0].getQualified(2);
-        List<Contestant> qualifGroup2 = groups[1].getQualified(2);
+        List<Contestant> allQualified = new ArrayList<>();
+        for (GroupStage group : groups) {
+            allQualified.addAll(group.getQualified(2)); 
+        }
 
-        Team A1 = (Team) qualifGroup1.get(0);
-        Team A2 = (Team) qualifGroup1.get(1);
-        Team B1 = (Team) qualifGroup2.get(0);
-        Team B2 = (Team) qualifGroup2.get(1);
+        System.out.println("\n🏅 Équipes qualifiées pour l'élimination directe :");
+        for (Contestant c : allQualified) {
+            System.out.println(" - " + c.getFullname());
+        }
 
-        System.out.println("\n=== 🥈 DEMI-FINALES ===");
-        Match semi1 = new Match(101, Sport.VOLLEYBALL, A1, B2, null, null);
-        Match semi2 = new Match(102, Sport.VOLLEYBALL, B1, A2, null, null);
+        SingleEliminationKnockout knockout = new SingleEliminationKnockout(allQualified, Sport.VOLLEYBALL);
 
-        Team winnerSemi1 = simulateVolleyballMatch(semi1);
-        Team winnerSemi2 = simulateVolleyballMatch(semi2);
+        int round = 1;
+        while (knockout.getMatchesAtDepth(round).size() > 0) {
+            System.out.println("\n=== ⚔️ Phase finale - Round " + round + " ===");
+            for (Match match : knockout.getMatchesAtDepth(round)) {
+                simulateVolleyballMatch(match);
+            }
+            round++;
+        }
 
-        System.out.println("\n=== 🏆 FINALE ===");
-        Match finale = new Match(200, Sport.VOLLEYBALL, winnerSemi1, winnerSemi2, null, null);
-        Team winner = simulateVolleyballMatch(finale);
+        System.out.println("\n=== 🏆 Finale ===");
+        for (Match finalMatch : knockout.getMatchesAtDepth(0)) {
+            simulateVolleyballMatch(finalMatch);
+            Team winner = (Team) finalMatch.getMatchManager().getWinner();
+            System.out.println("\n🎉 Vainqueur du tournoi : " + winner.getFullname());
+        }
 
-        System.out.println("\n🎉 Vainqueur du tournoi : " + winner.getFullname());
     }
 
     public static Team simulateVolleyballMatch(Match match) {
