@@ -33,10 +33,10 @@ public class TestTennis {
             var manager = match.getMatchManager();
 
             manager.applyEvent(new org.example.Events.Tennis.MatchStart(match));
-            int[][][] allJeux = new int[][][]{
-                    {{1, 0}, {0, 1}, {1, 0}, {1, 0}, {1, 0}},
-                    {{0, 1}, {1, 0}, {1, 0}, {1, 0}, {1, 0}},
-                    {{1, 0}, {1, 0}, {0, 1}, {1, 0}, {1, 0}}
+            int[][][] allJeux = new int[][][] {
+                    { { 1, 0 }, { 0, 1 }, { 1, 0 }, { 1, 0 }, { 1, 0 } },
+                    { { 0, 1 }, { 1, 0 }, { 1, 0 }, { 1, 0 }, { 1, 0 } },
+                    { { 1, 0 }, { 1, 0 }, { 0, 1 }, { 1, 0 }, { 1, 0 } }
             };
 
             int set = 0;
@@ -54,11 +54,11 @@ public class TestTennis {
                     for (int p = 0; p < 3; p++) {
                         manager.applyEvent(new org.example.Events.Tennis.PointScore(match, winner));
                     }
-                    manager.applyEvent(new org.example.Events.Tennis.GameEnd(match,
+                    manager.applyEvent(new org.example.Events.Tennis.GameEnd(
                             (org.example.MatchManager.TennisMatchManager) manager, winner));
                 }
-                manager.applyEvent(new org.example.Events.Tennis.SetEnd(match, set, (Player) playerA,
-                        (org.example.MatchManager.TennisMatchManager) manager));
+                manager.applyEvent(new org.example.Events.Tennis.SetEnd(
+                        (org.example.MatchManager.TennisMatchManager) manager, set, (Player) playerA));
             }
             manager.applyEvent(new org.example.Events.Tennis.MatchEnd(match));
         });
@@ -71,10 +71,10 @@ public class TestTennis {
             var manager = match.getMatchManager();
 
             manager.applyEvent(new org.example.Events.Tennis.MatchStart(match));
-            int[][][] allJeux = new int[][][]{
-                    {{1, 0}, {0, 1}, {1, 0}, {1, 0}, {1, 0}},
-                    {{0, 1}, {1, 0}, {1, 0}, {1, 0}, {1, 0}},
-                    {{1, 0}, {1, 0}, {0, 1}, {1, 0}, {1, 0}}
+            int[][][] allJeux = new int[][][] {
+                    { { 1, 0 }, { 0, 1 }, { 1, 0 }, { 1, 0 }, { 1, 0 } },
+                    { { 0, 1 }, { 1, 0 }, { 1, 0 }, { 1, 0 }, { 1, 0 } },
+                    { { 1, 0 }, { 1, 0 }, { 0, 1 }, { 1, 0 }, { 1, 0 } }
             };
 
             int set = 0;
@@ -92,11 +92,11 @@ public class TestTennis {
                     for (int p = 0; p < 3; p++) {
                         manager.applyEvent(new org.example.Events.Tennis.PointScore(match, winner));
                     }
-                    manager.applyEvent(new org.example.Events.Tennis.GameEnd(match,
+                    manager.applyEvent(new org.example.Events.Tennis.GameEnd(
                             (org.example.MatchManager.TennisMatchManager) manager, winner));
                 }
-                manager.applyEvent(new org.example.Events.Tennis.SetEnd(match, set, (Player) playerA,
-                        (org.example.MatchManager.TennisMatchManager) manager));
+                manager.applyEvent(new org.example.Events.Tennis.SetEnd(
+                        (org.example.MatchManager.TennisMatchManager) manager, set, (Player) playerA));
             }
             manager.applyEvent(new org.example.Events.Tennis.MatchEnd(match));
         });
