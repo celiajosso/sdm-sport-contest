@@ -13,14 +13,6 @@ public class FootballMatchManager extends MatchManager {
         super(match);
     }
 
-    public int getScoreTeamA() {
-        return scoreA;
-    }
-
-    public int getScoreTeamB() {
-        return scoreB;
-    }
-
     public String getScoreDisplay() {
         return getMatch().getContestantA().getFullname() + " " + scoreA + " - " +
                 scoreB + " " + getMatch().getContestantB().getFullname();

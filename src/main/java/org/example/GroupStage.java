@@ -59,7 +59,7 @@ public class GroupStage extends Phase {
     }
 
     public void onPhaseFinish() {
-        for (Subscriber listener : listeners) {
+        for (Subscriber<GroupStage> listener : listeners) {
             listener.notify(this);
         }
     }

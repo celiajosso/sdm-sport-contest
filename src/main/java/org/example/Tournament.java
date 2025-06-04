@@ -25,8 +25,6 @@ public class Tournament {
                 .collect(Collectors.toList()); // mutable list
         Collections.shuffle(shuffled);
 
-        java.util.Collections.shuffle(shuffled);
-
         int k = 0;
         for (int i = 0; i < this.contestants.size() / contestantPerGroup; i++) {
             ArrayList<Contestant> contestants = new ArrayList<>();
