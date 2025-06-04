@@ -28,6 +28,6 @@ public class Player extends Contestant {
     }
 
     public void display() {
-        System.out.println("\nPlayer name: " + getFullname());
+        System.out.println("Player name: " + getFullname());
     }
 }

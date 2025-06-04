@@ -13,14 +13,6 @@ public class FootballMatchManager extends MatchManager {
         super(match);
     }
 
-    public int getScoreTeamA() {
-        return scoreA;
-    }
-
-    public int getScoreTeamB() {
-        return scoreB;
-    }
-
     public String getScoreDisplay() {
         return getMatch().getContestantA().getFullname() + " " + scoreA + " - " +
                 scoreB + " " + getMatch().getContestantB().getFullname();
@@ -61,13 +53,12 @@ public class FootballMatchManager extends MatchManager {
 
     @Override
     public Contestant getWinner() {
-        System.out.println("---------------------" + scoreA + " " + scoreB + "---------------------");
         if (scoreA > scoreB) {
             return match.getContestantA();
         } else if (scoreB > scoreA) {
             return match.getContestantB();
         } else {
-            return null; // match nul
+            return null;
         }
     }
 

@@ -15,15 +15,16 @@ import java.time.format.DateTimeFormatter;
 public class Match {
     public final Sport sport;
     private final Integer matchId;
-    private final Contestant contestantA;
-    private final Contestant contestantB;
+    private Contestant contestantA;
+    private Contestant contestantB;
     private final String dateTime;
     private final String location;
     private final List<String> eventLog = new ArrayList<>();
     private final MatchManager matchManager;
     private MatchState matchState = MatchState.NOT_STARTED;
 
-    public Match(Integer matchId, Sport sport, Contestant contestantA, Contestant contestantB, String dateTime, String location) {
+    public Match(Integer matchId, Sport sport, Contestant contestantA, Contestant contestantB, String dateTime,
+            String location) {
         this.matchId = matchId;
         this.contestantA = contestantA;
         this.contestantB = contestantB;
@@ -55,6 +56,14 @@ public class Match {
         return contestantB;
     }
 
+    public void setContestantA(Contestant a) {
+        this.contestantA = a;
+    }
+
+    public void setContestantB(Contestant b) {
+        this.contestantB = b;
+    }
+
     public String getDateTime() {
         return dateTime;
     }
@@ -73,7 +82,7 @@ public class Match {
 
     public void logEvent(String description) {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd, HH:mm:ss - ");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss   ");
         String message = now.format(formatter) + description;
         eventLog.add(message);
         System.out.println(message);

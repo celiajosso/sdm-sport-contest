@@ -52,12 +52,45 @@ public class SingleEliminationKnockout extends Phase {
 
     private MatchComponent buildEmptyTree(int leafCount, Sport sport) {
         if (leafCount == 1) {
-            return new org.example.composite.MatchLeaf(null);
+
+            Match match = new Match(1, sport, null, null, null, null);
+            match.getMatchManager().addSubscriber(knockoutManager);
+            return new org.example.composite.MatchLeaf(match);
         }
         MatchComposite node = new org.example.composite.MatchComposite();
         node.add(buildEmptyTree(leafCount / 2, sport));
         node.add(buildEmptyTree(leafCount / 2, sport));
         return node;
+    }
+
+    public void setMatch(int index, Contestant contestant) {
+        List<org.example.composite.MatchLeaf> leaves = new ArrayList<>();
+        collectLeaves(root, leaves);
+
+        int leafIndex = index / 2;
+        boolean isA = index % 2 == 0;
+
+        if (leafIndex < 0 || leafIndex >= leaves.size()) {
+            throw new IllegalArgumentException("Index de feuille invalide");
+        }
+
+        org.example.composite.MatchLeaf leaf = leaves.get(leafIndex);
+        Match match = leaf.getMatch();
+
+        if (isA) {
+            match.setContestantA(contestant);
+        } else {
+            match.setContestantB(contestant);
+        }
+    }
+
+    private void collectLeaves(MatchComponent node, List<org.example.composite.MatchLeaf> leaves) {
+        if (node instanceof org.example.composite.MatchLeaf leaf) {
+            leaves.add(leaf);
+        } else if (node instanceof MatchComposite composite) {
+            collectLeaves(composite.getLeft(), leaves);
+            collectLeaves(composite.getRight(), leaves);
+        }
     }
 
     private MatchComponent buildContestantTree(List<Contestant> contestants, Sport sport) {
@@ -93,10 +126,19 @@ public class SingleEliminationKnockout extends Phase {
             } else {
                 String a = match.getContestantA() != null ? match.getContestantA().getFullname() : "null";
                 String b = match.getContestantB() != null ? match.getContestantB().getFullname() : "null";
-                System.out.println(indent + "Leaf: " + a + " vs " + b);
+                String winner = match.getMatchManager().getWinner() != null ? match.getMatchManager().getWinner().getFullname() : "TBD";
+                System.out.println(indent + "Match: " + a + " vs " + b + " | Winner: " + winner);
             }
         } else if (component instanceof MatchComposite composite) {
-            System.out.println(indent + "Node");
+            Match match = composite.getMatch();
+            if (match != null) {
+                String a = match.getContestantA() != null ? match.getContestantA().getFullname() : "null";
+                String b = match.getContestantB() != null ? match.getContestantB().getFullname() : "null";
+                String winner = match.getMatchManager().getWinner() != null ? match.getMatchManager().getWinner().getFullname() : "TBD";
+                System.out.println(indent + "Match: " + a + " vs " + b + " | Winner: " + winner);
+            } else {
+                System.out.println(indent + "Node: [no match]");
+            }
             printComponent(composite.getLeft(), depth + 1);
             printComponent(composite.getRight(), depth + 1);
         } else {

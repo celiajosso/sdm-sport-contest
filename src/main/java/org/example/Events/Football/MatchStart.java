@@ -14,10 +14,8 @@ public class MatchStart extends Event {
         match.setState(MatchState.IN_PROGRESS);
         backup();
         match.logEvent(
-                "Football Match Started: " + match.getContestantA().getFullname() + " vs " + match.getContestantB().getFullname());
-
-        match.getContestantA().display();
-        match.getContestantB().display();
+                "Football Match Started: " + match.getContestantA().getFullname() + " vs "
+                        + match.getContestantB().getFullname());
 
         return true;
     }

@@ -15,8 +15,6 @@ public class MatchStart extends Event {
         backup();
 
         match.logEvent("Volleyball match started");
-        match.getContestantA().display();
-        match.getContestantB().display();
 
         return true;
     }

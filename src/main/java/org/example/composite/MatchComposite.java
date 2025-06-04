@@ -9,7 +9,6 @@ public class MatchComposite implements MatchComponent {
     private Match matchRoot;
 
     public Contestant execute() {
-        System.out.println(left);
 
         Contestant leftContestant = left.execute();
         Contestant rightContestant = right.execute();

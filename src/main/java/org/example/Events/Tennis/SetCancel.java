@@ -1,7 +1,6 @@
 package org.example.Events.Tennis;
 
 import org.example.Events.Event;
-import org.example.Match;
 import org.example.MatchManager.TennisMatchManager;
 import org.example.contestant.Player;
 
@@ -10,8 +9,8 @@ public class SetCancel extends Event {
     private final Player player;
     private final TennisMatchManager manager;
 
-    public SetCancel(Match match, int setNumber, Player player, TennisMatchManager manager) {
-        super(match);
+    public SetCancel(TennisMatchManager manager, int setNumber, Player player) {
+        super(manager.getMatch());
         this.setNumber = setNumber;
         this.player = player;
         this.manager = manager;

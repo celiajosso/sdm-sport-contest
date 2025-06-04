@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GroupStage<T> extends Phase {
+public class GroupStage extends Phase {
     private final Map<Contestant, Integer> points;
     private final List<Match> matches = new ArrayList<>();
     private final int id;
@@ -38,7 +38,9 @@ public class GroupStage<T> extends Phase {
         }
     }
 
-    public int getId(){return id;}
+    public int getId() {
+        return id;
+    }
 
     public void addPoints(Contestant contestant, int pts) {
         points.put(contestant, points.getOrDefault(contestant, 0) + pts);
@@ -57,7 +59,7 @@ public class GroupStage<T> extends Phase {
     }
 
     public void onPhaseFinish() {
-        for (Subscriber listener : listeners) {
+        for (Subscriber<GroupStage> listener : listeners) {
             listener.notify(this);
         }
     }
@@ -68,8 +70,23 @@ public class GroupStage<T> extends Phase {
 
     public void displayPhase() {
         for (Match m : this.getMatches()) {
-            System.out.println("- " + m.getContestantA().getFullname() + " vs. "
+            System.out.println("  " + m.getContestantA().getFullname() + " vs. "
                     + m.getContestantB().getFullname());
+        }
+    }
+
+    /**
+     * Pretty display of the group ranking as a table.
+     */
+    public void displayRanking() {
+        System.out.println("\nGroup " + (id + 1) + " Ranking");
+        List<Map.Entry<Contestant, Integer>> sorted = points.entrySet()
+                .stream()
+                .sorted(Map.Entry.<Contestant, Integer>comparingByValue().reversed())
+                .toList();
+        int pos = 1;
+        for (Map.Entry<Contestant, Integer> entry : sorted) {
+            System.out.printf("%-3d | %-10s | %-1d points\n", pos++, entry.getKey().getFullname(), entry.getValue());
         }
     }
 
@@ -79,8 +96,28 @@ public class GroupStage<T> extends Phase {
             if (event instanceof org.example.Events.Football.MatchEnd
                     || event instanceof org.example.Events.Volleyball.MatchEnd
                     || event instanceof org.example.Events.Tennis.MatchEnd) {
-                onPhaseFinish();
+                Contestant winner = event.getMatch().getMatchManager().getWinner();
+                if (winner == null) {
+                    Contestant contestantA = event.getMatch().getContestantA();
+                    points.put(contestantA, points.getOrDefault(contestantA, 0) + 1);
+
+                    Contestant contestantB = event.getMatch().getContestantB();
+                    points.put(contestantB, points.getOrDefault(contestantB, 0) + 1);
+                } else {
+                    points.put(winner, points.getOrDefault(winner, 0) + 3);
+                }
             }
+            for (Match m : matches) {
+                if (m.getState() != MatchState.FINISHED) {
+                    return;
+                }
+            }
+            onPhaseFinish();
         }
     }
+
+    public List<Contestant> getQualified(int n) {
+        return getSortedContestants().subList(0, Math.min(n, getSortedContestants().size()));
+    }
+    
 }
