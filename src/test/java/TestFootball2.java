@@ -37,11 +37,10 @@ public class TestFootball2 {
                         groupStage[i].displayPhase();
                 }
 
-                SimulatedMatches simulatedMatches = new SimulatedMatches();
-                simulatedMatches.match1(groupStage[0].getMatches()[0]);
-                simulatedMatches.match6(groupStage[0].getMatches()[1]);
-                simulatedMatches.match1(groupStage[1].getMatches()[0]);
-                simulatedMatches.match6(groupStage[1].getMatches()[1]);
+                SimulatedMatches.match1(groupStage[0].getMatches()[0]);
+                SimulatedMatches.match6(groupStage[0].getMatches()[1]);
+                SimulatedMatches.match1(groupStage[1].getMatches()[0]);
+                SimulatedMatches.match6(groupStage[1].getMatches()[1]);
 
                 for (GroupStage gp : groupStage) {
                         gp.displayRanking();
@@ -57,14 +56,14 @@ public class TestFootball2 {
                         Contestant playerA = match.getContestantA();
                         Contestant playerB = match.getContestantB();
                         System.out.println("Match: " + playerA.getFullname() + " vs " + playerB.getFullname());
-                        simulatedMatches.match2(match);
+                        SimulatedMatches.match2(match);
                 });
 
                 knockout.getMatchesAtDepth(0).forEach(match -> {
                         Contestant playerA = match.getContestantA();
                         Contestant playerB = match.getContestantB();
                         System.out.println("Match: " + playerA.getFullname() + " vs " + playerB.getFullname());
-                        simulatedMatches.match2(match);
+                        SimulatedMatches.match2(match);
                 });
                 knockout.displayPhase();
         }
