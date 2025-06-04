@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GroupStage<T> extends Phase {
+public class GroupStage extends Phase {
     private final Map<Contestant, Integer> points;
     private final List<Match> matches = new ArrayList<>();
     private final int id;

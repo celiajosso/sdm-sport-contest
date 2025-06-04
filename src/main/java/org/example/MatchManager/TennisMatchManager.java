@@ -143,7 +143,7 @@ public class TennisMatchManager extends MatchManager {
         } else if (setsB > setsA) {
             return teamB;
         } else {
-            return null; // match nul ou non terminé
+            return null;
         }
     }
 
