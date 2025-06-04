@@ -52,7 +52,10 @@ public class SingleEliminationKnockout extends Phase {
 
     private MatchComponent buildEmptyTree(int leafCount, Sport sport) {
         if (leafCount == 1) {
-            return new org.example.composite.MatchLeaf(null);
+
+            Match match = new Match(1, sport , null, null, null, null);
+
+            return new org.example.composite.MatchLeaf(match);
         }
         MatchComposite node = new org.example.composite.MatchComposite();
         node.add(buildEmptyTree(leafCount / 2, sport));
@@ -73,11 +76,6 @@ public class SingleEliminationKnockout extends Phase {
 
         org.example.composite.MatchLeaf leaf = leaves.get(leafIndex);
         Match match = leaf.getMatch();
-
-        if (match == null) {
-            match = new Match(1, null, null, null, null, null);
-            leaf.setMatch(match);
-        }
 
         if (isA) {
             match.setContestantA(contestant);

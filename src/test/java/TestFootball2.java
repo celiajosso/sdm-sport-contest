@@ -12,16 +12,22 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TestFootball2 {
 
         public static void main(String[] args) throws Exception {
-                Path jsonPath = Paths.get(TestFootball2.class.getResource("/FootballTeam.json").toURI());
+                Path jsonPath = Paths.get(Objects.requireNonNull(TestFootball2.class.getResource("/FootballTeam.json")).toURI());
                 List<Team> teams = FootballTeamDataLoader.loadTeams(jsonPath.toString());
                 List<Contestant> contestants = new ArrayList<>(teams);
 
                 Tournament footballTournament = new Tournament(Sport.FOOTBALL, contestants);
                 GroupStage[] groupStage = footballTournament.createGroupStage(2, true);
+                int[][] positionInTree = {
+                        { 0, 3 },
+                        { 2, 1 }
+                };
+                SingleEliminationKnockout knockout = footballTournament.createKnockout(positionInTree);
 
                 System.out.println("\n=== List of matches for Group Stage");
                 for (int i = 0; i < groupStage.length; i++) {
@@ -38,13 +44,7 @@ public class TestFootball2 {
                 for (GroupStage gp : groupStage) {
                         gp.displayRanking();
                 }
-
-                int[][] positionInTree = {
-                                { 0, 3 },
-                                { 2, 1 }
-                };
-
-                SingleEliminationKnockout knockout = footballTournament.createKnockout(positionInTree);
+                
                 System.out.println("=== List of matches for Single Elimination Knockout");
 
                 knockout.displayPhase();
