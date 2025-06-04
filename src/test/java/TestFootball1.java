@@ -29,12 +29,12 @@ public class TestFootball1 {
         }
 
         SimulatedMatches simulatedMatches = new SimulatedMatches();
-        simulatedMatches.match1(groupStage, 0, 0);
-        simulatedMatches.match2(groupStage, 0, 1);
-        simulatedMatches.match3(groupStage, 0, 2);
-        simulatedMatches.match4(groupStage, 0, 3);
-        simulatedMatches.match5(groupStage, 0, 4);
-        simulatedMatches.match6(groupStage, 0, 5);
+        simulatedMatches.match1(groupStage[0].getMatches()[0]);
+        simulatedMatches.match2(groupStage[0].getMatches()[1]);
+        simulatedMatches.match3(groupStage[0].getMatches()[2]);
+        simulatedMatches.match4(groupStage[0].getMatches()[3]);
+        simulatedMatches.match5(groupStage[0].getMatches()[4]);
+        simulatedMatches.match6(groupStage[0].getMatches()[5]);
 
         groupStage[0].displayRanking();
     }

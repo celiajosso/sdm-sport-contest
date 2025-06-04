@@ -6,6 +6,7 @@ import org.example.Sport;
 import org.example.Tournament;
 import org.example.config.FootballTeamDataLoader;
 import org.example.contestant.Contestant;
+import org.example.contestant.Player;
 import org.example.contestant.Team;
 
 import java.nio.file.Path;
@@ -37,10 +38,10 @@ public class TestFootball2 {
                 }
 
                 SimulatedMatches simulatedMatches = new SimulatedMatches();
-                simulatedMatches.match1(groupStage, 0, 0);
-                simulatedMatches.match6(groupStage, 0, 1);
-                simulatedMatches.match1(groupStage, 1, 0);
-                simulatedMatches.match6(groupStage, 1, 1);
+                simulatedMatches.match1(groupStage[0].getMatches()[0]);
+                simulatedMatches.match6(groupStage[0].getMatches()[1]);
+                simulatedMatches.match1(groupStage[1].getMatches()[0]);
+                simulatedMatches.match6(groupStage[1].getMatches()[1]);
 
                 for (GroupStage gp : groupStage) {
                         gp.displayRanking();
@@ -52,5 +53,19 @@ public class TestFootball2 {
 
                 // events for matches in single elimination knockout
 
+                knockout.getMatchesAtDepth(1).forEach(match -> {
+                        Contestant playerA = match.getContestantA();
+                        Contestant playerB = match.getContestantB();
+                        System.out.println("Match: " + playerA.getFullname() + " vs " + playerB.getFullname());
+                        simulatedMatches.match2(match);
+                });
+
+                knockout.getMatchesAtDepth(0).forEach(match -> {
+                        Contestant playerA = match.getContestantA();
+                        Contestant playerB = match.getContestantB();
+                        System.out.println("Match: " + playerA.getFullname() + " vs " + playerB.getFullname());
+                        simulatedMatches.match2(match);
+                });
+                knockout.displayPhase();
         }
 }

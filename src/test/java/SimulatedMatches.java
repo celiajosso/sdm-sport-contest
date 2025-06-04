@@ -16,8 +16,8 @@ public class SimulatedMatches {
         }
     }
 
-    public void match1(GroupStage[] groupStage, Integer i, Integer j) {
-        Match m1 = groupStage[i].getMatches()[j];
+    public void match1(Match match) {
+        Match m1 = match;
         Team t1a = (Team) m1.getContestantA();
         Team t1b = (Team) m1.getContestantB();
         FootballMatchManager manager1 = (FootballMatchManager) m1.getMatchManager();
@@ -55,8 +55,8 @@ public class SimulatedMatches {
         manager1.applyEvent(new MatchEnd(manager1));
     }
 
-    public void match2(GroupStage[] groupStage, Integer i, Integer j) {
-        Match m2 = groupStage[i].getMatches()[j];
+    public void match2(Match match) {
+        Match m2 = match;
         Team t2a = (Team) m2.getContestantA();
         Team t2b = (Team) m2.getContestantB();
         FootballMatchManager manager2 = (FootballMatchManager) m2.getMatchManager();
@@ -86,8 +86,8 @@ public class SimulatedMatches {
         manager2.applyEvent(new MatchEnd(manager2));
     }
 
-    public void match3(GroupStage[] groupStage, Integer i, Integer j) {
-        Match m3 = groupStage[i].getMatches()[j];
+    public void match3(Match match) {
+        Match m3 = match;
         Team t3a = (Team) m3.getContestantA();
         Team t3b = (Team) m3.getContestantB();
         FootballMatchManager manager3 = (FootballMatchManager) m3.getMatchManager();
@@ -119,8 +119,8 @@ public class SimulatedMatches {
         manager3.applyEvent(new MatchEnd(manager3));
     }
 
-    public void match4(GroupStage[] groupStage, Integer i, Integer j) {
-        Match m4 = groupStage[i].getMatches()[j];
+    public void match4(Match match) {
+        Match m4 = match;
         Team t4a = (Team) m4.getContestantA();
         Team t4b = (Team) m4.getContestantB();
         FootballMatchManager manager4 = (FootballMatchManager) m4.getMatchManager();
@@ -152,8 +152,8 @@ public class SimulatedMatches {
         manager4.applyEvent(new MatchEnd(manager4));
     }
 
-    public void match5(GroupStage[] groupStage, Integer i, Integer j) {
-        Match m5 = groupStage[i].getMatches()[j];
+    public void match5(Match match) {
+        Match m5 = match;
         Team t5a = (Team) m5.getContestantA();
         Team t5b = (Team) m5.getContestantB();
         FootballMatchManager manager5 = (FootballMatchManager) m5.getMatchManager();
@@ -180,8 +180,8 @@ public class SimulatedMatches {
         manager5.applyEvent(new MatchEnd(manager5));
     }
 
-    public void match6(GroupStage[] groupStage, Integer i, Integer j) {
-        Match m6 = groupStage[i].getMatches()[j];
+    public void match6(Match match) {
+        Match m6 = match;
         Team t6a = (Team) m6.getContestantA();
         Team t6b = (Team) m6.getContestantB();
         FootballMatchManager manager6 = (FootballMatchManager) m6.getMatchManager();
