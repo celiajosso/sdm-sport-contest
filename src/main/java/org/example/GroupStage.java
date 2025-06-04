@@ -70,7 +70,7 @@ public class GroupStage<T> extends Phase {
 
     public void displayPhase() {
         for (Match m : this.getMatches()) {
-            System.out.println("- " + m.getContestantA().getFullname() + " vs. "
+            System.out.println("  " + m.getContestantA().getFullname() + " vs. "
                     + m.getContestantB().getFullname());
         }
     }
@@ -80,15 +80,13 @@ public class GroupStage<T> extends Phase {
      */
     public void displayRanking() {
         System.out.println("\n=== Group " + (id + 1) + " Ranking ===");
-        System.out.printf("%-4s | %-25s | %-6s\n", "Pos", "Team", "Points");
-        System.out.println("---------------------------------------------");
         List<Map.Entry<Contestant, Integer>> sorted = points.entrySet()
                 .stream()
                 .sorted(Map.Entry.<Contestant, Integer>comparingByValue().reversed())
                 .toList();
         int pos = 1;
         for (Map.Entry<Contestant, Integer> entry : sorted) {
-            System.out.printf("%-4d | %-25s | %-6d\n", pos++, entry.getKey().getFullname(), entry.getValue());
+            System.out.printf("%-3d | %-10s | %-1d points\n", pos++, entry.getKey().getFullname(), entry.getValue());
         }
     }
 

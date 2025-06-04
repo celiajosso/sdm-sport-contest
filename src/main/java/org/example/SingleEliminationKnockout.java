@@ -53,7 +53,7 @@ public class SingleEliminationKnockout extends Phase {
     private MatchComponent buildEmptyTree(int leafCount, Sport sport) {
         if (leafCount == 1) {
 
-            Match match = new Match(1, sport , null, null, null, null);
+            Match match = new Match(1, sport, null, null, null, null);
 
             return new org.example.composite.MatchLeaf(match);
         }
@@ -126,10 +126,10 @@ public class SingleEliminationKnockout extends Phase {
             } else {
                 String a = match.getContestantA() != null ? match.getContestantA().getFullname() : "null";
                 String b = match.getContestantB() != null ? match.getContestantB().getFullname() : "null";
-                System.out.println(indent + "Leaf: " + a + " vs " + b);
+                System.out.println(indent + "Match: " + a + " vs " + b);
             }
         } else if (component instanceof MatchComposite composite) {
-            System.out.println(indent + "Node");
+            System.out.println("Phase");
             printComponent(composite.getLeft(), depth + 1);
             printComponent(composite.getRight(), depth + 1);
         } else {

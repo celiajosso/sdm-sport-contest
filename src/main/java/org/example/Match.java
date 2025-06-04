@@ -23,7 +23,8 @@ public class Match {
     private final MatchManager matchManager;
     private MatchState matchState = MatchState.NOT_STARTED;
 
-    public Match(Integer matchId, Sport sport, Contestant contestantA, Contestant contestantB, String dateTime, String location) {
+    public Match(Integer matchId, Sport sport, Contestant contestantA, Contestant contestantB, String dateTime,
+            String location) {
         this.matchId = matchId;
         this.contestantA = contestantA;
         this.contestantB = contestantB;
@@ -81,8 +82,8 @@ public class Match {
 
     public void logEvent(String description) {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd, HH:mm:ss - ");
-        String message = now.format(formatter) + description;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd, HH:mm:ss   ");
+        String message = "   " + now.format(formatter) + description;
         eventLog.add(message);
         System.out.println(message);
     }

@@ -17,15 +17,16 @@ import java.util.Objects;
 public class TestFootball2 {
 
         public static void main(String[] args) throws Exception {
-                Path jsonPath = Paths.get(Objects.requireNonNull(TestFootball2.class.getResource("/FootballTeam.json")).toURI());
+                Path jsonPath = Paths.get(
+                                Objects.requireNonNull(TestFootball2.class.getResource("/FootballTeam.json")).toURI());
                 List<Team> teams = FootballTeamDataLoader.loadTeams(jsonPath.toString());
                 List<Contestant> contestants = new ArrayList<>(teams);
 
                 Tournament footballTournament = new Tournament(Sport.FOOTBALL, contestants);
                 GroupStage[] groupStage = footballTournament.createGroupStage(2, true);
                 int[][] positionInTree = {
-                        { 0, 3 },
-                        { 2, 1 }
+                                { 0, 3 },
+                                { 2, 1 }
                 };
                 SingleEliminationKnockout knockout = footballTournament.createKnockout(positionInTree);
 
@@ -37,15 +38,15 @@ public class TestFootball2 {
 
                 SimulatedMatches simulatedMatches = new SimulatedMatches();
                 simulatedMatches.match1(groupStage, 0, 0);
-                simulatedMatches.match2(groupStage, 0, 1);
-                simulatedMatches.match3(groupStage, 1, 0);
-                simulatedMatches.match4(groupStage, 1, 1);
+                simulatedMatches.match6(groupStage, 0, 1);
+                simulatedMatches.match1(groupStage, 1, 0);
+                simulatedMatches.match6(groupStage, 1, 1);
 
                 for (GroupStage gp : groupStage) {
                         gp.displayRanking();
                 }
-                
-                System.out.println("=== List of matches for Single Elimination Knockout");
+
+                System.out.println("\n\n=== List of matches for Single Elimination Knockout");
 
                 knockout.displayPhase();
 
