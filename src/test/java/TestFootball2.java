@@ -33,8 +33,9 @@ public class TestFootball2 {
 
                 System.out.println("\nGROUP STAGE\n");
                 for (int i = 0; i < groupStage.length; i++) {
-                        System.out.println("   Group number " + (i + 1));
+                        System.out.println("Group number " + (i + 1));
                         groupStage[i].displayPhase();
+                        System.out.println("");
                 }
 
                 SimulatedMatches.match1(groupStage[0].getMatches()[0]);
