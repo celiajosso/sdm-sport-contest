@@ -126,10 +126,19 @@ public class SingleEliminationKnockout extends Phase {
             } else {
                 String a = match.getContestantA() != null ? match.getContestantA().getFullname() : "null";
                 String b = match.getContestantB() != null ? match.getContestantB().getFullname() : "null";
-                System.out.println(indent + "Match: " + a + " vs " + b);
+                String winner = match.getMatchManager().getWinner() != null ? match.getMatchManager().getWinner().getFullname() : "TBD";
+                System.out.println(indent + "Match: " + a + " vs " + b + " | Winner: " + winner);
             }
         } else if (component instanceof MatchComposite composite) {
-            System.out.println("Phase");
+            Match match = composite.getMatch();
+            if (match != null) {
+                String a = match.getContestantA() != null ? match.getContestantA().getFullname() : "null";
+                String b = match.getContestantB() != null ? match.getContestantB().getFullname() : "null";
+                String winner = match.getMatchManager().getWinner() != null ? match.getMatchManager().getWinner().getFullname() : "TBD";
+                System.out.println(indent + "Match: " + a + " vs " + b + " | Winner: " + winner);
+            } else {
+                System.out.println(indent + "Node: [no match]");
+            }
             printComponent(composite.getLeft(), depth + 1);
             printComponent(composite.getRight(), depth + 1);
         } else {

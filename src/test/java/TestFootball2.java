@@ -58,7 +58,7 @@ public class TestFootball2 {
                         System.out.println("Match: " + playerA.getFullname() + " vs " + playerB.getFullname());
                         SimulatedMatches.match2(match);
                 });
-
+                knockout.displayPhase();
                 knockout.getMatchesAtDepth(0).forEach(match -> {
                         Contestant playerA = match.getContestantA();
                         Contestant playerB = match.getContestantB();
