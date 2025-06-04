@@ -54,7 +54,7 @@ public class SingleEliminationKnockout extends Phase {
         if (leafCount == 1) {
 
             Match match = new Match(1, sport, null, null, null, null);
-
+            match.getMatchManager().addSubscriber(knockoutManager);
             return new org.example.composite.MatchLeaf(match);
         }
         MatchComposite node = new org.example.composite.MatchComposite();
