@@ -46,11 +46,13 @@ public class Tournament {
         return stages;
     }
 
-    public SingleEliminationKnockout createKnockout(int[][] positionInTree) {
-        SingleEliminationKnockout knockout = new SingleEliminationKnockout(contestants, sport, positionInTree);
+    public SingleEliminationKnockout createKnockout(List<Contestant> qualifiedContestants) {
+        SingleEliminationKnockout knockout = new SingleEliminationKnockout(qualifiedContestants, sport);
         knockout.addListener(phaseManager);
         return knockout;
     }
+    
+    
 
     public void addPhase(Phase phase) {
         phases.add(phase);

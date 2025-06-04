@@ -4,7 +4,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +14,19 @@ import org.example.contestant.TeamMember;
 
 public class FootballTeamDataLoader {
 
-    public static List<Team> loadTeams(String filepath) {
+    public static List<Team> loadTeams(String resourceName) {
         List<Team> teams = new ArrayList<>();
 
         try {
+            ClassLoader classLoader = FootballTeamDataLoader.class.getClassLoader();
+            InputStream inputStream = classLoader.getResourceAsStream(resourceName);
+
+            if (inputStream == null) {
+                throw new RuntimeException("Resource not found: " + resourceName);
+            }
+
             JSONParser parser = new JSONParser();
-            JSONArray teamArray = (JSONArray) parser.parse(new FileReader(filepath));
+            JSONArray teamArray = (JSONArray) parser.parse(new InputStreamReader(inputStream));
 
             for (Object o : teamArray) {
                 JSONObject teamJson = (JSONObject) o;

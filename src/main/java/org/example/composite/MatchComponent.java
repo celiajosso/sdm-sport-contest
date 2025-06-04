@@ -7,4 +7,8 @@ public interface MatchComponent {
     public Contestant execute();
 
     public Match getMatch();
+
+    public Match[] getAllMatches();
+
+    
 }

@@ -50,4 +50,8 @@ public class MatchLeaf implements MatchComponent {
     public void setMatch(Match match) {
         this.match = match;
     }
+
+    public Match[] getAllMatches() {
+        return new Match[]{this.match};
+    }
 }

@@ -71,7 +71,7 @@ public class FootballMatchManager extends MatchManager {
         } else if (scoreB > scoreA) {
             return match.getTeamB();
         } else {
-            return null; // match nul
+            return null; 
         }
     }
 

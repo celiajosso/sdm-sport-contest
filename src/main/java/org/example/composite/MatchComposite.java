@@ -1,5 +1,9 @@
 package org.example.composite;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.example.Match;
 import org.example.contestant.Contestant;
 
@@ -65,4 +69,22 @@ public class MatchComposite implements MatchComponent {
     public Match getMatch() {
         return matchRoot;
     }
+
+    @Override
+public Match[] getAllMatches() {
+    List<Match> all = new ArrayList<>();
+
+    if (left != null) {
+        all.addAll(Arrays.asList(left.getAllMatches()));
+    }
+    if (right != null) {
+        all.addAll(Arrays.asList(right.getAllMatches()));
+    }
+    if (matchRoot != null) {
+        all.add(matchRoot); 
+    }
+    return all.toArray(new Match[0]);
+}
+
+
 }
