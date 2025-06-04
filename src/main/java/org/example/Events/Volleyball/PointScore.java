@@ -18,7 +18,7 @@ public class PointScore extends Event {
         VolleyballMatchManager manager = new VolleyballMatchManager(match);
         manager.pointScored(team);
 
-        match.logEvent("Point scored by " + team.getFullname());
+        // match.logEvent("Point scored by " + team.getFullname());
         return true;
     }
 }
