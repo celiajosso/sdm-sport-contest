@@ -224,5 +224,8 @@ public class TestFootball1 {
         new Overtime(m6, 10).execute();
         new AdditionalTime(m6, 2).execute();
         new MatchEnd(manager6).execute();
+
+        // Print pretty group ranking table
+        groupStage[0].displayRanking();
     }
 }

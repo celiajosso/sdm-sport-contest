@@ -16,5 +16,9 @@ public abstract class Event implements Command {
         this.backup = match.getState();
     }
 
+    public Match getMatch() {
+        return match;
+    }
+
     public abstract boolean execute();
 }

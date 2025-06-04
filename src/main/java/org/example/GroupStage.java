@@ -38,7 +38,9 @@ public class GroupStage<T> extends Phase {
         }
     }
 
-    public int getId(){return id;}
+    public int getId() {
+        return id;
+    }
 
     public void addPoints(Contestant contestant, int pts) {
         points.put(contestant, points.getOrDefault(contestant, 0) + pts);
@@ -73,14 +75,46 @@ public class GroupStage<T> extends Phase {
         }
     }
 
+    /**
+     * Pretty display of the group ranking as a table.
+     */
+    public void displayRanking() {
+        System.out.println("\n=== Group " + (id + 1) + " Ranking ===");
+        System.out.printf("%-4s | %-25s | %-6s\n", "Pos", "Team", "Points");
+        System.out.println("---------------------------------------------");
+        List<Map.Entry<Contestant, Integer>> sorted = points.entrySet()
+                .stream()
+                .sorted(Map.Entry.<Contestant, Integer>comparingByValue().reversed())
+                .toList();
+        int pos = 1;
+        for (Map.Entry<Contestant, Integer> entry : sorted) {
+            System.out.printf("%-4d | %-25s | %-6d\n", pos++, entry.getKey().getFullname(), entry.getValue());
+        }
+    }
+
     private class GroupManager implements Subscriber<Event> {
         @Override
         public void notify(Event event) {
             if (event instanceof org.example.Events.Football.MatchEnd
                     || event instanceof org.example.Events.Volleyball.MatchEnd
                     || event instanceof org.example.Events.Tennis.MatchEnd) {
-                onPhaseFinish();
+                Contestant winner = event.getMatch().getMatchManager().getWinner();
+                if (winner == null) {
+                    Contestant contestantA = event.getMatch().getContestantA();
+                    points.put(contestantA, points.getOrDefault(contestantA, 0) + 1);
+
+                    Contestant contestantB = event.getMatch().getContestantB();
+                    points.put(contestantB, points.getOrDefault(contestantB, 0) + 1);
+                } else {
+                    points.put(winner, points.getOrDefault(winner, 0) + 3);
+                }
             }
+            for (Match m : matches) {
+                if (m.getState() != MatchState.FINISHED) {
+                    return;
+                }
+            }
+            onPhaseFinish();
         }
     }
 }
